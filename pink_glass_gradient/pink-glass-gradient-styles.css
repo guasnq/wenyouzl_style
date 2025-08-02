@@ -231,6 +231,8 @@ body {
 .scene-container {
     width: 100%;
     min-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .scene-box {
@@ -241,6 +243,8 @@ body {
     gap: 20px;
     height: 100%;
     width: 100%;
+    flex: 1;
+    display: flex;
 }
 
 .scene-content {
@@ -250,6 +254,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    flex: 1;
 }
 
 .pink-glass-time {
@@ -260,6 +265,7 @@ body {
     font-weight: 300;
     letter-spacing: 1px;
     margin-bottom: 15px;
+    flex-shrink: 0;
 }
 
 .time-icon {
@@ -279,6 +285,8 @@ body {
     display: flex;
     align-items: flex-start;
     height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .description-content {
@@ -287,6 +295,8 @@ body {
     display: flex;
     align-items: flex-start;
     height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 /* 行动选项区域 */
@@ -297,6 +307,8 @@ body {
 .actions-container {
     width: 100%;
     min-height: 280px;
+    display: flex;
+    flex-direction: column;
 }
 
 .actions-box {
@@ -307,6 +319,8 @@ body {
     gap: 20px;
     height: 100%;
     width: 100%;
+    flex: 1;
+    display: flex;
 }
 
 .actions-content {
@@ -316,6 +330,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    flex: 1;
 }
 
 .pink-glass-header {
@@ -432,6 +447,8 @@ body {
 .status-container {
     width: 100%;
     min-height: 120px;
+    display: flex;
+    flex-direction: column;
 }
 
 .status-box {
@@ -442,6 +459,8 @@ body {
     gap: 15px;
     height: 100%;
     width: 100%;
+    flex: 1;
+    display: flex;
 }
 
 .status-content {
@@ -451,6 +470,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    flex: 1;
 }
 
 .pink-glass-status-header {
@@ -489,6 +509,8 @@ body {
     display: flex;
     align-items: flex-start;
     height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 /* 装饰元素 - 调整位置使其不影响内容 */
@@ -555,7 +577,7 @@ body {
     .scene-box,
     .actions-box,
     .status-box {
-        padding: 55;
+        padding: 25px;
     }
 
     .pink-glass-description {
