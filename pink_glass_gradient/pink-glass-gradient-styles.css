@@ -1,0 +1,595 @@
+/* 粉白毛玻璃渐变模板样式 */
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* 泡泡容器 */
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 8px 32px rgba(255, 255, 255, 0.3),
+        0 4px 16px rgba(255, 182, 193, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    animation: float linear infinite;
+    z-index: 5;
+}
+
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 20%;
+    height: 20%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+.bubble::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 15%;
+    height: 15%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(var(--random-x)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatLeft {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(-200px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatRight {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(200px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatCenter {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(50vh) translateX(100px) rotate(180deg);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(-50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 模板主容器 */
+.template-pink-glass-gradient {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+/* 通用毛玻璃容器样式 */
+.glass-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.glass-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    background: linear-gradient(45deg,
+            #ff9a9e,
+            #fecfef,
+            #fecfef,
+            #ff9a9e,
+            #fad0c4,
+            #ffd1ff,
+            #ff9a9e);
+    background-size: 300% 300%;
+    border-radius: 20px;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    animation: gradientRotate 4s ease-in-out infinite;
+}
+
+.glass-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-shadow:
+        0 8px 32px rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 渐变旋转动画 */
+@keyframes gradientRotate {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 场景渲染区域 */
+.pink-glass-scene {
+    margin-bottom: 30px;
+}
+
+.scene-container {
+    width: 100%;
+    min-height: 200px;
+}
+
+.scene-box {
+    padding: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.scene-content {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.pink-glass-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.time-icon {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.time-text {
+    font-weight: 400;
+}
+
+.pink-glass-description {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.description-content {
+    text-align: justify;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+/* 行动选项区域 */
+.pink-glass-actions {
+    margin-bottom: 30px;
+}
+
+.actions-container {
+    width: 100%;
+    min-height: 280px;
+}
+
+.actions-box {
+    padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.actions-content {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.pink-glass-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.options-icon {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.options-title {
+    font-weight: 500;
+}
+
+.pink-glass-options {
+    margin-bottom: 20px;
+}
+
+/* 选项按钮样式 */
+.pink-glass-options .option-button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.pink-glass-options .option-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.pink-glass-options .option-button:hover {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 182, 193, 0.8);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 25px rgba(255, 154, 158, 0.4),
+        0 4px 15px rgba(255, 182, 193, 0.3);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.pink-glass-options .option-button:hover::before {
+    left: 100%;
+}
+
+.pink-glass-options .option-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+}
+
+.pink-glass-input {
+    width: 100%;
+}
+
+/* 自定义输入框样式 */
+.pink-glass-input input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.pink-glass-input input[type="text"]:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(255, 154, 158, 0.2);
+}
+
+.pink-glass-input input[type="text"]::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 状态信息区域 */
+.pink-glass-status {
+    margin-bottom: 20px;
+}
+
+.status-container {
+    width: 100%;
+    min-height: 120px;
+}
+
+.status-box {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.status-content {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.pink-glass-status-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    /* 修复图标位置，确保在容器中心 */
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.status-icon {
+    font-size: 18px;
+    opacity: 0.9;
+    /* 确保图标垂直居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.status-title {
+    font-weight: 500;
+}
+
+.pink-glass-status-text {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+/* 装饰元素 - 调整位置使其不影响内容 */
+.glass-box::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 182, 193, 0.3));
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 0;
+}
+
+.glass-box::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 192, 203, 0.2));
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: 0;
+}
+
+/* 确保内容在装饰元素之上 */
+.scene-content,
+.actions-content,
+.status-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .template-pink-glass-gradient {
+        gap: 25px;
+    }
+
+    .scene-box,
+    .actions-box,
+    .status-box {
+        padding: 30px;
+    }
+
+    .pink-glass-description {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .template-pink-glass-gradient {
+        gap: 20px;
+    }
+
+    .scene-box,
+    .actions-box,
+    .status-box {
+        padding: 55;
+    }
+
+    .pink-glass-description {
+        font-size: 16px;
+    }
+
+    .pink-glass-options .option-button {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+
+    .pink-glass-input input[type="text"] {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .scene-box,
+    .actions-box,
+    .status-box {
+        padding: 15px;
+    }
+
+    .pink-glass-description {
+        font-size: 15px;
+    }
+
+    .pink-glass-header {
+        font-size: 16px;
+    }
+
+    .pink-glass-status-header {
+        font-size: 15px;
+    }
+}
