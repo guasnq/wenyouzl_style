@@ -1,0 +1,213 @@
+/* 蒙德城·天使的馈赠酒馆 - 样式文件 */
+
+/* 配置Tailwind自定义颜色和字体 */
+@import url('https://cdn.tailwindcss.com');
+
+/* 自定义工具类 */
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .glow {
+        box-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+    }
+
+    .float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .sparkle {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sparkle::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+        transform: rotate(30deg);
+        animation: sparkle 6s linear infinite;
+    }
+
+    .always-on-top {
+        position: fixed !important;
+        z-index: 9999 !important;
+        pointer-events: auto !important;
+    }
+
+    .pulse-animation {
+        animation: pulse 2s infinite;
+    }
+}
+
+/* 动画定义 */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+@keyframes rotatePearls {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bowSway {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes flowerBloom {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes candyJump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes starTwinkle {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+@keyframes cloudFloat {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+/* 美化滚动条样式 */
+#status-bar .status-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+}
+
+#status-bar .status-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#status-bar .status-content::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+#status-bar .status-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+#status-bar .status-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#status-bar .status-content::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* 樱花样式 */
+.sakura {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, #ffb6c1, #e8b0e2);
+    border-radius: 50% 0 50% 0;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+/* 云朵样式 */
+.cloud {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path fill="rgba(255,255,255,0.8)" d="M25,25 Q15,15 25,5 Q35,15 25,25 Q35,35 25,45 Q15,35 25,25 M75,25 Q65,15 75,5 Q85,15 75,25 Q85,35 75,45 Q65,35 75,25"/></svg>') no-repeat;
+    background-size: contain;
+    animation: cloudFloat 20s linear infinite;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .max-w-4xl {
+        max-width: 100%;
+    }
+
+    .p-6 {
+        padding: 1rem;
+    }
+
+    .p-8 {
+        padding: 1.5rem;
+    }
+}

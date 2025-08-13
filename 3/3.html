@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蒙德城·天使的馈赠酒馆</title>
+  <!-- 引入外部样式和脚本 -->
+  <link href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/3/styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-purpleLight/30 to-pinkLight/70 font-fantasy relative overflow-x-hidden">
+  <!-- 动态樱花背景 -->
+  <div id="sakura-container" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+  <!-- 底部云朵 -->
+  <div class="cloud absolute bottom-0 left-0 w-64 h-32 opacity-70 z-0"></div>
+  <div class="cloud absolute bottom-10 left-1/4 w-80 h-36 opacity-60 z-0" style="animation-delay: 5s;"></div>
+  <div class="cloud absolute bottom-5 right-1/4 w-72 h-34 opacity-70 z-0" style="animation-delay: 8s;"></div>
+  <div class="cloud absolute bottom-0 right-0 w-60 h-30 opacity-60 z-0" style="animation-delay: 12s;"></div>
+
+  <!-- 侧边状态栏 -->
+  <div id="status-bar"
+    class="fixed right-0 top-0 h-full w-0 bg-gradient-to-b from-pinkMauve/80 to-pinkPeach/80 z-50 transition-all duration-500 ease-in-out overflow-hidden shadow-xl">
+    <div class="p-6 h-full flex flex-col pl-14">
+      <h2 class="text-xl font-bold text-white text-center mb-6 border-b-2 border-white/30 pb-2">
+        <i class="fa fa-heart mr-2"></i>状态信息
+      </h2>
+
+      <!-- 添加status-content类用于滚动条样式 -->
+      <div class="flex-grow overflow-y-auto pr-2 status-content">
+        <div class="space-y-3 text-white text-shadow">
+          <p class="flex justify-between"><span>体力</span><span>80</span></p>
+          <p class="flex justify-between"><span>心理压力</span><span>20</span></p>
+          <p class="flex justify-between"><span>风元素亲和</span><span>30</span></p>
+          <p class="flex justify-between"><span>金钱</span><span>1000摩拉</span></p>
+          <p class="flex justify-between"><span>名声</span><span>10（无名冒险者）</span></p>
+          <p class="flex justify-between"><span>侦查值</span><span>50</span></p>
+          <p class="flex justify-between"><span>隐匿值</span><span>40</span></p>
+          <p class="flex justify-between"><span>魅力</span><span>60</span></p>
+          <p class="flex justify-between"><span>道德刻度</span><span>70</span></p>
+          <p class="flex justify-between"><span>欲望倾向</span><span>30</span></p>
+          <p class="flex justify-between"><span>债务</span><span>0</span></p>
+          <p class="flex justify-between"><span>情报值</span><span>10</span></p>
+          <p class="flex justify-between"><span>西风骑士团声誉</span><span>50</span></p>
+          <p class="flex justify-between"><span>通缉等级</span><span>0</span></p>
+          <p class="flex justify-between"><span>秘密指数</span><span>0</span></p>
+          <p class="flex justify-between"><span>影响力</span><span>5</span></p>
+          <p class="flex justify-between"><span>事件计数器</span><span>0</span></p>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center text-white/80 text-sm">
+        <p>点击侧边箭头展开/收起</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 状态栏入口按钮 -->
+  <div id="toggle-status"
+    class="always-on-top right-4 top-1/2 -translate-y-1/2 bg-accent text-white rounded-full w-14 h-14 flex items-center justify-center cursor-pointer shadow-lg hover:bg-pinkMauve transition-colors pulse-animation">
+    <i class="fa fa-chevron-left text-xl" id="toggle-icon"></i>
+  </div>
+
+  <!-- 主内容区 -->
+  <div class="container mx-auto px-4 py-12 relative z-10 transition-all duration-500" id="main-content">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <!-- 场景渲染区 -->
+      <div class="relative">
+        <div
+          class="absolute inset-0 rounded-full border-8 border-transparent bg-clip-border bg-gradient-to-r from-pinkPeach to-purpleLight animate-[rotatePearls_30s_linear_infinite] z-0">
+        </div>
+
+        <div
+          class="absolute -top-5 -left-5 w-10 h-10 bg-pinkPeach rounded-full flex items-center justify-center shadow-lg animate-[bowSway_3s_ease-in-out_infinite] z-10">
+        </div>
+        <div
+          class="absolute -top-5 -right-5 w-10 h-10 bg-pinkPeach rounded-full flex items-center justify-center shadow-lg animate-[bowSway_3.5s_ease-in-out_infinite] z-10">
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm rounded-full p-6 md:p-8 relative z-10 float">
+          <h2 class="text-xl md:text-2xl font-bold text-purpleLight mb-4 text-center">
+            🌃【蒙德城·天使的馈赠酒馆 - 夜晚】
+          </h2>
+          <div class="text-gray-700 leading-relaxed">
+            你找了个靠窗的位置坐下，查尔斯很快走了过来，微笑着问你想要点些什么。"我们今天有新到的苹果酒，口感非常清爽，"他推荐道，"还有特制的蒙德炸鱼和薯条，是旅行者们最喜欢的下酒菜。"
+
+            你注意到那个神秘的兜帽客抬起头，似乎在打量你。他的帽檐压得很低，看不清面容，只能看到他手中握着一杯深色的酒，久久没有动过。
+
+            吟游诗人的歌声渐渐停下，他拿起酒杯向大家致意，然后开始演唱一首关于风之神巴巴托斯的古老歌谣。悠扬的歌声回荡在酒馆里，让气氛变得更加温馨而神秘。
+          </div>
+        </div>
+      </div>
+
+      <!-- 旁白区 -->
+      <div class="relative">
+        <div
+          class="absolute inset-0 rounded-2xl border-4 border-pinkPeach/50 glow animate-[pulse_4s_ease-in-out_infinite] z-0">
+        </div>
+
+        <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-7 relative z-10 sparkle">
+          <p class="text-gray-700 italic leading-relaxed">
+            初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。
+          </p>
+        </div>
+      </div>
+
+      <!-- 动态事件区 - 内容已调整为居中显示 -->
+      <div class="relative">
+        <div
+          class="absolute inset-[-10px] rounded-[40%_60%_60%_40%_/40%_40%_60%_60%] border-4 border-pinkPeach/70 overflow-hidden z-0">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-pinkPeach/30 to-purpleLight/30 animate-[flowerBloom_6s_ease-in-out_infinite]">
+          </div>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm rounded-[40%_60%_60%_40%_/40%_40%_60%_60%] p-6 md:p-7 relative z-10">
+          <h3 class="text-lg font-bold text-pinkPeach mb-3 text-center">当前事件</h3>
+          <!-- 添加了flex flex-col items-center使内容居中 -->
+          <div class="space-y-3 text-gray-700 flex flex-col items-center">
+            <!-- 每个事件项添加了max-w-md限制宽度，保持良好的居中视觉效果 -->
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-orange-500 mr-2">⚠️</span>
+              <span>侦查值不足（需≥60）无法识破兜帽客身份</span>
+            </p>
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-amber-500 mr-2">🍻</span>
+              <span>夜间酒馆消费享8折优惠（限时）</span>
+            </p>
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-blue-500 mr-2">📜</span>
+              <span>西风骑士团正在招募志愿者参与龙灾防御工作</span>
+            </p>
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-green-500 mr-2">💧</span>
+              <span>清泉镇的水源似乎出现了异常，村民们很担忧</span>
+            </p>
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-purple-500 mr-2">🔮</span>
+              <span>占卜师莫娜将在明天举办星空观测会，名额有限</span>
+            </p>
+            <p class="flex items-start justify-center w-full max-w-md">
+              <span class="text-red-500 mr-2">🔥</span>
+              <span>冒险家协会发布了紧急委托，寻找失踪的探险队</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 行动选项区 -->
+      <div class="relative">
+        <div class="absolute inset-[-8px] rounded-3xl border-4 border-transparent z-0">
+          <div
+            class="absolute top-0 left-1/4 w-6 h-6 bg-pinkPeach rounded-full animate-[candyJump_2s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute top-0 left-1/2 w-6 h-6 bg-purpleLight rounded-full animate-[candyJump_2.3s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute top-0 left-3/4 w-6 h-6 bg-pinkLight rounded-full animate-[candyJump_1.8s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute bottom-0 left-1/4 w-6 h-6 bg-purpleLight rounded-full animate-[candyJump_2.1s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute bottom-0 left-1/2 w-6 h-6 bg-pinkLight rounded-full animate-[candyJump_2.4s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute bottom-0 left-3/4 w-6 h-6 bg-pinkPeach rounded-full animate-[candyJump_1.9s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute left-0 top-1/4 w-6 h-6 bg-pinkLight rounded-full animate-[candyJump_2.2s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute left-0 top-1/2 w-6 h-6 bg-pinkPeach rounded-full animate-[candyJump_2s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute right-0 top-1/4 w-6 h-6 bg-purpleLight rounded-full animate-[candyJump_2.5s_ease-in-out_infinite]">
+          </div>
+          <div
+            class="absolute right-0 top-1/2 w-6 h-6 bg-pinkLight rounded-full animate-[candyJump_2.2s_ease-in-out_infinite]">
+          </div>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 md:p-8 relative z-10 shadow-xl shadow-pinkPeach/20">
+          <h3 class="text-lg font-bold text-pinkPeach mb-4">行动选项</h3>
+          <div class="space-y-4">
+            <div class="p-3 bg-pinkLight/30 rounded-xl hover:bg-pinkLight/50 transition-colors cursor-pointer">
+              <p class="font-medium">A. 点杯苹果酒与查尔斯攀谈</p>
+              <p class="text-sm text-gray-600 mt-1">→ 💰-120摩拉 💬情报值+10</p>
+            </div>
+
+            <div class="p-3 bg-pinkLight/30 rounded-xl hover:bg-pinkLight/50 transition-colors cursor-pointer">
+              <p class="font-medium">B. 主动接近神秘兜帽客</p>
+              <p class="text-sm text-gray-600 mt-1">→ 🎭魅力检定(>65) 😰压力+15</p>
+            </div>
+
+            <div class="p-3 bg-pinkLight/30 rounded-xl hover:bg-pinkLight/50 transition-colors cursor-pointer">
+              <p class="font-medium">C. 静坐收集情报</p>
+              <p class="text-sm text-gray-600 mt-1">→ 🔍侦查值+5 ⏳时间推进1小时</p>
+            </div>
+
+            <div class="mt-5">
+              <label class="block font-medium text-purpleLight mb-2">✨ 自定义指令：</label>
+              <input type="text"
+                class="w-full p-3 rounded-xl border-2 border-pinkPeach/30 focus:border-pinkPeach focus:outline-none bg-white/50"
+                placeholder="输入你的行动...">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 状态信息区 -->
+      <div class="relative">
+        <div class="absolute inset-[-5px] rounded-xl border-2 border-transparent z-0 overflow-hidden">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-pinkPeach/20 to-purpleLight/20 animate-[starTwinkle_4s_ease-in-out_infinite]">
+          </div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pinkPeach via-purpleLight to-pinkPeach">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purpleLight via-pinkPeach to-purpleLight">
+          </div>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 md:p-5 relative z-10">
+          <div class="flex flex-wrap gap-3 md:gap-6 justify-center text-sm md:text-base">
+            <span class="flex items-center"><i class="fa fa-money text-green-600 mr-1"></i> 金钱：1000摩拉</span>
+            <span class="flex items-center"><i class="fa fa-heartbeat text-red-500 mr-1"></i> 体力：80/100</span>
+            <span class="flex items-center"><i class="fa fa-meh-o text-yellow-500 mr-1"></i> 心理压力：20</span>
+            <span class="flex items-center"><i class="fa fa-leaf text-green-400 mr-1"></i> 风元素亲和：30</span>
+            <span class="flex items-center"><i class="fa fa-bullhorn text-blue-500 mr-1"></i> 名声：10（无名冒险者）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入外部JavaScript脚本 -->
+  <script src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/3/script.js"></script>
+</body>
+
+</html>
