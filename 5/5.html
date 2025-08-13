@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水之神裔的珠光秘境</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/5/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/5/scripts.js"></script>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-dark text-light relative">
+    <!-- 粒子效果容器 -->
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none"></div>
+    
+    <!-- 背景图 -->
+    <div class="fixed inset-0 z-0">
+        <img src="https://p26-dreamina-sign.byteimg.com/tos-cn-i-tb4s082cfz/836a9234a9c145b0a6f393a8e1d00337~tplv-tb4s082cfz-aigc_resize:2048:2048.webp?lk3s=4fa96020&x-expires=1757376000&x-signature=RnvXUctxFCeDET0%2BThpE9835SRY%3D" 
+             alt="水之神裔背景图，带有珠宝和水色发丝的幻美效果" 
+             class="w-full h-full object-cover opacity-100">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/50 to-dark/90"></div>
+    </div>
+
+    <!-- 侧边状态栏 -->
+    <div id="status-bar" class="fixed left-0 top-0 h-full z-40 transition-all duration-300 ease-in-out transform -translate-x-full">
+        <!-- 展开/收起按钮 - 尺寸缩小为原来的75%左右 -->
+        <button id="toggle-status" class="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-12 bg-gold text-dark rounded-r-lg flex items-center justify-center z-50 hover:bg-goldLight transition-colors shadow-md">
+            <i class="fa fa-chevron-right text-lg"></i>
+        </button>
+        
+        <!-- 状态栏内容 -->
+        <div class="w-80 md:w-96 h-full glass-effect border-r-2 border-gold/50 p-6 overflow-y-auto custom-scrollbar">
+            <h2 class="text-2xl font-fantasy text-gold text-glow mb-6 text-center gold-shimmer py-2 px-4 rounded-lg">
+                <i class="fa fa-diamond mr-2"></i>状态面板
+            </h2>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <!-- 状态项 -->
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-heart text-red-500 mr-2"></i>
+                        <span class="text-sm">体力</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">80</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-meh-o text-purple-400 mr-2"></i>
+                        <span class="text-sm">心理压力</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">20</div>
+                </div>
+                
+                <!-- 其他状态项保持不变 -->
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-leaf text-green-400 mr-2"></i>
+                        <span class="text-sm">风元素亲和</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">30</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-money text-yellow-400 mr-2"></i>
+                        <span class="text-sm">金钱</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">1000</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-star text-blue-400 mr-2"></i>
+                        <span class="text-sm">名声</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">10</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-search text-orange-400 mr-2"></i>
+                        <span class="text-sm">侦查值</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">50</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-eye-slash text-gray-400 mr-2"></i>
+                        <span class="text-sm">隐匿值</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">40</div>
+                </div>
+                
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse">
+                    <div class="flex items-center">
+                        <i class="fa fa-smile-o text-pink-400 mr-2"></i>
+                        <span class="text-sm">魅力</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">60</div>
+                </div>
+                
+                <!-- 更多状态项... -->
+                <div class="status-item bg-dark/60 rounded-lg p-3 border border-secondary/30 hover:border-gold/70 transition-all status-pulse col-span-2">
+                    <div class="flex items-center">
+                        <i class="fa fa-history text-purple-300 mr-2"></i>
+                        <span class="text-sm">事件计数器</span>
+                    </div>
+                    <div class="text-xl font-bold text-gold mt-1">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="relative z-10 pt-8 pb-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto transition-all duration-300" id="main-content">
+        <!-- 场景渲染区 -->
+        <section class="mb-10 rounded-xl overflow-hidden border-2 border-gold/70 pulse-light water-wave">
+            <div class="relative h-64 md:h-80 overflow-hidden flex flex-col justify-end md:justify-center p-6 md:p-10">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
+                <div class="relative z-10 max-w-3xl">
+                    <h1 class="text-3xl md:text-4xl font-fantasy text-gold text-glow text-reveal" style="animation-delay: 0.2s">
+                        🌃【蒙德城·天使的馈赠酒馆 - 夜晚】
+                    </h1>
+                    <p class="mt-3 text-light/90 text-reveal" style="animation-delay: 0.5s">
+                        酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到"龙灾""西风骑士团"的零星词句飘过。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 旁白区 -->
+        <section class="mb-10 glass-effect rounded-xl p-6 border border-secondary/50 border-glow floating">
+            <div class="flex items-start">
+                <div class="mr-4 text-gold text-3xl">
+                    <i class="fa fa-quote-left"></i>
+                </div>
+                <div>
+                    <p class="text-lg leading-relaxed text-light/90 text-reveal" style="animation-delay: 0.7s">
+                        初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态事件区 -->
+        <section class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-dark/70 rounded-xl p-5 border-2 border-secondary gold-shimmer transform transition-transform hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center mr-3">
+                        <i class="fa fa-exclamation-triangle text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold text-glow">侦查警报</h3>
+                </div>
+                <p class="text-light/80">⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</p>
+            </div>
+            
+            <div class="bg-dark/70 rounded-xl p-5 border-2 border-secondary gold-shimmer transform transition-transform hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-3">
+                        <i class="fa fa-trophy text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold text-glow">限时优惠</h3>
+                </div>
+                <p class="text-light/80">🍻 夜间酒馆消费享8折优惠（限时）</p>
+            </div>
+        </section>
+
+        <!-- 行动选项区 -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-fantasy text-gold text-glow mb-6 text-center gold-shimmer py-2 px-4 rounded-lg inline-block">
+                <i class="fa fa-compass mr-2"></i>行动选择
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <!-- 选项A -->
+                <button class="action-btn bg-dark/60 rounded-xl p-5 border border-gold/30 hover:border-gold/80 hover:bg-dark/80 transition-all ripple group">
+                    <div class="text-gold text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa fa-glass"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-light mb-2">点杯苹果酒与查尔斯攀谈</h3>
+                    <p class="text-sm text-light/70">💰-120摩拉 💬情报值+10</p>
+                </button>
+                
+                <!-- 选项B -->
+                <button class="action-btn bg-dark/60 rounded-xl p-5 border border-gold/30 hover:border-gold/80 hover:bg-dark/80 transition-all ripple group">
+                    <div class="text-gold text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa fa-user-secret"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-light mb-2">主动接近神秘兜帽客</h3>
+                    <p class="text-sm text-light/70">🎭魅力检定(>65) 😰压力+15</p>
+                </button>
+                
+                <!-- 选项C -->
+                <button class="action-btn bg-dark/60 rounded-xl p-5 border border-gold/30 hover:border-gold/80 hover:bg-dark/80 transition-all ripple group">
+                    <div class="text-gold text-2xl mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa fa-listening"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-light mb-2">静坐收集情报</h3>
+                    <p class="text-sm text-light/70">🔍侦查值+5 ⏳时间推进1小时</p>
+                </button>
+            </div>
+            
+            <!-- 自定义指令 -->
+            <div class="bg-dark/60 rounded-xl p-5 border border-secondary/50">
+                <label class="block text-gold font-medium mb-3">✨ 自定义指令：</label>
+                <div class="flex">
+                    <input type="text" placeholder="输入你的行动指令..." class="flex-1 bg-dark/80 border border-gold/30 rounded-l-lg px-4 py-3 text-light focus:outline-none focus:border-gold">
+                    <button class="bg-gold text-dark px-6 rounded-r-lg hover:bg-goldLight transition-colors ripple">
+                        <i class="fa fa-paper-plane mr-1"></i> 执行
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 状态信息区 -->
+        <section class="glass-effect rounded-xl p-5 border border-gold/50 pulse-light">
+            <div class="flex flex-wrap gap-x-6 gap-y-3">
+                <div class="flex items-center">
+                    <span class="text-gold mr-2">💰</span>
+                    <span>金钱：1000摩拉</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gold mr-2">💪</span>
+                    <span>体力：80/100</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gold mr-2">😰</span>
+                    <span>心理压力：20</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gold mr-2">🌪️</span>
+                    <span>风元素亲和：30</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gold mr-2">📢</span>
+                    <span>名声：10（无名冒险者）</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
+    
