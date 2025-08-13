@@ -1,3 +1,5 @@
+// 蒙德城·天使的馈赠酒馆 - 脚本文件
+
 // 创建背景光效
 function createLightRays() {
     const container = document.getElementById('light-rays');
@@ -219,15 +221,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSidebarToggle();
     setupActionButtons();
 });
-
-// 添加波纹动画样式
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes ripple {
-    to {
-      transform: scale(2.5);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
