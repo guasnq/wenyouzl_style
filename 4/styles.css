@@ -1,5 +1,16 @@
-/* Tailwind 配置 */
-@import url('https://cdn.tailwindcss.com');
+/* 自定义样式文件 */
+
+/* 基础样式重置 */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 /* 自定义颜色和字体 */
 :root {
