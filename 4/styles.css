@@ -1,418 +1,271 @@
-/* 蒙德城·天使的馈赠酒馆 - 样式文件 */
+/* 蒙德城·天使的馈赠酒馆 - 样式文件（纯CSS工具类） */
 
-/* Tailwind 配置 - 必须在Tailwind CDN之前定义 */
-tailwind.config= {
-    theme: {
-        extend: {
-            colors: {
-                deepsea: {
-                    50: '#e6f0ff',
-                        100: '#b3d1ff',
-                        200: '#80b3ff',
-                        300: '#4d94ff',
-                        400: '#1a75ff',
-                        500: '#005ce6',
-                        600: '#0047b3',
-                        700: '#003380',
-                        800: '#001f4d',
-                        900: '#000a1a',
-                }
-
-                ,
-                coral: {
-                    light: '#ff9999',
-                        DEFAULT: '#ff6666',
-                        dark: '#cc5252',
-                }
-
-                ,
-                pearl: {
-                    light: '#f0f8ff',
-                        DEFAULT: '#e6f2ff',
-                        dark: '#cce0ff',
-                }
-            }
-
-            ,
-            fontFamily: {
-                fantasy: ['Garamond', 'Georgia', 'Cambria', 'serif'],
-            }
-
-            ,
-            animation: {
-                'float': 'float 6s ease-in-out infinite',
-                    'float-slow': 'float 8s ease-in-out infinite',
-                    'float-fast': 'float 4s ease-in-out infinite',
-                    'bubble-rise': 'bubbleRise 15s linear infinite',
-                    'bubble-rise-fast': 'bubbleRise 10s linear infinite',
-                    'bubble-rise-slow': 'bubbleRise 20s linear infinite',
-                    'wave': 'wave 8s ease-in-out infinite',
-                    'wave-slow': 'wave 12s ease-in-out infinite',
-                    'shine': 'shine 4s ease-in-out infinite',
-                    'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
-                    'glow': 'glow 3s ease-in-out infinite',
-                    'fish-swim': 'fishSwim 10s linear infinite',
-                    'fish-swim-fast': 'fishSwim 7s linear infinite',
-                    'fish-swim-slow': 'fishSwim 15s linear infinite',
-                    'sunlight': 'sunlight 15s ease-in-out infinite',
-                    'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    'lens-zoom': 'lensZoom 0.5s ease-out',
-                    'fade-in': 'fadeIn 1s ease-out',
-                    'float-up': 'floatUp 3s ease-out forwards',
-            }
-
-            ,
-            keyframes: {
-                float: {
-                    '0%, 100%': {
-                        transform: 'translateY(0)'
-                    }
-
-                    ,
-                    '50%': {
-                        transform: 'translateY(-10px)'
-                    }
-
-                    ,
-                }
-
-                ,
-                floatUp: {
-                    '0%': {
-                        transform: 'translateY(20px)', opacity: 0
-                    }
-
-                    ,
-                    '100%': {
-                        transform: 'translateY(0)', opacity: 1
-                    }
-
-                    ,
-                }
-
-                ,
-                fadeIn: {
-                    '0%': {
-                        opacity: 0
-                    }
-
-                    ,
-                    '100%': {
-                        opacity: 1
-                    }
-
-                    ,
-                }
-
-                ,
-                lensZoom: {
-                    '0%': {
-                        transform: 'scale(1)'
-                    }
-
-                    ,
-                    '50%': {
-                        transform: 'scale(1.05)'
-                    }
-
-                    ,
-                    '100%': {
-                        transform: 'scale(1)'
-                    }
-
-                    ,
-                }
-
-                ,
-                pulseSoft: {
-                    '0%, 100%': {
-                        opacity: 0.7
-                    }
-
-                    ,
-                    '50%': {
-                        opacity: 1
-                    }
-
-                    ,
-                }
-
-                ,
-                glow: {
-                    '0%, 100%': {
-                        boxShadow: '0 0 10px rgba(128, 179, 255, 0.5)'
-                    }
-
-                    ,
-                    '50%': {
-                        boxShadow: '0 0 20px rgba(128, 179, 255, 0.8)'
-                    }
-
-                    ,
-                }
-
-                ,
-                bubbleRise: {
-                    '0%': {
-                        transform: 'translateY(100vh) scale(0.3)', opacity: 0.2
-                    }
-
-                    ,
-                    '100%': {
-                        transform: 'translateY(-100px) scale(1)', opacity: 0.8
-                    }
-
-                    ,
-                }
-
-                ,
-                wave: {
-                    '0%, 100%': {
-                        transform: 'scaleX(1)'
-                    }
-
-                    ,
-                    '50%': {
-                        transform: 'scaleX(1.05)'
-                    }
-
-                    ,
-                }
-
-                ,
-                shine: {
-                    '0%, 100%': {
-                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.7)'
-                    }
-
-                    ,
-                    '50%': {
-                        boxShadow: '0 0 20px rgba(255, 255, 255, 0.9)'
-                    }
-
-                    ,
-                }
-
-                ,
-                fishSwim: {
-                    '0%': {
-                        transform: 'translateX(-100%)'
-                    }
-
-                    ,
-                    '100%': {
-                        transform: 'translateX(100vw)'
-                    }
-
-                    ,
-                }
-
-                ,
-                sunlight: {
-                    '0%, 100%': {
-                        boxShadow: '0 0 20px rgba(255, 255, 200, 0.5)'
-                    }
-
-                    ,
-                    '50%': {
-                        boxShadow: '0 0 30px rgba(255, 255, 200, 0.7)'
-                    }
-
-                    ,
-                }
-            }
-        }
-    }
+/* 通用工具类 */
+.content-auto {
+    content-visibility: auto;
 }
 
-;
-
-/* 自定义工具类 */
-@layer utilities {
-    .content-auto {
-        content-visibility: auto;
-    }
-
-    .text-shadow {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .text-shadow-glow {
-        text-shadow: 0 0 10px rgba(128, 179, 255, 0.7);
-    }
-
-    .border-wave {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .border-wave::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: 2px solid transparent;
-        border-radius: inherit;
-        background: linear-gradient(45deg, #80b3ff, #4d94ff, #1a75ff, #005ce6) border-box;
-        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: destination-out;
-        mask-composite: exclude;
-        animation: wave 8s ease-in-out infinite;
-    }
-
-    .bubble {
-        position: absolute;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .bubble-glow {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    .coral-bg {
-        background-image: url('https://picsum.photos/id/1024/800/400');
-        background-size: cover;
-        background-blend-mode: overlay;
-    }
-
-    .shell-button {
-        position: relative;
-        overflow: hidden;
-        border-radius: 50% / 30%;
-        transition: all 0.3s ease;
-    }
-
-    .shell-button::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 100%);
-        transform: rotate(30deg);
-        animation: shine 4s infinite;
-    }
-
-    .lens-effect {
-        position: relative;
-    }
-
-    .lens-effect::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: inherit;
-        border: 2px solid rgba(128, 179, 255, 0.5);
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-
-    .lens-effect:hover::before {
-        opacity: 1;
-        animation: lensZoom 0.5s ease-out;
-    }
-
-    .fish-path {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-    }
-
-    .fish {
-        position: absolute;
-        width: 20px;
-        height: 10px;
-        background-color: rgba(100, 255, 255, 0.7);
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(100, 255, 255, 0.8);
-    }
-
-    .light-ray {
-        position: absolute;
-        background: linear-gradient(to bottom, rgba(255, 255, 200, 0.1), rgba(255, 255, 200, 0));
-        transform-origin: top center;
-        animation: pulse-soft 3s infinite;
-    }
-
-    .floating-object {
-        position: absolute;
-        opacity: 0.7;
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .sidebar-sunlight {
-        position: relative;
-    }
-
-    .sidebar-sunlight::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 10px;
-        background: linear-gradient(90deg, rgba(255, 255, 200, 0.2), rgba(255, 255, 200, 0.5), rgba(255, 255, 200, 0.2));
-        animation: sunlight 15s ease-in-out infinite;
-    }
-
-    /* 美化滚动条 */
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: rgba(0, 76, 179, 0.2);
-        border-radius: 10px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(128, 179, 255, 0.6);
-        border-radius: 10px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: rgba(128, 179, 255, 0.8);
-    }
-
-    /* 浮动入口按钮 */
-    .status-entrance {
-        position: fixed;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 50;
-        background: rgba(0, 86, 230, 0.8);
-        border-radius: 0 10px 10px 0;
-        padding: 8px 4px;
-        box-shadow: 0 0 10px rgba(128, 179, 255, 0.6);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        animation: pulse-soft 2s infinite;
-    }
-
-    .status-entrance:hover {
-        background: rgba(0, 86, 230, 1);
-        box-shadow: 0 0 15px rgba(128, 179, 255, 0.8);
-    }
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* 波纹动画样式 */
+.text-shadow-glow {
+    text-shadow: 0 0 10px rgba(128, 179, 255, 0.7);
+}
+
+/* 边框波纹容器 */
+.border-wave {
+    position: relative;
+    overflow: hidden;
+}
+
+.border-wave::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: inherit;
+    background: linear-gradient(45deg, #80b3ff, #4d94ff, #1a75ff, #005ce6) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: wave 8s ease-in-out infinite;
+}
+
+/* 气泡与发光 */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.bubble-glow {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 珊瑚背景 */
+.coral-bg {
+    background-image: url('https://picsum.photos/id/1024/800/400');
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+/* 贝壳按钮与高光滑过 */
+.shell-button {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50% / 30%;
+    transition: all 0.3s ease;
+}
+
+.shell-button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(30deg);
+    animation: shine 4s infinite;
+}
+
+/* 透镜边框效果 */
+.lens-effect {
+    position: relative;
+}
+
+.lens-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 2px solid rgba(128, 179, 255, 0.5);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.lens-effect:hover::before {
+    opacity: 1;
+    animation: lensZoom 0.5s ease-out;
+}
+
+/* 鱼群运动容器与元素 */
+.fish-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.fish {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background-color: rgba(100, 255, 255, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(100, 255, 255, 0.8);
+}
+
+/* 光束与漂浮物 */
+.light-ray {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255, 255, 200, 0.1), rgba(255, 255, 200, 0));
+    transform-origin: top center;
+    animation: pulseSoft 3s infinite;
+}
+
+.floating-object {
+    position: absolute;
+    opacity: 0.7;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* 侧栏顶部阳光条 */
+.sidebar-sunlight {
+    position: relative;
+}
+
+.sidebar-sunlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, rgba(255, 255, 200, 0.2), rgba(255, 255, 200, 0.5), rgba(255, 255, 200, 0.2));
+    animation: sunlight 15s ease-in-out infinite;
+}
+
+/* 自定义滚动条 */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 76, 179, 0.2);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(128, 179, 255, 0.6);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 179, 255, 0.8);
+}
+
+/* 浮动入口按钮 */
+.status-entrance {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    background: rgba(0, 86, 230, 0.8);
+    border-radius: 0 10px 10px 0;
+    padding: 8px 4px;
+    box-shadow: 0 0 10px rgba(128, 179, 255, 0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: pulseSoft 2s infinite;
+}
+
+.status-entrance:hover {
+    background: rgba(0, 86, 230, 1);
+    box-shadow: 0 0 15px rgba(128, 179, 255, 0.8);
+}
+
+/* 仅本文件内使用的关键帧（其余交给Tailwind生成） */
 @keyframes ripple {
     to {
         transform: scale(2.5);
         opacity: 0;
+    }
+}
+
+/* 这些名字与Tailwind配置中的关键帧名称一致，确保二者不冲突 */
+@keyframes lensZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseSoft {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes sunlight {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 200, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(255, 255, 200, 0.7);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 供内联 animation 使用的关键帧（不依赖Tailwind JIT） */
+@keyframes fish-swim {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+@keyframes shine {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
     }
 }
