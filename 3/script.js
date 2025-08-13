@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化状态栏功能
     initStatusBar();
+
+    // 初始化交互功能
+    addInteractiveFeatures();
 });
 
 // 生成樱花飘落效果
@@ -137,11 +140,6 @@ function handleCustomAction(action) {
         // 这里可以添加自定义行动的处理逻辑
     }
 }
-
-// 页面完全加载后初始化交互功能
-window.addEventListener('load', function () {
-    addInteractiveFeatures();
-});
 
 // 导出函数供外部使用（如果需要）
 if (typeof module !== 'undefined' && module.exports) {
