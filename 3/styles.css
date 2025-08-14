@@ -1,0 +1,85 @@
+/* 光韵缪斯 - 卡片页面样式 */
+
+/* 自定义工具类 */
+.content-auto {
+    content-visibility: auto;
+}
+
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-strong {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.text-glow {
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+}
+
+.scrollbar-beautify::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-beautify::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.scrollbar-beautify::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 10px;
+}
+
+.scrollbar-beautify::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.8);
+}
+
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 4s linear infinite;
+}
+
+/* 粒子基础样式 */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.particle-gold {
+    background-color: rgba(212, 175, 55, 0.8);
+    animation: particle-move 6s ease-in-out infinite;
+}
+
+.particle-purple {
+    background-color: rgba(139, 92, 246, 0.7);
+    animation: particle-move-alt 7s ease-in-out infinite;
+}
+
+/* 状态栏样式 */
+#status-bar {
+    transition: width 0.5s ease-in-out;
+}
+
+#open-status {
+    transition: opacity 0.3s, transform 0.3s, display 0.5s;
+}
