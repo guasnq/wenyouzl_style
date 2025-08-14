@@ -1,0 +1,151 @@
+/* 蒙德城·天使的馈赠酒馆 样式文件 */
+
+/* Tailwind CSS 配置 */
+@import url('https://cdn.tailwindcss.com');
+
+/* 自定义颜色和字体 */
+:root {
+    --primary: #6C5CE7;
+    --secondary: #0984E3;
+    --accent: #FDCB6E;
+    --dark: #2D3436;
+    --light: #DFE6E9;
+}
+
+/* 自定义动画 */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(108, 92, 231, 0.7), 0 0 30px rgba(9, 132, 227, 0.5); }
+    50% { box-shadow: 0 0 25px rgba(108, 92, 231, 0.9), 0 0 50px rgba(9, 132, 227, 0.7); }
+}
+
+@keyframes wave {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes meteor {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+        opacity: 0
+    }
+    20% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+        opacity: 1
+    }
+    90% {
+        opacity: 1
+    }
+    100% {
+        transform: translate(calc(-50% + 1000px), calc(-50% + 1000px)) rotate(-45deg) scale(1);
+        opacity: 0
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 自定义工具类 */
+.content-auto {
+    content-visibility: auto;
+}
+
+.text-shadow {
+    text-shadow: 0 0 10px rgba(253, 203, 110, 0.7);
+}
+
+.bg-gradient-magic {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(9, 132, 227, 0.2));
+}
+
+.border-glow {
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.7), 0 0 30px rgba(9, 132, 227, 0.5);
+}
+
+.bg-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.meteor-trail {
+    position: absolute;
+    background: linear-gradient(90deg, 
+                rgba(253, 203, 110, 0) 0%, 
+                rgba(253, 203, 110, 0.8) 50%, 
+                rgba(253, 203, 110, 0) 100%);
+    transform-origin: 0 0;
+}
+
+/* 动画类 */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+    animation: glow 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-wave {
+    animation: wave 8s ease-in-out infinite;
+}
+
+.animate-fall {
+    animation: fall 15s linear infinite;
+}
+
+.animate-meteor {
+    animation: meteor 1.5s linear forwards;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .status-bar {
+        width: 3rem;
+    }
+    
+    .status-bar.expanded {
+        width: 16rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .status-bar {
+        width: 2.5rem;
+    }
+    
+    .status-bar.expanded {
+        width: 14rem;
+    }
+}
