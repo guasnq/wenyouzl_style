@@ -1,0 +1,187 @@
+/* 星蝶幻域 - 蒙德城卡片 样式文件 */
+
+/* 颜色变量 */
+:root {
+    --color-primary: #4A6CF7;
+    --color-secondary: #A78BFA;
+    --color-accent: #818CF8;
+    --color-dark: #0F172A;
+    --color-light: #EEF2FF;
+    --color-glow: #A5B4FC;
+}
+
+/* 动画关键帧 */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(165, 180, 252, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(165, 180, 252, 0.8); }
+}
+
+@keyframes crackle {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes butterfly {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(50px, -30px) rotate(10deg); }
+    50% { transform: translate(100px, 10px) rotate(-5deg); }
+    75% { transform: translate(50px, 30px) rotate(5deg); }
+}
+
+@keyframes flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+@keyframes shine {
+    0%, 100% { text-shadow: 0 0 5px rgba(165, 180, 252, 0.7); }
+    50% { text-shadow: 0 0 15px rgba(165, 180, 252, 0.9); }
+}
+
+/* 自定义工具类 */
+    .text-shadow {
+        text-shadow: 0 0 8px rgba(165, 180, 252, 0.8);
+    }
+    .bg-stars {
+        background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
+    .border-cracked {
+        background: linear-gradient(90deg, transparent 50%, rgba(165, 180, 252, 0.3) 50%) repeat-x,
+                    linear-gradient(90deg, transparent 50%, rgba(165, 180, 252, 0.3) 50%) repeat-x,
+                    linear-gradient(0deg, transparent 50%, rgba(165, 180, 252, 0.3) 50%) repeat-y,
+                    linear-gradient(0deg, transparent 50%, rgba(165, 180, 252, 0.3) 50%) repeat-y;
+        background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+        animation: crackle 8s linear infinite;
+    }
+    .border-thread {
+        background: linear-gradient(90deg, rgba(165, 180, 252, 0) 0%, rgba(165, 180, 252, 0.8) 50%, rgba(165, 180, 252, 0) 100%) repeat-x,
+                    linear-gradient(90deg, rgba(165, 180, 252, 0) 0%, rgba(165, 180, 252, 0.8) 50%, rgba(165, 180, 252, 0) 100%) repeat-x,
+                    linear-gradient(0deg, rgba(165, 180, 252, 0) 0%, rgba(165, 180, 252, 0.8) 50%, rgba(165, 180, 252, 0) 100%) repeat-y,
+                    linear-gradient(0deg, rgba(165, 180, 252, 0) 0%, rgba(165, 180, 252, 0.8) 50%, rgba(165, 180, 252, 0) 100%) repeat-y;
+        background-size: 40px 1px, 40px 1px, 1px 40px, 1px 40px;
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+        animation: flow 6s linear infinite;
+    }
+    .border-ripple {
+        position: relative;
+        overflow: hidden;
+    }
+    .border-ripple::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid transparent;
+        animation: ripple 4s linear infinite;
+        pointer-events: none;
+    }
+    @keyframes ripple {
+        0% {
+            border-color: rgba(165, 180, 252, 0);
+            transform: scale(1);
+        }
+        50% {
+            border-color: rgba(165, 180, 252, 0.8);
+            transform: scale(1.02);
+        }
+        100% {
+            border-color: rgba(165, 180, 252, 0);
+            transform: scale(1);
+        }
+    }
+    .text-glow {
+        background: linear-gradient(90deg, #A5B4FC, #EEF2FF, #A5B4FC);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 3s ease-in-out infinite;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #4A6CF7, #A78BFA);
+        border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #3B5BDB, #9333EA);
+    }
+    .butterfly {
+        position: absolute;
+        width: 40px;
+        height: 30px;
+        background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.5) 0%, rgba(74, 108, 247, 0) 70%);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        transform-origin: center;
+        z-index: 1;
+        pointer-events: none;
+        animation: butterfly 20s ease-in-out infinite;
+    }
+    .butterfly:before, .butterfly:after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 20px;
+        background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.3) 0%, rgba(74, 108, 247, 0) 70%);
+        border-radius: 50%;
+    }
+    .butterfly:before {
+        left: -15px;
+        top: 5px;
+        transform: rotate(-30deg);
+        animation: flap-left 3s ease-in-out infinite;
+    }
+    .butterfly:after {
+        right: -15px;
+        top: 5px;
+        transform: rotate(30deg);
+        animation: flap-right 3s ease-in-out infinite;
+    }
+    @keyframes flap-left {
+        0%, 100% { transform: rotate(-30deg) scaleX(1); }
+        50% { transform: rotate(-10deg) scaleX(0.8); }
+    }
+    @keyframes flap-right {
+        0%, 100% { transform: rotate(30deg) scaleX(1); }
+        50% { transform: rotate(10deg) scaleX(0.8); }
+    }
+    .meteor {
+        position: absolute;
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, rgba(165, 180, 252, 0), rgba(165, 180, 252, 0.8));
+        transform-origin: top;
+        animation: meteor 4s linear infinite;
+        top: -60px;
+        z-index: 1;
+    }
+    @keyframes meteor {
+        0% {
+            transform: translateX(0) translateY(0) rotate(45deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        80% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(200px) translateY(200px) rotate(45deg);
+            opacity: 0;
+        }
+    }
