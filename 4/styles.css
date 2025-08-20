@@ -67,12 +67,10 @@ body {
 
 /* 动画关键帧 */
 @keyframes float {
-
     0%,
     100% {
         transform: translateY(0);
     }
-
     50% {
         transform: translateY(-10px);
     }
@@ -83,7 +81,6 @@ body {
         transform: translateY(20px);
         opacity: 0;
     }
-
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -94,7 +91,6 @@ body {
     0% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
@@ -104,35 +100,29 @@ body {
     0% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.05);
     }
-
     100% {
         transform: scale(1);
     }
 }
 
 @keyframes pulseSoft {
-
     0%,
     100% {
         opacity: 0.7;
     }
-
     50% {
         opacity: 1;
     }
 }
 
 @keyframes glow {
-
     0%,
     100% {
         box-shadow: 0 0 10px rgba(128, 179, 255, 0.5);
     }
-
     50% {
         box-shadow: 0 0 20px rgba(128, 179, 255, 0.8);
     }
@@ -143,7 +133,6 @@ body {
         transform: translateY(100vh) scale(0.3);
         opacity: 0.2;
     }
-
     100% {
         transform: translateY(-100px) scale(1);
         opacity: 0.8;
@@ -151,24 +140,20 @@ body {
 }
 
 @keyframes wave {
-
     0%,
     100% {
         transform: scaleX(1);
     }
-
     50% {
         transform: scaleX(1.05);
     }
 }
 
 @keyframes shine {
-
     0%,
     100% {
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     }
-
     50% {
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
     }
@@ -178,31 +163,26 @@ body {
     0% {
         transform: translateX(-100%);
     }
-
     100% {
         transform: translateX(100vw);
     }
 }
 
 @keyframes sunlight {
-
     0%,
     100% {
         box-shadow: 0 0 20px rgba(255, 255, 200, 0.5);
     }
-
     50% {
         box-shadow: 0 0 30px rgba(255, 255, 200, 0.7);
     }
 }
 
 @keyframes pulse {
-
     0%,
     100% {
         opacity: 1;
     }
-
     50% {
         opacity: 0.5;
     }
@@ -872,7 +852,10 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
     transform: rotate(30deg);
     animation: shine 4s infinite;
 }
@@ -962,245 +945,4 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(128, 179, 255, 0.8);
-}
-
-/* 浮动入口按钮 */
-.status-entrance {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 50;
-    background: rgba(0, 86, 230, 0.8);
-    border-radius: 0 10px 10px 0;
-    padding: 8px 4px;
-    box-shadow: 0 0 10px rgba(128, 179, 255, 0.6);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    animation: pulseSoft 2s infinite;
-}
-
-.status-entrance:hover {
-    background: rgba(0, 86, 230, 1);
-    box-shadow: 0 0 15px rgba(128, 179, 255, 0.8);
-}
-
-/* 主内容布局 */
-.main-content {
-    padding: 1rem;
-}
-
-@media (min-width: 1024px) {
-    .main-content {
-        padding: 2rem;
-    }
-}
-
-.content-container {
-    max-width: 56rem;
-    margin: 0 auto;
-}
-
-.content-container>*+* {
-    margin-top: 1.5rem;
-}
-
-/* 场景渲染区样式 */
-.scene-container {
-    background-color: rgba(0, 31, 77, 0.6);
-    backdrop-filter: blur(4px);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateZ(0);
-    transition: all 0.5s ease;
-    opacity: 0;
-    animation: floatUp 3s ease-out forwards;
-    animation-delay: 0.4s;
-}
-
-.scene-container:hover {
-    transform: scale(1.01);
-}
-
-/* 旁白区样式 */
-.narrator-container {
-    background-color: rgba(0, 51, 128, 0.4);
-    backdrop-filter: blur(4px);
-    padding: 1.25rem;
-    border-radius: 9999px;
-    max-width: 42rem;
-    margin: 0 auto;
-    border: 2px solid rgba(77, 148, 255, 0.5);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    animation: float 6s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
-    transform: translateZ(0);
-    transition: all 0.5s ease;
-    opacity: 0;
-    animation: floatUp 3s ease-out forwards;
-    animation-delay: 0.6s;
-}
-
-.narrator-container:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.narrator-inner {
-    position: relative;
-    z-index: 10;
-}
-
-.narrator-bg {
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    background-color: rgba(128, 179, 255, 0.1);
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* 动态事件区样式 */
-.events-container {
-    background-color: rgba(0, 31, 77, 0.5);
-    backdrop-filter: blur(4px);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateZ(0);
-    transition: all 0.5s ease;
-    opacity: 0;
-    animation: floatUp 3s ease-out forwards;
-    animation-delay: 0.8s;
-}
-
-.events-container:hover {
-    transform: scale(1.01);
-}
-
-/* 行动选项区样式 */
-.actions-container {
-    background-color: rgba(0, 31, 77, 0.6);
-    backdrop-filter: blur(4px);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateZ(0);
-    transition: all 0.5s ease;
-    animation: glow 3s ease-in-out infinite;
-}
-
-.actions-container:hover {
-    transform: scale(1.01);
-}
-
-.actions-list>*+* {
-    margin-top: 1rem;
-}
-
-.action-button {
-    position: relative;
-    overflow: hidden;
-    border-radius: 50% / 30%;
-    width: 100%;
-    background-color: var(--deepsea-700);
-    padding: 1rem;
-    text-align: left;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-    position: relative;
-}
-
-.action-button:hover {
-    background-color: var(--deepsea-600);
-}
-
-.action-button:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-    --tw-ring-color: var(--deepsea-300);
-}
-
-.custom-input-container {
-    display: flex;
-    align-items: center;
-    margin-top: 1.5rem;
-    animation: pulseSoft 2s infinite;
-}
-
-.custom-input {
-    background-color: rgba(0, 10, 26, 0.7);
-    border: 1px solid var(--deepsea-500);
-    border-radius: 0.25rem;
-    padding: 0.5rem 0.75rem;
-    flex: 1;
-    color: var(--white);
-    transition: all 0.3s ease;
-}
-
-.custom-input:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-    --tw-ring-color: var(--deepsea-300);
-    border-color: transparent;
-}
-
-.custom-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* 状态信息区样式 */
-.status-info-container {
-    background-color: rgba(0, 31, 77, 0.7);
-    background-image: url('https://picsum.photos/id/1024/800/400');
-    background-size: cover;
-    background-blend-mode: overlay;
-    --tw-bg-opacity: 0.3;
-    backdrop-filter: blur(4px);
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateZ(0);
-    transition: all 0.5s ease;
-    opacity: 0;
-    animation: floatUp 3s ease-out forwards;
-    animation-delay: 1.2s;
-}
-
-.status-info-container:hover {
-    transform: scale(1.01);
-}
-
-.status-info-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    font-size: 1.125rem;
-    font-weight: 500;
-    position: relative;
-    z-index: 10;
-}
-
-.status-info-item {
-    transition: transform 0.3s ease;
-}
-
-.status-info-item:hover {
-    transform: scale(1.05);
 }
