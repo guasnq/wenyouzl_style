@@ -1,10 +1,6 @@
-// 深海主题游戏页面交互脚本
-
 // 创建背景光效
 function createLightRays() {
     const container = document.getElementById('light-rays');
-    if (!container) return;
-
     const rayCount = 6;
 
     for (let i = 0; i < rayCount; i++) {
@@ -32,8 +28,6 @@ function createLightRays() {
 // 创建漂浮装饰
 function createFloatingObjects() {
     const container = document.getElementById('floating-objects');
-    if (!container) return;
-
     const objectCount = 8;
     const symbols = ['⚓', '🌊', '🐠', '🦈', '💧', '🌀', '🔱', '🐚'];
 
@@ -51,12 +45,8 @@ function createFloatingObjects() {
         obj.style.top = `${Math.random() * 100}%`;
 
         // 随机动画
-        const animationTypes = ['float', 'float', 'float'];
-        const durations = ['6s', '8s', '4s'];
-        const animationType = animationTypes[i % 3];
-        const duration = durations[i % 3];
-
-        obj.style.animation = `float ${duration} ease-in-out infinite`;
+        const animationType = i % 3 === 0 ? 'animate-float-slow' : (i % 3 === 1 ? 'animate-float' : 'animate-float-fast');
+        obj.classList.add(animationType);
 
         // 随机不透明度
         obj.style.opacity = (Math.random() * 0.5 + 0.2).toString();
@@ -68,8 +58,6 @@ function createFloatingObjects() {
 // 创建背景气泡（增加多样性）
 function createBubbles() {
     const container = document.getElementById('bubbles-container');
-    if (!container) return;
-
     const bubbleCount = 70;
 
     for (let i = 0; i < bubbleCount; i++) {
@@ -86,18 +74,9 @@ function createBubbles() {
 
         // 随机动画速度
         let animationClass = 'animate-bubble-rise';
-        let duration = '15s';
-        if (i % 3 === 0) {
-            animationClass = 'animate-bubble-rise-fast';
-            duration = '10s';
-        }
-        if (i % 3 === 1) {
-            animationClass = 'animate-bubble-rise-slow';
-            duration = '20s';
-        }
-
+        if (i % 3 === 0) animationClass = 'animate-bubble-rise-fast';
+        if (i % 3 === 1) animationClass = 'animate-bubble-rise-slow';
         bubble.classList.add(animationClass);
-        bubble.style.animation = `${animationClass.replace('animate-', '')} ${duration} linear infinite`;
 
         // 随机动画延迟
         const delay = Math.random() * 15;
@@ -115,8 +94,6 @@ function createBubbles() {
 // 创建珊瑚区小气泡
 function createCoralBubbles() {
     const container = document.getElementById('coral-bubbles');
-    if (!container) return;
-
     const bubbleCount = 40;
 
     for (let i = 0; i < bubbleCount; i++) {
@@ -136,7 +113,7 @@ function createCoralBubbles() {
         // 随机动画延迟和持续时间
         const delay = Math.random() * 5;
         const duration = Math.random() * 8 + 5;
-        bubble.style.animation = `bubble-rise ${duration}s linear infinite`;
+        bubble.style.animation = `bubbleRise ${duration}s linear infinite`;
         bubble.style.animationDelay = `${delay}s`;
 
         container.appendChild(bubble);
@@ -147,17 +124,12 @@ function createCoralBubbles() {
 function setupSidebarToggle() {
     const entranceBtn = document.getElementById('status-entrance');
     const sidebar = document.getElementById('status-sidebar');
-
-    if (!entranceBtn || !sidebar) return;
-
-    const statusContent = sidebar.querySelector('.sidebar-stats');
+    const statusContent = sidebar.querySelector('.overflow-y-auto');
     let isOpen = false;
 
     // 确保状态栏内容始终从顶部开始显示
     function resetSidebarScroll() {
-        if (statusContent) {
-            statusContent.scrollTop = 0;
-        }
+        statusContent.scrollTop = 0;
     }
 
     entranceBtn.addEventListener('click', () => {
@@ -165,10 +137,12 @@ function setupSidebarToggle() {
 
         if (isOpen) {
             // 打开状态栏 - 滑入视野
-            sidebar.classList.add('open');
+            sidebar.classList.remove('-ml-64');
+            sidebar.classList.add('ml-0');
         } else {
             // 关闭状态栏 - 滑出视野
-            sidebar.classList.remove('open');
+            sidebar.classList.remove('ml-0');
+            sidebar.classList.add('-ml-64');
         }
 
         resetSidebarScroll();
@@ -178,13 +152,12 @@ function setupSidebarToggle() {
 // 为行动按钮添加增强的交互效果
 function setupActionButtons() {
     const buttons = document.querySelectorAll('.action-button');
-
     buttons.forEach(button => {
         button.addEventListener('click', (event) => {
             // 按钮点击动画
-            button.style.transform = 'scale(0.95)';
+            button.classList.add('scale-95');
             setTimeout(() => {
-                button.style.transform = '';
+                button.classList.remove('scale-95');
             }, 200);
 
             // 添加点击波纹效果
@@ -218,52 +191,21 @@ function setupActionButtons() {
 
     // 自定义指令输入框
     const customInput = document.getElementById('custom-action');
-    if (customInput) {
-        customInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && customInput.value.trim()) {
-                console.log('自定义指令:', customInput.value);
-                // 添加输入确认动画
-                customInput.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    customInput.style.transform = '';
-                    customInput.value = '';
-                }, 150);
-            }
-        });
-    }
-}
-
-// 创建鱼群动画
-function createFishAnimation() {
-    const fishPath = document.querySelector('.fish-path');
-    if (!fishPath) return;
-
-    // 清除现有鱼群
-    fishPath.innerHTML = '';
-
-    // 创建多条鱼
-    const fishData = [
-        { top: '20%', animation: 'fish-swim 12s linear infinite', width: '20px', height: '10px', delay: '0s' },
-        { top: '40%', animation: 'fish-swim-fast 8s linear infinite', width: '25px', height: '12px', delay: '0.5s' },
-        { top: '60%', animation: 'fish-swim-slow 16s linear infinite', width: '18px', height: '9px', delay: '1s' },
-        { top: '80%', animation: 'fish-swim 10s linear infinite', width: '20px', height: '10px', delay: '1.5s' }
-    ];
-
-    fishData.forEach(fishInfo => {
-        const fish = document.createElement('div');
-        fish.classList.add('fish');
-        fish.style.top = fishInfo.top;
-        fish.style.width = fishInfo.width;
-        fish.style.height = fishInfo.height;
-        fish.style.animation = fishInfo.animation;
-        fish.style.animationDelay = fishInfo.delay;
-
-        fishPath.appendChild(fish);
+    customInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && customInput.value.trim()) {
+            console.log('自定义指令:', customInput.value);
+            // 添加输入确认动画
+            customInput.classList.add('scale-95');
+            setTimeout(() => {
+                customInput.classList.remove('scale-95');
+                customInput.value = '';
+            }, 150);
+        }
     });
 }
 
-// 页面初始化
-function initializePage() {
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
     // 确保页面从顶部开始
     window.scrollTo(0, 0);
 
@@ -272,37 +214,7 @@ function initializePage() {
     createFloatingObjects();
     createBubbles();
     createCoralBubbles();
-    createFishAnimation();
 
-    // 设置交互功能
     setupSidebarToggle();
     setupActionButtons();
-}
-
-// 窗口大小改变时重新创建光线效果
-function handleResize() {
-    const lightRaysContainer = document.getElementById('light-rays');
-    if (lightRaysContainer) {
-        lightRaysContainer.innerHTML = '';
-        createLightRays();
-    }
-}
-
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', initializePage);
-
-// 窗口大小改变时重新初始化光线效果
-window.addEventListener('resize', handleResize);
-
-// 导出函数供外部使用（如果需要）
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        createLightRays,
-        createFloatingObjects,
-        createBubbles,
-        createCoralBubbles,
-        setupSidebarToggle,
-        setupActionButtons,
-        initializePage
-    };
-}
+});
