@@ -1,587 +1,286 @@
-/* 蒙德城·天使的馈赠酒馆 - 样式文件 */
-
-/* Tailwind CSS 自定义配置 */
+/* Tailwind 配置和自定义颜色 */
 :root {
-    /* 深海色调 */
-    --deepsea-50: #e6f0ff;
-    --deepsea-100: #b3d1ff;
-    --deepsea-200: #80b3ff;
-    --deepsea-300: #4d94ff;
-    --deepsea-400: #1a75ff;
-    --deepsea-500: #005ce6;
-    --deepsea-600: #0047b3;
-    --deepsea-700: #003380;
-    --deepsea-800: #001f4d;
-    --deepsea-900: #000a1a;
-
-    /* 珊瑚色调 */
-    --coral-light: #ff9999;
-    --coral: #ff6666;
-    --coral-dark: #cc5252;
-
-    /* 珍珠色调 */
-    --pearl-light: #f0f8ff;
-    --pearl: #e6f2ff;
-    --pearl-dark: #cce0ff;
+  --deepsea-50: #e6f0ff;
+  --deepsea-100: #b3d1ff;
+  --deepsea-200: #80b3ff;
+  --deepsea-300: #4d94ff;
+  --deepsea-400: #1a75ff;
+  --deepsea-500: #005ce6;
+  --deepsea-600: #0047b3;
+  --deepsea-700: #003380;
+  --deepsea-800: #001f4d;
+  --deepsea-900: #000a1a;
+  --coral-light: #ff9999;
+  --coral-default: #ff6666;
+  --coral-dark: #cc5252;
+  --pearl-light: #f0f8ff;
+  --pearl-default: #e6f2ff;
+  --pearl-dark: #cce0ff;
 }
 
-/* 动画关键帧定义 */
+/* 关键帧动画 */
 @keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes lensZoom {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 @keyframes pulseSoft {
-
-    0%,
-    100% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 1;
-    }
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 @keyframes glow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 10px rgba(128, 179, 255, 0.5);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(128, 179, 255, 0.8);
-    }
+  0%, 100% { box-shadow: 0 0 10px rgba(128, 179, 255, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(128, 179, 255, 0.8); }
 }
 
 @keyframes bubbleRise {
-    0% {
-        transform: translateY(100vh) scale(0.3);
-        opacity: 0.2;
-    }
-
-    100% {
-        transform: translateY(-100px) scale(1);
-        opacity: 0.8;
-    }
+  0% { transform: translateY(100vh) scale(0.3); opacity: 0.2; }
+  100% { transform: translateY(-100px) scale(1); opacity: 0.8; }
 }
 
 @keyframes wave {
-
-    0%,
-    100% {
-        transform: scaleX(1);
-    }
-
-    50% {
-        transform: scaleX(1.05);
-    }
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.05); }
 }
 
 @keyframes shine {
-
-    0%,
-    100% {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-    }
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
+  50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
 }
 
 @keyframes fishSwim {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(100vw);
-    }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
 }
 
 @keyframes sunlight {
-
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(255, 255, 200, 0.5);
-    }
-
-    50% {
-        box-shadow: 0 0 30px rgba(255, 255, 200, 0.7);
-    }
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 200, 0.5); }
+  50% { box-shadow: 0 0 30px rgba(255, 255, 200, 0.7); }
 }
 
 @keyframes ripple {
-    to {
-        transform: scale(2.5);
-        opacity: 0;
-    }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
-/* 自定义工具类 */
+/* 动画类 */
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float 8s ease-in-out infinite; }
+.animate-float-fast { animation: float 4s ease-in-out infinite; }
+.animate-bubble-rise { animation: bubbleRise 15s linear infinite; }
+.animate-bubble-rise-fast { animation: bubbleRise 10s linear infinite; }
+.animate-bubble-rise-slow { animation: bubbleRise 20s linear infinite; }
+.animate-wave { animation: wave 8s ease-in-out infinite; }
+.animate-wave-slow { animation: wave 12s ease-in-out infinite; }
+.animate-shine { animation: shine 4s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulseSoft 2s ease-in-out infinite; }
+.animate-glow { animation: glow 3s ease-in-out infinite; }
+.animate-fish-swim { animation: fishSwim 10s linear infinite; }
+.animate-fish-swim-fast { animation: fishSwim 7s linear infinite; }
+.animate-fish-swim-slow { animation: fishSwim 15s linear infinite; }
+.animate-sunlight { animation: sunlight 15s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-lens-zoom { animation: lensZoom 0.5s ease-out; }
+.animate-fade-in { animation: fadeIn 1s ease-out; }
+.animate-float-up { animation: floatUp 3s ease-out forwards; }
+
+/* 工具类 */
 .content-auto {
-    content-visibility: auto;
+  content-visibility: auto;
 }
 
 .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text-shadow-glow {
-    text-shadow: 0 0 10px rgba(128, 179, 255, 0.7);
+  text-shadow: 0 0 10px rgba(128, 179, 255, 0.7);
 }
 
 .border-wave {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .border-wave::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid transparent;
-    border-radius: inherit;
-    background: linear-gradient(45deg, #80b3ff, #4d94ff, #1a75ff, #005ce6) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    animation: wave 8s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #80b3ff, #4d94ff, #1a75ff, #005ce6) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: wave 8s ease-in-out infinite;
 }
 
 .bubble {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .bubble-glow {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .coral-bg {
-    background-image: url('https://picsum.photos/id/1024/800/400');
-    background-size: cover;
-    background-blend-mode: overlay;
+  background-image: url('https://picsum.photos/id/1024/800/400');
+  background-size: cover;
+  background-blend-mode: overlay;
 }
 
 .shell-button {
-    position: relative;
-    overflow: hidden;
-    border-radius: 50% / 30%;
-    transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50% / 30%;
+  transition: all 0.3s ease;
 }
 
 .shell-button::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to right,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 100%);
-    transform: rotate(30deg);
-    animation: shine 4s infinite;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 4s infinite;
 }
 
 .lens-effect {
-    position: relative;
+  position: relative;
 }
 
 .lens-effect::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    border: 2px solid rgba(128, 179, 255, 0.5);
-    opacity: 0;
-    transition: all 0.3s ease;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(128, 179, 255, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .lens-effect:hover::before {
-    opacity: 1;
-    animation: lensZoom 0.5s ease-out;
+  opacity: 1;
+  animation: lensZoom 0.5s ease-out;
 }
 
 .fish-path {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 .fish {
-    position: absolute;
-    width: 20px;
-    height: 10px;
-    background-color: rgba(100, 255, 255, 0.7);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(100, 255, 255, 0.8);
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  background-color: rgba(100, 255, 255, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(100, 255, 255, 0.8);
 }
 
 .light-ray {
-    position: absolute;
-    background: linear-gradient(to bottom, rgba(255, 255, 200, 0.1), rgba(255, 255, 200, 0));
-    transform-origin: top center;
-    animation: pulseSoft 3s infinite;
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255, 255, 200, 0.1), rgba(255, 255, 200, 0));
+  transform-origin: top center;
+  animation: pulseSoft 3s infinite;
 }
 
 .floating-object {
-    position: absolute;
-    opacity: 0.7;
-    animation: float 6s ease-in-out infinite;
+  position: absolute;
+  opacity: 0.7;
+  animation: float 6s ease-in-out infinite;
 }
 
 .sidebar-sunlight {
-    position: relative;
+  position: relative;
 }
 
 .sidebar-sunlight::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: linear-gradient(90deg, rgba(255, 255, 200, 0.2), rgba(255, 255, 200, 0.5), rgba(255, 255, 200, 0.2));
-    animation: sunlight 15s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(255,255,200,0.2), rgba(255,255,200,0.5), rgba(255,255,200,0.2));
+  animation: sunlight 15s ease-in-out infinite;
 }
 
 /* 美化滚动条 */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(0, 76, 179, 0.2);
-    border-radius: 10px;
+  background: rgba(0, 76, 179, 0.2);
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(128, 179, 255, 0.6);
-    border-radius: 10px;
+  background: rgba(128, 179, 255, 0.6);
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(128, 179, 255, 0.8);
+  background: rgba(128, 179, 255, 0.8);
 }
 
 /* 浮动入口按钮 */
 .status-entrance {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 50;
-    background: rgba(0, 86, 230, 0.8);
-    border-radius: 0 10px 10px 0;
-    padding: 8px 4px;
-    box-shadow: 0 0 10px rgba(128, 179, 255, 0.6);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    animation: pulseSoft 2s infinite;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  background: rgba(0, 86, 230, 0.8);
+  border-radius: 0 10px 10px 0;
+  padding: 8px 4px;
+  box-shadow: 0 0 10px rgba(128, 179, 255, 0.6);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: pulseSoft 2s infinite;
 }
 
 .status-entrance:hover {
-    background: rgba(0, 86, 230, 1);
-    box-shadow: 0 0 15px rgba(128, 179, 255, 0.8);
-}
-
-/* 动画类 */
-.animate-float {
-    animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-slow {
-    animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-fast {
-    animation: float 4s ease-in-out infinite;
-}
-
-.animate-bubble-rise {
-    animation: bubbleRise 15s linear infinite;
-}
-
-.animate-bubble-rise-fast {
-    animation: bubbleRise 10s linear infinite;
-}
-
-.animate-bubble-rise-slow {
-    animation: bubbleRise 20s linear infinite;
-}
-
-.animate-wave {
-    animation: wave 8s ease-in-out infinite;
-}
-
-.animate-wave-slow {
-    animation: wave 12s ease-in-out infinite;
-}
-
-.animate-shine {
-    animation: shine 4s ease-in-out infinite;
-}
-
-.animate-pulse-soft {
-    animation: pulseSoft 2s ease-in-out infinite;
-}
-
-.animate-glow {
-    animation: glow 3s ease-in-out infinite;
-}
-
-.animate-fish-swim {
-    animation: fishSwim 10s linear infinite;
-}
-
-.animate-fish-swim-fast {
-    animation: fishSwim 7s linear infinite;
-}
-
-.animate-fish-swim-slow {
-    animation: fishSwim 15s linear infinite;
-}
-
-.animate-sunlight {
-    animation: sunlight 15s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animate-lens-zoom {
-    animation: lensZoom 0.5s ease-out;
-}
-
-.animate-fade-in {
-    animation: fadeIn 1s ease-out;
-}
-
-.animate-float-up {
-    animation: floatUp 3s ease-out forwards;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .status-entrance {
-        padding: 6px 3px;
-    }
-
-    .shell-button {
-        padding: 12px 16px;
-    }
-
-    .fish {
-        width: 15px;
-        height: 8px;
-    }
-}
-
-/* 主题色彩应用 */
-.bg-deepsea-50 {
-    background-color: var(--deepsea-50);
-}
-
-.bg-deepsea-100 {
-    background-color: var(--deepsea-100);
-}
-
-.bg-deepsea-200 {
-    background-color: var(--deepsea-200);
-}
-
-.bg-deepsea-300 {
-    background-color: var(--deepsea-300);
-}
-
-.bg-deepsea-400 {
-    background-color: var(--deepsea-400);
-}
-
-.bg-deepsea-500 {
-    background-color: var(--deepsea-500);
-}
-
-.bg-deepsea-600 {
-    background-color: var(--deepsea-600);
-}
-
-.bg-deepsea-700 {
-    background-color: var(--deepsea-700);
-}
-
-.bg-deepsea-800 {
-    background-color: var(--deepsea-800);
-}
-
-.bg-deepsea-900 {
-    background-color: var(--deepsea-900);
-}
-
-.text-deepsea-50 {
-    color: var(--deepsea-50);
-}
-
-.text-deepsea-100 {
-    color: var(--deepsea-100);
-}
-
-.text-deepsea-200 {
-    color: var(--deepsea-200);
-}
-
-.text-deepsea-300 {
-    color: var(--deepsea-300);
-}
-
-.text-deepsea-400 {
-    color: var(--deepsea-400);
-}
-
-.text-deepsea-500 {
-    color: var(--deepsea-500);
-}
-
-.text-deepsea-600 {
-    color: var(--deepsea-600);
-}
-
-.text-deepsea-700 {
-    color: var(--deepsea-700);
-}
-
-.text-deepsea-800 {
-    color: var(--deepsea-800);
-}
-
-.text-deepsea-900 {
-    color: var(--deepsea-900);
-}
-
-.border-deepsea-200 {
-    border-color: var(--deepsea-200);
-}
-
-.border-deepsea-300 {
-    border-color: var(--deepsea-300);
-}
-
-.border-deepsea-400 {
-    border-color: var(--deepsea-400);
-}
-
-.border-deepsea-500 {
-    border-color: var(--deepsea-500);
-}
-
-.text-coral-light {
-    color: var(--coral-light);
-}
-
-.text-coral {
-    color: var(--coral);
-}
-
-.text-coral-dark {
-    color: var(--coral-dark);
-}
-
-.text-pearl-light {
-    color: var(--pearl-light);
-}
-
-.text-pearl {
-    color: var(--pearl);
-}
-
-.text-pearl-dark {
-    color: var(--pearl-dark);
-}
-
-.bg-coral-light {
-    background-color: var(--coral-light);
-}
-
-.bg-coral {
-    background-color: var(--coral);
-}
-
-.bg-coral-dark {
-    background-color: var(--coral-dark);
-}
-
-.bg-pearl-light {
-    background-color: var(--pearl-light);
-}
-
-.bg-pearl {
-    background-color: var(--pearl);
-}
-
-.bg-pearl-dark {
-    background-color: var(--pearl-dark);
-}
-
-/* 字体设置 */
-.font-fantasy {
-    font-family: 'Garamond', 'Georgia', 'Cambria', serif;
+  background: rgba(0, 86, 230, 1);
+  box-shadow: 0 0 15px rgba(128, 179, 255, 0.8);
 }
