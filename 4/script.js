@@ -1,3 +1,5 @@
+// 蒙德城·天使的馈赠酒馆 - 文本冒险游戏脚本文件
+
 // 创建背景光效
 function createLightRays() {
     const container = document.getElementById('light-rays');
