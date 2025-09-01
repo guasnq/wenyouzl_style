@@ -11,7 +11,7 @@
   --jade: #1d4e57;
 
   /* 卡片与区块 */
-  --card-bg: rgba(255, 255, 255, 0);
+  --card-bg: rgba(255, 255, 255, 0.245);
   /* 整体更实 */
   --panel-bg: rgba(255, 255, 255, .94);
   /* 区块背板更亮，读字兜底 */
@@ -637,7 +637,7 @@ body::before {
 }
 
 .perf-ultra .block::before {
-  background: rgba(255, 255, 255, .96)
+  background: rgba(255, 255, 255, 0.721)
 }
 
 .perf-ultra .card-frame::before {
