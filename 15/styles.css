@@ -637,7 +637,7 @@ body::before {
 }
 
 .perf-ultra .block::before {
-  background: rgba(255, 255, 255, 0.721)
+  background: rgba(255, 255, 255, 0)
 }
 
 .perf-ultra .card-frame::before {
