@@ -3,12 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>池边翠影 · 卡片页（重排版）</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="stylesheet" href="./styles.css" />
+  <title>池边翠影 · 古风卡片页</title>
+
+  <!-- CDN 引入：GitHub + jsDelivr -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/14/styles.css">
+
+  <!-- 建议 defer，等 DOM 就绪再跑脚本 -->
+  <script src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/14/script.js" defer></script>
 </head>
 <body class="page-bg">
-
   <!-- 左侧蒲扇开关 -->
   <button class="fan-toggle" aria-controls="statusDrawer" aria-expanded="false" title="展开状态栏">🪭</button>
 
@@ -20,22 +24,14 @@
     </div>
     <div class="drawer-content">
       <ul class="stat-list">
-        <li><span>体力</span><b>80</b></li>
-        <li><span>心理压力</span><b>20</b></li>
-        <li><span>风元素亲和</span><b>30</b></li>
-        <li><span>金钱</span><b>1000</b></li>
-        <li><span>名声</span><b>10</b></li>
-        <li><span>侦查值</span><b>50</b></li>
-        <li><span>隐匿值</span><b>40</b></li>
-        <li><span>魅力</span><b>60</b></li>
-        <li><span>道德刻度</span><b>70</b></li>
-        <li><span>欲望倾向</span><b>30</b></li>
-        <li><span>债务</span><b>0</b></li>
-        <li><span>情报值</span><b>10</b></li>
-        <li><span>西风骑士团声誉</span><b>50</b></li>
-        <li><span>通缉等级</span><b>0</b></li>
-        <li><span>秘密指数</span><b>0</b></li>
-        <li><span>影响力</span><b>5</b></li>
+        <li><span>体力</span><b>80</b></li><li><span>心理压力</span><b>20</b></li>
+        <li><span>风元素亲和</span><b>30</b></li><li><span>金钱</span><b>1000</b></li>
+        <li><span>名声</span><b>10</b></li><li><span>侦查值</span><b>50</b></li>
+        <li><span>隐匿值</span><b>40</b></li><li><span>魅力</span><b>60</b></li>
+        <li><span>道德刻度</span><b>70</b></li><li><span>欲望倾向</span><b>30</b></li>
+        <li><span>债务</span><b>0</b></li><li><span>情报值</span><b>10</b></li>
+        <li><span>西风骑士团声誉</span><b>50</b></li><li><span>通缉等级</span><b>0</b></li>
+        <li><span>秘密指数</span><b>0</b></li><li><span>影响力</span><b>5</b></li>
         <li><span>事件计数器</span><b>0</b></li>
       </ul>
     </div>
@@ -48,9 +44,9 @@
     </div>
   </header>
 
-  <!-- 主体容器：自上而下 -->
+  <!-- 主体：自上而下 -->
   <main class="container">
-    <!-- 场景渲染区 -->
+    <!-- 场景渲染区（卷轴风） -->
     <section class="card card--scroll scene">
       <h3 class="section-title">场景渲染区</h3>
       <div class="type-ink">
@@ -59,7 +55,7 @@
       </div>
     </section>
 
-    <!-- 旁白区 -->
+    <!-- 旁白区（水面波纹） -->
     <section class="card narrator">
       <h3 class="section-title">旁白区</h3>
       <p class="waterline">
@@ -67,7 +63,7 @@
       </p>
     </section>
 
-    <!-- 动态事件区（改为版心居中“玉牌”） -->
+    <!-- 动态事件区（居中玉牌） -->
     <section class="card events-board" aria-live="polite">
       <h3 class="section-title">动态事件区</h3>
       <ul class="events-list">
@@ -88,12 +84,10 @@
     </section>
   </main>
 
-  <!-- 全局装饰层 -->
+  <!-- 全局装饰层：落叶 + 水波环 -->
   <div class="global-layer" aria-hidden="true">
     <div class="leaf-layer"></div>
     <div class="ripple-ring"></div>
   </div>
-
-  <script src="./script.js"></script>
 </body>
 </html>
