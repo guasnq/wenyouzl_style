@@ -1,82 +1,80 @@
-/* ========== 主题与可调参数 ========== */
+/* ===== 主题与可调参数 ===== */
 :root{
-  --ink:#0E1A1F;         /* 墨青更深一点，提对比 */
-  --mist:#8FB4C9;        /* 雾蓝 */
-  --paper:#F6F7F9;       /* 月白 */
-  --verm:#D64545;        /* 朱砂 */
-  --gold:#d7b87b;        /* 润金 */
-  --jade:#1d4e57;        /* 玉青 */
-  --card-bg:rgba(255,255,255,.78);   /* 卡片更实，文字更清晰 */
-  --glass: blur(6px) saturate(115%);
+  --ink:#0E1A1F;              /* 深墨：提高对比 */
+  --mist:#8FB4C9;
+  --paper:#F6F7F9;
+  --verm:#D64545;
+  --gold:#d7b87b;
+  --jade:#1d4e57;
+  --card-bg:rgba(255,255,255,.78); /* 卡片更实，提高可读性 */
+  --glass: blur(5px) saturate(110%);
   --shadow: 0 10px 30px rgba(0,0,0,.25);
-  --scrim-top: rgba(2,8,10,.55);     /* 顶部遮罩渐变 */
-  --scrim-mid: rgba(2,8,10,.38);
-  --scrim-btm: rgba(2,8,10,.60);
+
+  /* 背景暗化渐变（减法不遮背景细节） */
+  --scrim-top: rgba(2,8,10,.50);
+  --scrim-mid: rgba(2,8,10,.34);
+  --scrim-btm: rgba(2,8,10,.56);
+
+  /* 区块背板模糊强度（会在低配自动降级为纯色） */
+  --panel-blur: 3px;
+  --panel-fill: rgba(253,253,255,.56);
 }
 
-/* 可访问性与响应式字号 */
+/* ===== 可访问性与字号 ===== */
 html{font-size:clamp(16px,0.95vw + 0.7vh,19px)}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0; color:var(--ink); background:#000;
-  font-family: "Source Han Serif SC","Noto Serif SC","Songti SC","STSong",serif;
+  font-family:"Source Han Serif SC","Noto Serif SC","Songti SC","STSong",serif;
   line-height:1.8; overflow-x:hidden; position:relative;
 }
 
-/* 背景视频铺满，调轻度色彩 */
+/* ===== 背景视频：去滤镜，减GPU负担 ===== */
 .bg-video{
   position:fixed; inset:0; width:100%; height:100%;
-  object-fit:cover; z-index:-6;
-  filter:brightness(1.02) contrast(1.02) saturate(1.05);
+  object-fit:cover; z-index:-6; /* 不再对视频做额外 filter */
 }
 
-/* 背景暗化遮罩：不改 HTML，用伪元素即可 */
+/* 背景暗化遮罩（不挡细节） */
 body::before{
   content:""; position:fixed; inset:0; pointer-events:none; z-index:-5;
   background:
-    radial-gradient(1200px 600px at 50% 12%, rgba(255,255,255,.03), transparent 60%),
+    radial-gradient(1100px 540px at 50% 12%, rgba(255,255,255,.03), transparent 60%),
     linear-gradient(to bottom, var(--scrim-top), var(--scrim-mid) 40%, var(--scrim-btm));
 }
 
-/* 全局动效层（精简） */
+/* ===== 全局动效层（精简） ===== */
 .fx{position:fixed; inset:0; pointer-events:none}
 .fx-clouds{
   background:
-    radial-gradient(1000px 500px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
-    radial-gradient(900px 450px at 70% 30%, rgba(255,255,255,.07), transparent 60%);
-  mix-blend-mode:screen; opacity:.32; animation:cloudShift 180s linear infinite;
-  z-index:-4;
+    radial-gradient(900px 420px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(820px 380px at 70% 30%, rgba(255,255,255,.07), transparent 60%);
+  mix-blend-mode:screen; opacity:.28; animation:cloudShift 180s linear infinite;
+  z-index:-4; will-change:transform; transform:translateZ(0);
 }
-.fx-clouds.front{display:none}             /* 默认只留一层，减载 */
+.fx-clouds.front{display:none}
 @keyframes cloudShift{50%{transform:translate3d(-2%,1%,0)}}
 
-/* 月晕呼吸（更轻） */
 .fx-moon{
-  background: radial-gradient(560px 560px at 75% 12%, rgba(255,255,240,.10), transparent 60%);
+  background: radial-gradient(520px 520px at 75% 12%, rgba(255,255,240,.10), transparent 60%);
   animation:moonPulse 18s ease-in-out infinite; z-index:-3;
 }
-@keyframes moonPulse{0%,100%{opacity:.28} 50%{opacity:.45}}
+@keyframes moonPulse{0%,100%{opacity:.26} 50%{opacity:.42}}
 
-/* 水面微波（降级为轻呼吸） */
 .fx-water{
   background: linear-gradient(to top, rgba(255,255,255,.06), rgba(255,255,255,0));
-  mask:linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,0) 55%);
-  -webkit-mask:linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,0) 55%);
-  z-index:-2; opacity:.18; animation:waterBreath 7s ease-in-out infinite;
+  z-index:-2; opacity:.16; animation:waterBreath 7s ease-in-out infinite;
 }
-@keyframes waterBreath{50%{filter:blur(1px)}}
+@keyframes waterBreath{50%{filter:blur(0.8px)}}
 
-/* 宣纸噪点（更轻） */
-.fx-grain{
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-size:140px 140px; opacity:.10; z-index:-1;
+.fx-grain{ /* 替换为极轻静态纹理 */
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0ABYBQjA2NgYGAQGJgYhMRAKc0BB4AAG4kA3xN5c8EAAAAAElFTkSuQmCC");
+  background-size: 10px 10px; opacity:.08; z-index:-1;
 }
-
-/* 飘落花片容器（数量改小） */
 .fx-petals{z-index:-1; overflow:hidden}
 
-/* 中央卡片 */
+/* ===== 中央卡片 ===== */
 .card{
   position:relative; margin:6vh auto 10vh; width:min(88vw,880px); max-width:880px;
   filter:drop-shadow(var(--shadow));
@@ -84,59 +82,61 @@ body::before{
 .card-frame{
   position:relative; border-radius:18px; background:var(--card-bg);
   backdrop-filter:var(--glass);
-  border:1px solid rgba(215,184,123,.35);
+  border:1px solid rgba(215,184,123,.32);
   overflow:hidden;
 }
-
-/* 金线流光边框（频率减半） */
 .card-frame::before{
-  content:""; position:absolute; inset:0; border-radius:18px;
-  padding:1px; background:linear-gradient(120deg, rgba(215,184,123,.0), rgba(215,184,123,.65), rgba(215,184,123,.0));
+  content:""; position:absolute; inset:0; border-radius:18px; pointer-events:none;
+  padding:1px;
+  background:linear-gradient(120deg, rgba(215,184,123,0), rgba(215,184,123,.6), rgba(215,184,123,0));
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude;
-  animation:borderSweep 20s linear infinite;
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:borderSweep 22s linear infinite;
 }
 @keyframes borderSweep{100%{background-position:200% 200%}}
 
-/* 四角金箔游丝（静态，低负载） */
-.card-frame::after{
-  content:""; position:absolute; inset:8px; border-radius:14px; pointer-events:none;
-  background:
-    radial-gradient(120px 50px at 0% 0%, rgba(215,184,123,.3), transparent 70%),
-    radial-gradient(120px 50px at 100% 0%, rgba(215,184,123,.22), transparent 70%),
-    radial-gradient(120px 50px at 0% 100%, rgba(215,184,123,.22), transparent 70%),
-    radial-gradient(120px 50px at 100% 100%, rgba(215,184,123,.3), transparent 70%);
+/* ===== 内容区：增加“局部模糊背板” ===== */
+.block{
+  position:relative; padding:2.2rem 2rem; z-index:0;
+  contain: layout paint; /* 降重绘范围 */
 }
+.block + .block{border-top:1px dashed rgba(215,184,123,.28)}
 
-/* 区块通用与可读性背板 */
-.block{padding:2.2rem 2rem; position:relative}
-.block + .block{border-top:1px dashed rgba(215,184,123,.30)}
+/* 背板 + 内边框 + 角饰 */
 .block::before{
-  content:""; position:absolute; inset:10px; border:1px solid rgba(29,78,87,.28); border-radius:10px;
+  content:""; position:absolute; inset:10px; border-radius:12px; z-index:0;
+  background: var(--panel-fill);
+  box-shadow: inset 0 0 0 1px rgba(29,78,87,.28);
+  backdrop-filter: blur(var(--panel-blur));
 }
-.block::after{
-  content:""; position:absolute; width:16px; height:16px; right:18px; top:18px;
-  background:radial-gradient(circle, rgba(29,78,87,.45), rgba(29,78,87,0) 70%);
-  border-radius:50%; filter:blur(.4px); opacity:.6;
+@supports not ((backdrop-filter: blur(1px))){
+  .block::before{ backdrop-filter:none; background:rgba(253,253,255,.72) }
+}
+.block>*{position:relative; z-index:1} /* 内容盖在背板之上 */
+
+/* 轻微文字描边阴影：对高反差背景更稳 */
+.block, .block p, .block li{
+  text-shadow: 0 1px 1px rgba(255,255,255,.25), 0 -1px 1px rgba(0,0,0,.08);
 }
 
 /* 场景渲染 */
 .scene{background:linear-gradient(to bottom, rgba(255,255,255,.18), rgba(255,255,255,.06))}
-.scene-meta{display:flex; gap:.8rem; align-items:center; font-size:.9rem; opacity:.9}
+.scene-meta{display:flex; gap:.8rem; align-items:center; font-size:.9rem; opacity:.93}
 .scene-meta .stamp{
   margin-left:auto; font-size:.85rem; letter-spacing:.3em; color:#fff;
   background:var(--verm); padding:.2em .6em; border-radius:2px;
 }
 .scene-text{margin:.8rem 0 0}
 
-/* 旁白首字放大与墨迹线（频率更慢） */
+/* 旁白与墨线（更慢） */
 .narrator .dropcap::first-letter{font-size:1.6em; margin-right:.2em; color:var(--verm)}
 .ink-line{
   height:2px; background:linear-gradient(90deg, rgba(29,78,87,0), rgba(29,78,87,.85), rgba(29,78,87,0));
   margin-top:1rem; animation:inkGrow 12s ease-in-out infinite;
 }
 @keyframes inkGrow{50%{transform:scaleX(1); opacity:1}}
-/* 动态事件玉牌签 */
+
+/* 事件区 */
 .event-list{list-style:none; margin:0; padding:0; display:grid; gap:.6rem}
 .event{
   position:relative; padding:.6rem .9rem .6rem 2.2rem;
@@ -157,10 +157,10 @@ body::before{
 }
 @keyframes slowSweep{0%{background-position:-100% 0}100%{background-position:100% 0}}
 
-/* 行动选项宣纸条（刷痕更稀） */
+/* 行动选项 */
 .action-tags{list-style:none; margin:0; padding:0; display:grid; gap:.6rem}
 .action-tags li{
-  padding:.45rem .8rem; border:1px dashed rgba(29,78,87,.38); border-radius:6px;
+  padding:.45rem .8rem; border:1px dashed rgba(29,78,87,.36); border-radius:6px;
   background:linear-gradient(0deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
   position:relative; overflow:hidden;
 }
@@ -169,17 +169,17 @@ body::before{
   background:linear-gradient(120deg, rgba(215,184,123,0), rgba(215,184,123,.22), rgba(215,184,123,0));
   opacity:0; animation:brush 14s ease-in-out infinite;
 }
-@keyframes brush{35%{opacity:.6} 50%{transform:translateX(0)} 65%{opacity:.6}}
+@keyframes brush{35%{opacity:.55} 50%{transform:translateX(0)} 65%{opacity:.55}}
 
-/* 状态信息条：墨水晕染（更轻） */
+/* 状态信息条 */
 .stat-bars{list-style:none; margin:0; padding:0; display:grid; gap:.7rem}
 .stat-bars li{
   --p:0%;
   position:relative; padding:.5rem .7rem .55rem; border-radius:8px;
-  background:rgba(255,255,255,.12); border:1px solid rgba(29,78,87,.32);
+  background:rgba(255,255,255,.12); border:1px solid rgba(29,78,87,.30);
   overflow:hidden;
 }
-.stat-bars li::before{content:attr(data-label) " "; opacity:.85; margin-right:.5rem}
+.stat-bars li::before{content:attr(data-label) " "; opacity:.87; margin-right:.5rem}
 .stat-bars li::after{
   content:""; position:absolute; inset:0; border-radius:8px;
   background:
@@ -190,14 +190,14 @@ body::before{
   -webkit-mask:linear-gradient(90deg,#000 80%,transparent);
   animation:inkBleed 20s ease-in-out infinite;
 }
-@keyframes inkBleed{50%{filter:blur(1px)}}
+@keyframes inkBleed{50%{filter:blur(.8px)}}
 
-/* 右侧状态栏 */
+/* ===== 右侧状态栏 ===== */
 .sidebar{
   position:fixed; top:0; right:0; height:100%; width:min(86vw,360px);
   transform:translateX(100%); transition:transform .28s ease, box-shadow .28s ease;
   background:rgba(8,18,22,.80); color:#eef2f4; backdrop-filter:blur(10px) saturate(110%);
-  border-left:1px solid rgba(215,184,123,.32); z-index:20; overflow:auto;
+  border-left:1px solid rgba(215,184,123,.30); z-index:20; overflow:auto;
 }
 .sidebar.open{transform:none; box-shadow:-20px 0 40px rgba(0,0,0,.35)}
 .sidebar-head{display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem .6rem}
@@ -208,7 +208,7 @@ body::before{
 .kv li{display:flex; justify-content:space-between; padding:.4rem .6rem; border-bottom:1px dashed rgba(255,255,255,.15)}
 .kv span{opacity:.86}
 
-/* 自定义滚动条（状态栏） */
+/* 自定义滚动条 */
 .sidebar{scrollbar-width:thin; scrollbar-color:rgba(215,184,123,.6) rgba(255,255,255,.06)}
 .sidebar::-webkit-scrollbar{width:10px}
 .sidebar::-webkit-scrollbar-track{background:rgba(255,255,255,.06)}
@@ -217,7 +217,7 @@ body::before{
   border-radius:8px; border:2px solid rgba(255,255,255,.06);
 }
 
-/* 触发按钮：玉笛 */
+/* 右侧触发按钮：玉笛 */
 .sidebar-toggle{
   position:fixed; top:16px; right:16px; z-index:25;
   width:40px; height:120px; border:0; background:transparent; cursor:pointer;
@@ -238,26 +238,29 @@ body::before{
   border-radius:8px; filter:blur(.3px); animation:tassel 2.4s ease-in-out infinite;
 }
 @keyframes tassel{50%{transform:translateX(-50%) rotate(2deg)}}
-
-/* 背景遮罩（点击关闭） */
 .backdrop{position:fixed; inset:0; background:rgba(0,0,0,.25); z-index:15}
 
-/* 性能档位：低配时进一步降载 */
+/* ===== 性能档位 ===== */
 .perf-low .fx-clouds.front{display:none}
 .perf-low .fx-water{display:none}
-.perf-low .fx-moon{animation:none; opacity:.25}
-.perf-low .fx-grain{opacity:.06}
-.perf-low .card-frame::before{animation-duration:32s}
-.perf-low .block::after{display:none}
-.perf-low .action-tags li::after{animation:none}
+.perf-low .fx-moon{animation:none; opacity:.24}
+.perf-low .card-frame::before{animation-duration:30s}
 .perf-low .event.chance{animation:none}
+.perf-low .action-tags li::after{animation:none}
 .perf-low .stat-bars li::after{animation:none}
 
-/* 高配可开两层云 */
-.perf-high .fx-clouds.front{display:block; opacity:.42}
+/* 超低：实时掉帧触发的保命档 */
+.perf-ultra .fx, .perf-ultra #petals{display:none !important}
+.perf-ultra .card-frame{backdrop-filter:none}
+.perf-ultra :root{--card-bg:rgba(255,255,255,.86)}
+.perf-ultra .block::before{backdrop-filter:none !important; background:rgba(255,255,255,.82)}
+.perf-ultra .card-frame::before{animation:none}
+
+/* 打开侧栏时，暂停非必要动画，省点帧 */
+html.pause-anim .fx, html.pause-anim #petals .petal{animation:none !important}
 
 /* 系统“减少动效”优先 */
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important; transition:none !important}
-  .fx, .fx-petals{display:none}
+  .fx, .fx-petals{display:none !important}
 }
