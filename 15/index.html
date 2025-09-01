@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>山海月影 · 古风长卡片</title>
+  <title>模板15</title>
   <link rel="preload" as="video" href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/img/15.mp4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/15/styles.css" />
 </head>
+
 <body>
   <!-- 背景视频 -->
-  <video class="bg-video" src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/img/15.mp4"
-         autoplay muted playsinline loop></video>
+  <video class="bg-video" src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/img/15.mp4" autoplay muted
+    playsinline loop></video>
 
   <!-- 全局轻量动效层 -->
   <div class="fx fx-clouds back" aria-hidden="true"></div>
@@ -31,21 +33,18 @@
       <!-- 场景渲染 -->
       <section class="block scene">
         <header class="scene-meta">
-          <span class="meta-loc">蒙德城·天使的馈赠酒馆</span>
-          <span class="meta-time">子时</span>
-          <span class="stamp">雁印</span>
+          <span class="meta-loc">当前地点</span>
+          <span class="meta-time">当前时间</span>
         </header>
         <p class="scene-text">
-          🌃【蒙德城·天使的馈赠酒馆 - 夜晚】 酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。
-          查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，
-          指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到“龙灾”“西风骑士团”的零星词句飘过。
+          含环境、人物、情感的沉浸式描述
         </p>
       </section>
 
       <!-- 旁白 -->
       <section class="block narrator">
         <p class="dropcap">
-          初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。
+          相关旁白
         </p>
         <div class="ink-line" aria-hidden="true"></div>
       </section>
@@ -53,18 +52,18 @@
       <!-- 动态事件 -->
       <section class="block events">
         <ul class="event-list">
-          <li class="event normal"><i></i>侦查值不足（需≥60）无法识破兜帽客身份</li>
-          <li class="event promo"><i></i>夜间酒馆消费享 8 折优惠（限时）</li>
-          <li class="event chance"><i></i>吧台后巷传来一阵风声，疑似风元素波动</li>
+          <li class="event normal"><i></i>根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</li>
+          <li class="event promo"><i></i>根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</li>
+          <li class="event chance"><i></i>.......</li>
         </ul>
       </section>
 
       <!-- 行动选项（展示态） -->
       <section class="block actions">
         <ul class="action-tags">
-          <li>A. 点杯苹果酒与查尔斯攀谈 → 💰-120摩拉 💬情报值+10</li>
-          <li>B. 主动接近神秘兜帽客 → 🎭魅力检定(&gt;65) 😰压力+15</li>
-          <li>C. 静坐收集情报 → 🔍侦查值+5 ⏳时间推进1小时</li>
+          <li>A. 相关行动选项 → 相关行动影响</li>
+          <li>B. 相关行动选项 → 相关行动影响</li>
+          <li>C. 相关行动选项 → 相关行动影响</li>
           <li>✨ 自定义指令：_________</li>
         </ul>
       </section>
@@ -72,11 +71,11 @@
       <!-- 状态信息 -->
       <section class="block stats">
         <ul class="stat-bars">
-          <li data-label="体力" data-val="80" data-max="100"></li>
-          <li data-label="心境" data-val="80" data-max="100"></li>
-          <li data-label="名望" data-val="10" data-max="100"></li>
-          <li data-label="灵蕴" data-val="30" data-max="100"></li>
-          <li data-label="运势" data-val="55" data-max="100"></li>
+          <li data-label="变化变量名" data-val="当前值" data-max="100"></li>
+          <li data-label="变化变量名" data-val="当前值" data-max="100"></li>
+          <li data-label="变化变量名" data-val="当前值" data-max="100"></li>
+          <li data-label="变化变量名" data-val="当前值" data-max="100"></li>
+          <li data-label="变化变量名" data-val="当前值" data-max="100"></li>
         </ul>
       </section>
     </div>
@@ -90,23 +89,10 @@
     </header>
     <div class="sidebar-body">
       <ul class="kv">
-        <li><span>体力</span><b>80</b></li>
-        <li><span>心理压力</span><b>20</b></li>
-        <li><span>风元素亲和</span><b>30</b></li>
-        <li><span>金钱</span><b>1000</b></li>
-        <li><span>名声</span><b>10</b></li>
-        <li><span>侦查值</span><b>50</b></li>
-        <li><span>隐匿值</span><b>40</b></li>
-        <li><span>魅力</span><b>60</b></li>
-        <li><span>道德刻度</span><b>70</b></li>
-        <li><span>欲望倾向</span><b>30</b></li>
-        <li><span>债务</span><b>0</b></li>
-        <li><span>情报值</span><b>10</b></li>
-        <li><span>西风骑士团声誉</span><b>50</b></li>
-        <li><span>通缉等级</span><b>0</b></li>
-        <li><span>秘密指数</span><b>0</b></li>
-        <li><span>影响力</span><b>5</b></li>
-        <li><span>事件计数器</span><b>0</b></li>
+        <li><span>属性名</span><b>当前值</b></li>
+        <li><span>属性名</span><b>当前值</b></li>
+        <li><span>属性名</span><b>当前值</b></li>
+        <li><span>.....</span><b>.....</b></li>
       </ul>
     </div>
   </aside>
@@ -114,4 +100,5 @@
 
   <script src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/15/script.js"></script>
 </body>
+
 </html>
