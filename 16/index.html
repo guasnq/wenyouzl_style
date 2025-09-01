@@ -1,87 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>东方哥特·雨夜卡片页（轻量版）</title>
-  <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/img/16.webp">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>蒙德城·天使的馈赠酒馆</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/16/styles.css" />
+  <script src="https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/16/script.js" defer></script>
 </head>
 <body>
-  <button class="side-toggle" aria-label="展开状态栏" title="状态栏">状态</button>
+  <div class="lantern-breathing"></div>
+  <div class="cold-mist"></div>
+  <div class="rain-reflection"></div>
+  <div class="film-grain"></div>
+  <div class="global-filter"></div>
 
-  <aside class="side-panel" aria-hidden="true">
-    <header class="side-head">
-      <span class="dot red"></span><h3>状态栏</h3>
-      <button class="side-close" aria-label="关闭">×</button>
-    </header>
-    <div class="side-body">
-      <ul class="kv">
-        <li><span>体力</span><b>80</b></li><li><span>心理压力</span><b>20</b></li>
-        <li><span>风元素亲和</span><b>30</b></li><li><span>金钱</span><b>1000</b></li>
-        <li><span>名声</span><b>10</b></li><li><span>侦查值</span><b>50</b></li>
-        <li><span>隐匿值</span><b>40</b></li><li><span>魅力</span><b>60</b></li>
-        <li><span>道德刻度</span><b>70</b></li><li><span>欲望倾向</span><b>30</b></li>
-        <li><span>债务</span><b>0</b></li><li><span>情报值</span><b>10</b></li>
-        <li><span>西风骑士团声誉</span><b>50</b></li><li><span>通缉等级</span><b>0</b></li>
-        <li><span>秘密指数</span><b>0</b></li><li><span>影响力</span><b>5</b></li>
-        <li><span>事件计数器</span><b>0</b></li>
-      </ul>
-      <p class="record">记录：<span id="logTime">—</span></p>
+  <button id="sidebarToggle" class="sidebar-toggle"><span class="sidebar-icon"></span></button>
+
+  <aside id="sidebar" class="sidebar">
+    <button id="sidebarClose" class="sidebar-close">×</button>
+    <div class="sidebar-content">
+      <div class="sidebar-header">🏮 状态总览</div>
+
+      <div class="sidebar-item"><span>💪 体力</span><span>80</span></div>
+      <div class="sidebar-item"><span>😰 心理压力</span><span>20</span></div>
+      <div class="sidebar-item"><span>🌪️ 风元素亲和</span><span>30</span></div>
+      <div class="sidebar-item"><span>💰 金钱</span><span>1000</span></div>
+      <div class="sidebar-item"><span>📢 名声</span><span>10</span></div>
+      <div class="sidebar-item"><span>🔍 侦查值</span><span>50</span></div>
+      <div class="sidebar-item"><span>🥷 隐匿值</span><span>40</span></div>
+      <div class="sidebar-item"><span>💫 魅力</span><span>60</span></div>
+      <div class="sidebar-item"><span>⚖️ 道德刻度</span><span>70</span></div>
+      <div class="sidebar-item"><span>🔥 欲望倾向</span><span>30</span></div>
+      <div class="sidebar-item"><span>💳 债务</span><span>0</span></div>
+      <div class="sidebar-item"><span>📊 情报值</span><span>10</span></div>
+      <div class="sidebar-item"><span>🛡️ 西风骑士团声誉</span><span>50</span></div>
+      <div class="sidebar-item"><span>🚨 通缉等级</span><span>0</span></div>
+      <div class="sidebar-item"><span>🤫 秘密指数</span><span>0</span></div>
+      <div class="sidebar-item"><span>👑 影响力</span><span>5</span></div>
+      <div class="sidebar-item"><span>🎯 事件计数器</span><span>0</span></div>
+
+      <div class="sidebar-timestamp">记录：23:42:15</div>
     </div>
   </aside>
 
-  <main class="stage">
-    <!-- 背景层：保证背景图可见且不与内容抢层级 -->
-    <div class="bg" aria-hidden="true"></div>
-    <!-- 全局动效层（轻量版） -->
-    <div class="fx breathe" aria-hidden="true"></div>
-    <div class="fx fog" aria-hidden="true"></div>
-    <div class="fx glare" aria-hidden="true"></div>
+  <main class="main-container">
+    <section class="card scene-render">
+      <h1 class="scene-title">🌃【蒙德城·天使的馈赠酒馆 - 夜晚】</h1>
+      <p class="scene-description">
+        酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到
+        <span class="event-highlight">"龙灾"</span><span class="event-highlight">"西风骑士团"</span>的零星词句飘过。
+      </p>
+    </section>
 
-    <!-- 内容 -->
-    <div class="stack">
-      <section class="card scene">
-        <h1>🌃【蒙德城·天使的馈赠酒馆 - 夜晚】</h1>
-        <p>酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到“龙灾”“西风骑士团”的零星词句飘过。</p>
-      </section>
+    <section class="card narrator">
+      <div class="narrator-text">初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。</div>
+    </section>
 
-      <section class="card narrator">
-        <div class="ticker">
-          初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。
+    <section class="card">
+      <h3 class="section-title">📋 当前动态</h3>
+      <ul class="events-list">
+        <li class="event-item"><i class="event-icon"></i><span class="event-text">⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</span></li>
+        <li class="event-item"><i class="event-icon"></i><span class="event-text">🍻 夜间酒馆消费享<span class="event-highlight">8折优惠</span>（限时）</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3 class="section-title">⚔️ 行动选择</h3>
+      <div class="actions">
+        <button class="action-button">A. 点杯苹果酒与查尔斯攀谈 → 💰-120摩拉 💬情报值+10</button>
+        <button class="action-button">B. 主动接近神秘兜帽客 → 🎭魅力检定(>65) 😰压力+15</button>
+        <button class="action-button">C. 静坐收集情报 → 🔍侦查值+5 ⏳时间推进1小时</button>
+        <div class="custom-row">
+          <span class="custom-hint">✨ 自定义指令：</span>
+          <input class="custom-input" placeholder="输入您的行动..." />
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="card events">
-        <ul>
-          <li><span class="lantern"></span>⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</li>
-          <li><span class="lantern"></span>🍻 夜间酒馆消费享8折优惠（限时）</li>
-        </ul>
-      </section>
-
-      <section class="card actions">
-        <div class="seal">A. 点杯苹果酒与查尔斯攀谈 → 💰-120摩拉  💬情报值+10</div>
-        <div class="seal">B. 主动接近神秘兜帽客 → 🎭魅力检定(>65)  😰压力+15</div>
-        <div class="seal">C. 静坐收集情报 → 🔍侦查值+5  ⏳时间推进1小时</div>
-        <div class="cmd">✨ 自定义指令：<span class="line"></span></div>
-      </section>
-
-      <section class="card stats">
-        <div class="meters">
-          <div class="meter" data-label="理智" style="--val:70"></div>
-          <div class="meter" data-label="体力" style="--val:80"></div>
-          <div class="meter" data-label="线索" style="--val:35"></div>
-          <div class="meter" data-label="恐惧" style="--val:20"></div>
-          <div class="meter" data-label="时间" style="--val:45"></div>
+    <section class="card">
+      <h3 class="section-title">📊 核心状态</h3>
+      <div class="status-grid">
+        <div class="status-item">
+          <div class="status-label">💰 金钱</div>
+          <div class="status-bar"><div class="status-fill" data-fill="100"></div><div class="status-value">1000摩拉</div></div>
         </div>
-        <div class="nums">
-          💰金钱：1000摩拉 | 💪体力：80/100 | 😰心理压力：20
-          <br />🌪️风元素亲和：30 | 📢名声：10（无名冒险者）
+        <div class="status-item">
+          <div class="status-label">💪 体力</div>
+          <div class="status-bar"><div class="status-fill" data-fill="80"></div><div class="status-value">80/100</div></div>
         </div>
-      </section>
-    </div>
+        <div class="status-item">
+          <div class="status-label">😰 心理压力</div>
+          <div class="status-bar"><div class="status-fill" data-fill="20"></div><div class="status-value">20</div></div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">🌪️ 风元素亲和</div>
+          <div class="status-bar"><div class="status-fill" data-fill="30"></div><div class="status-value">30</div></div>
+        </div>
+        <div class="status-item">
+          <div class="status-label">📢 名声</div>
+          <div class="status-bar"><div class="status-fill" data-fill="10"></div><div class="status-value">10（无名冒险者）</div></div>
+        </div>
+      </div>
+    </section>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
