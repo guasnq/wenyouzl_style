@@ -1,6 +1,6 @@
 /* ===== 主题与排版（高对比可读版） ===== */
 :root{
-  --bg-url: url("https://cdn.jsdelivr.net/gh/guasnq/wenyouzl_style@main/img/14.webp");
+  --bg-url: url("https://gitee.com/fbqdnq/wenyou/raw/main/img/14.webp");
 
   /* 中性文字与更厚玻璃，压住绿底 */
   --ink: #161a1d;                 /* 正文 */
