@@ -1,152 +1,183 @@
-/* ========== 基础 ========== */
+/* nostalgia.css — v2 亮度补偿版 */
+
+/* ===== 基础变量（提高整体亮度与对比） ===== */
 :root{
-  --bg:#0b0f12;
-  --glass:rgba(16,20,24,.62);
-  --ink:#e8f1ef;
-  --hint:#9fbfb2;
-  --gold:#d9c58b;
-  --neon:#56f6ff;
-  --brand:#8fe6a2;
+  --bg:#0e141a;                 /* 背景更亮一点点 */
+  --glass:rgba(28,34,40,.72);   /* 面板底更实一些 */
+  --ink:#f5fbf9;                /* 正文更亮 */
+  --hint:#c7d7d2;               /* 次级文字略提亮 */
+  --gold:#e3d3a0;               /* 金色线条更明显 */
+  --neon:#7ff2ff;               /* 点缀霓虹稍亮 */
+  --brand:#98efb0;              /* 掌机绿略亮 */
   --radius:22px;
   --space:20px;
   --fs:clamp(14px,1.6vw,18px);
-  --line:1.6;
+  --line:1.65;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;background:radial-gradient(120% 140% at 50% 0%,#10151a 0%,#0b0f12 60%,#07090b 100%);
-  color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
-  font-size:var(--fs);line-height:var(--line);letter-spacing:.2px;
+  margin:0;
+  background:
+    radial-gradient(120% 140% at 50% 0%, #151c22 0%, #0e141a 60%, #0a0f14 100%);
+  color:var(--ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:var(--fs); line-height:var(--line); letter-spacing:.2px;
 }
 
-/* ========== 屏幕容器 + 全局动态背景 ========== */
+/* ===== 屏幕容器 + 全局动态背景（增强柔光，减小叠暗） ===== */
 .screen{
-  position:relative;min-height:100svh;padding:56px 48px 64px;overflow:hidden;
+  position:relative; min-height:100svh; padding:56px 48px 64px; overflow:hidden;
 }
-.screen::before, .screen::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-}
-/* 扫描线（极轻） */
+/* 扫描线：降低遮罩透明，避免整体变暗 */
+.screen::before,
+.screen::after{content:""; position:absolute; inset:0; pointer-events:none}
+
+/* 极轻扫描线（透明度从 .03 -> .02） */
 .screen::before{
-  background:
-    repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px);
-  mix-blend-mode:soft-light;animation:scan 8s linear infinite;
+  background:repeating-linear-gradient(180deg, rgba(255,255,255,.02) 0 1px, transparent 1px 4px);
+  animation:scan 8s linear infinite;
 }
 @keyframes scan{to{transform:translateY(1px)}}
-/* 轻噪点云 + 角落柔光 */
+
+/* 噪点云与角落柔光：改成“提亮型”混合，避免压暗正文 */
 .screen::after{
   background:
-    radial-gradient(60% 100% at 50% -10%, rgba(143,230,162,.10), transparent 60%),
-    radial-gradient(40% 60% at 100% 0%, rgba(217,197,139,.10), transparent 60%),
-    radial-gradient(40% 60% at 0% 100%, rgba(86,246,255,.06), transparent 60%),
-    repeating-radial-gradient(circle at 40% 40%, rgba(255,255,255,.02) 0 1px, transparent 1px 6px);
-  filter:contrast(105%) saturate(102%);
+    radial-gradient(60% 100% at 50% -10%, rgba(152,239,176,.14), transparent 60%),
+    radial-gradient(42% 62% at 100% 0%, rgba(227,211,160,.14), transparent 60%),
+    radial-gradient(42% 62% at 0% 100%, rgba(127,242,255,.08), transparent 60%),
+    repeating-radial-gradient(circle at 40% 40%, rgba(255,255,255,.018) 0 1px, transparent 1px 6px);
   animation:bg-drift 60s linear infinite;
+  /* 重点：整体稍微提亮饱和，抵消深色设备的压黑 */
+  filter:brightness(1.06) saturate(1.04);
 }
 @keyframes bg-drift{to{background-position:60% 0%,100% 0%,0% 100%,40% 40%}}
 
-/* ========== 栅格布局（竖向堆叠） ========== */
+/* ===== 卡片面板（提高底色亮度 + 增加柔光衬底） ===== */
 .panel{
-  position:relative;margin-block:var(--space);padding:18px 18px 16px;background:var(--glass);
-  border-radius:var(--radius);backdrop-filter:blur(4px) saturate(120%);-webkit-backdrop-filter:blur(4px) saturate(120%);
-  box-shadow:0 10px 32px rgba(0,0,0,.35);
+  position:relative; margin-block:var(--space); padding:18px 18px 16px;
+  border-radius:var(--radius);
+  /* 叠两层：提亮的白雾 + 原玻璃色，避免“黑砖头” */
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,.06)),
+    var(--glass);
+  backdrop-filter:blur(6px) saturate(120%);
+  -webkit-backdrop-filter:blur(6px) saturate(120%);
+  box-shadow:0 14px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
 }
-/* 动态描边：金丝呼吸 + 像素走线 */
+/* 设备/浏览器不支持 backdrop-filter 时的兜底：给更亮的纯色 */
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))){
+  .panel{background:rgba(40,48,56,.88)}
+}
+
+/* 动态描边：金丝更亮，透明从 .65 -> .85 */
 .panel::before{
-  content:"";position:absolute;inset:-1px;border-radius:calc(var(--radius) + 1px);
-  padding:1px;background:
-    conic-gradient(from 0turn, transparent 0 15%, rgba(217,197,139,.7) 16%, transparent 33%) border-box;
+  content:""; position:absolute; inset:-1px; border-radius:calc(var(--radius) + 1px);
+  padding:1px;
+  background:conic-gradient(from 0turn, transparent 0 15%, rgba(227,211,160,.9) 16%, transparent 33%) border-box;
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;animation:ring 10s linear infinite;
-  opacity:.65;
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:ring 10s linear infinite; opacity:.85;
 }
 @keyframes ring{to{transform:rotate(1turn)}}
-.ttl{margin:0 0 10px;font-weight:600;letter-spacing:.4px;color:#f0f6f4}
+.ttl{margin:0 0 10px; font-weight:650; letter-spacing:.4px; color:#ffffff}
 
-/* 文本易读优化 */
-.panel p{margin:0;color:#e6efec}
-.panel p + p{margin-top:.65em}
+/* 文本对比：正文更亮，次级文字也抬一档 */
+.panel p{margin:0; color:#f0f6f4}
+.panel p + p{margin-top:.65em; color:#e6efec}
 
-/* 列表样式 */
-.bullets{margin:0;padding:0;list-style:none}
-.bullets li{padding-left:10px;margin:.35em 0;border-left:2px solid rgba(217,197,139,.35)}
-.options{margin:.2em 0 0;padding:0;list-style:none}
-.options li{margin:.35em 0;padding:.45em .6em;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(217,197,139,.18)}
-.free-input{opacity:.9;margin-top:.6em}
-
-/* 状态信息两列自适应 */
-.kv{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px
+/* 列表：左边线提亮，背景淡雾衬底 */
+.bullets{margin:0; padding:0; list-style:none}
+.bullets li{
+  padding-left:12px; margin:.4em 0;
+  border-left:2px solid rgba(227,211,160,.5);
+  background:rgba(255,255,255,.04); border-radius:8px;
 }
-.kv div{background:rgba(255,255,255,.02);border:1px solid rgba(217,197,139,.2);border-radius:12px;padding:.5em .75em}
-.kv b{float:right;color:#fff}
+.options{margin:.2em 0 0; padding:0; list-style:none}
+.options li{
+  margin:.4em 0; padding:.55em .7em; border-radius:12px;
+  background:linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(227,211,160,.35);
+}
+.free-input{opacity:.95; margin-top:.65em; color:#fff}
 
-/* 区块差异化小动效 */
+/* 状态信息：卡片化更亮，数值高对比 */
+.kv{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px}
+.kv div{
+  background:linear-gradient(to bottom, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid rgba(227,211,160,.35); border-radius:12px; padding:.55em .75em; color:#f7fbfa
+}
+.kv b{float:right; color:#fff}
+
+/* —— 区块差异化动效：保持，但提高可见度 —— */
 .scene::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(120% 60% at 20% 0%, rgba(143,230,162,.08), transparent 60%);
-  animation:glow 6s ease-in-out infinite alternate;pointer-events:none
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:radial-gradient(120% 60% at 20% 0%, rgba(152,239,176,.16), transparent 60%);
+  animation:glow 6s ease-in-out infinite alternate; pointer-events:none
 }
-@keyframes glow{to{opacity:.5;transform:translateY(-1px)}}
+@keyframes glow{to{opacity:.6; transform:translateY(-1px)}}
 .events::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;
-  background:repeating-linear-gradient(45deg, rgba(217,197,139,.18) 0 2px, transparent 2px 8px);
-  opacity:.12;animation:stripe 12s linear infinite
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:repeating-linear-gradient(45deg, rgba(227,211,160,.28) 0 2px, transparent 2px 8px);
+  opacity:.18; animation:stripe 12s linear infinite
 }
 @keyframes stripe{to{background-position:100% 100%}}
 
-/* ========== 右侧状态抽屉（浮在内容之上） ========== */
+/* ===== 右侧状态抽屉（保持浮动覆盖，同时提亮） ===== */
 .drawer-toggle{
-  position:fixed;right:10px;top:14px;z-index:20;
-  padding:.45em .8em;border-radius:999px;border:1px solid rgba(217,197,139,.55);
-  background:rgba(16,20,24,.66);color:#f4fbf8;backdrop-filter:blur(4px);
-  cursor:pointer;letter-spacing:.6px
+  position:fixed; right:10px; top:14px; z-index:20;
+  padding:.46em .85em; border-radius:999px;
+  border:1px solid rgba(227,211,160,.75);
+  background:rgba(28,34,40,.78); color:#ffffff;
+  backdrop-filter:blur(4px); cursor:pointer; letter-spacing:.6px
 }
 .drawer{
-  position:fixed;top:0;right:0;height:100svh;width:min(360px,82vw);z-index:30;
-  transform:translateX(102%);transition:transform .36s cubic-bezier(.2,.8,.2,1), box-shadow .36s;
-  background:linear-gradient(180deg, rgba(16,20,24,.86), rgba(16,20,24,.72));
-  border-left:1px solid rgba(217,197,139,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)
+  position:fixed; top:0; right:0; height:100svh; width:min(360px,82vw); z-index:30;
+  transform:translateX(102%);
+  transition:transform .36s cubic-bezier(.2,.8,.2,1), box-shadow .36s;
+  background:linear-gradient(180deg, rgba(28,34,40,.92), rgba(28,34,40,.82));
+  border-left:1px solid rgba(227,211,160,.5);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px)
 }
-.drawer[data-open="true"]{transform:none;box-shadow:-24px 0 48px rgba(0,0,0,.45)}
+.drawer[data-open="true"]{transform:none; box-shadow:-26px 0 52px rgba(0,0,0,.46)}
 .drawer-head{
-  display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px 16px;
-  border-bottom:1px solid rgba(217,197,139,.22)
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 14px 10px 16px; border-bottom:1px solid rgba(227,211,160,.35); color:#fff
 }
-.drawer-head h3{margin:0;font-size:1.05rem;letter-spacing:.6px}
+.drawer-head h3{margin:0; font-size:1.06rem; letter-spacing:.6px}
 .drawer-close{
-  appearance:none;border:1px solid rgba(217,197,139,.45);border-radius:8px;background:transparent;color:#fff;
-  padding:.1em .45em;font-size:1.15rem;cursor:pointer
+  appearance:none; border:1px solid rgba(227,211,160,.6); border-radius:8px;
+  background:transparent; color:#fff; padding:.05em .45em; font-size:1.15rem; cursor:pointer
 }
-.drawer-body{height:calc(100% - 54px);overflow:auto;padding:12px 14px 18px}
+.drawer-body{height:calc(100% - 54px); overflow:auto; padding:12px 14px 18px; color:#f2f7f6}
 
-/* 状态条列表 */
-.meter{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+/* 状态条列表：卡片提亮、数值高对比 */
+.meter{margin:0; padding:0; list-style:none; display:grid; gap:10px}
 .meter li{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:.55em .7em;border-radius:12px;background:rgba(255,255,255,.03);
-  border:1px solid rgba(217,197,139,.2)
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.6em .75em; border-radius:12px;
+  background:linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(227,211,160,.35); color:#f5fbf9
 }
-.meter li b{font-variant-numeric:tabular-nums;color:#fff}
+.meter li b{font-variant-numeric:tabular-nums; color:#ffffff}
 
-/* 滚动条美化（抽屉内） */
+/* 滚动条美化（抽屉内）：保持但更清晰 */
 .drawer-body::-webkit-scrollbar{width:10px}
-.drawer-body::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}
+.drawer-body::-webkit-scrollbar-track{background:rgba(255,255,255,.03)}
 .drawer-body::-webkit-scrollbar-thumb{
-  background:linear-gradient(180deg, rgba(217,197,139,.55), rgba(143,230,162,.55));
-  border:2px solid rgba(16,20,24,.6);border-radius:999px
+  background:linear-gradient(180deg, rgba(227,211,160,.7), rgba(152,239,176,.7));
+  border:2px solid rgba(28,34,40,.7); border-radius:999px
 }
-.drawer-body{scrollbar-color:rgba(217,197,139,.55) rgba(255,255,255,.02);scrollbar-width:thin}
+.drawer-body{scrollbar-color:rgba(227,211,160,.7) rgba(255,255,255,.03); scrollbar-width:thin}
 
-/* ========== 响应式字体（再加一层细调） ========== */
+/* ===== 响应式字体（保留） ===== */
 @media (max-width:780px){
   :root{--fs:clamp(14px,2.6vw,17px)}
   .screen{padding:44px 16px 52px}
   .drawer{width:min(88vw,420px)}
 }
 
-/* 减少动态（系统偏好） */
+/* ===== 降低动效（系统偏好） ===== */
 @media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
+  *{animation:none!important; transition:none!important}
 }
