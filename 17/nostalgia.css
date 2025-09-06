@@ -1,0 +1,152 @@
+/* ========== 基础 ========== */
+:root{
+  --bg:#0b0f12;
+  --glass:rgba(16,20,24,.62);
+  --ink:#e8f1ef;
+  --hint:#9fbfb2;
+  --gold:#d9c58b;
+  --neon:#56f6ff;
+  --brand:#8fe6a2;
+  --radius:22px;
+  --space:20px;
+  --fs:clamp(14px,1.6vw,18px);
+  --line:1.6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:radial-gradient(120% 140% at 50% 0%,#10151a 0%,#0b0f12 60%,#07090b 100%);
+  color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:var(--fs);line-height:var(--line);letter-spacing:.2px;
+}
+
+/* ========== 屏幕容器 + 全局动态背景 ========== */
+.screen{
+  position:relative;min-height:100svh;padding:56px 48px 64px;overflow:hidden;
+}
+.screen::before, .screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+}
+/* 扫描线（极轻） */
+.screen::before{
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px);
+  mix-blend-mode:soft-light;animation:scan 8s linear infinite;
+}
+@keyframes scan{to{transform:translateY(1px)}}
+/* 轻噪点云 + 角落柔光 */
+.screen::after{
+  background:
+    radial-gradient(60% 100% at 50% -10%, rgba(143,230,162,.10), transparent 60%),
+    radial-gradient(40% 60% at 100% 0%, rgba(217,197,139,.10), transparent 60%),
+    radial-gradient(40% 60% at 0% 100%, rgba(86,246,255,.06), transparent 60%),
+    repeating-radial-gradient(circle at 40% 40%, rgba(255,255,255,.02) 0 1px, transparent 1px 6px);
+  filter:contrast(105%) saturate(102%);
+  animation:bg-drift 60s linear infinite;
+}
+@keyframes bg-drift{to{background-position:60% 0%,100% 0%,0% 100%,40% 40%}}
+
+/* ========== 栅格布局（竖向堆叠） ========== */
+.panel{
+  position:relative;margin-block:var(--space);padding:18px 18px 16px;background:var(--glass);
+  border-radius:var(--radius);backdrop-filter:blur(4px) saturate(120%);-webkit-backdrop-filter:blur(4px) saturate(120%);
+  box-shadow:0 10px 32px rgba(0,0,0,.35);
+}
+/* 动态描边：金丝呼吸 + 像素走线 */
+.panel::before{
+  content:"";position:absolute;inset:-1px;border-radius:calc(var(--radius) + 1px);
+  padding:1px;background:
+    conic-gradient(from 0turn, transparent 0 15%, rgba(217,197,139,.7) 16%, transparent 33%) border-box;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;animation:ring 10s linear infinite;
+  opacity:.65;
+}
+@keyframes ring{to{transform:rotate(1turn)}}
+.ttl{margin:0 0 10px;font-weight:600;letter-spacing:.4px;color:#f0f6f4}
+
+/* 文本易读优化 */
+.panel p{margin:0;color:#e6efec}
+.panel p + p{margin-top:.65em}
+
+/* 列表样式 */
+.bullets{margin:0;padding:0;list-style:none}
+.bullets li{padding-left:10px;margin:.35em 0;border-left:2px solid rgba(217,197,139,.35)}
+.options{margin:.2em 0 0;padding:0;list-style:none}
+.options li{margin:.35em 0;padding:.45em .6em;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(217,197,139,.18)}
+.free-input{opacity:.9;margin-top:.6em}
+
+/* 状态信息两列自适应 */
+.kv{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px
+}
+.kv div{background:rgba(255,255,255,.02);border:1px solid rgba(217,197,139,.2);border-radius:12px;padding:.5em .75em}
+.kv b{float:right;color:#fff}
+
+/* 区块差异化小动效 */
+.scene::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(120% 60% at 20% 0%, rgba(143,230,162,.08), transparent 60%);
+  animation:glow 6s ease-in-out infinite alternate;pointer-events:none
+}
+@keyframes glow{to{opacity:.5;transform:translateY(-1px)}}
+.events::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:repeating-linear-gradient(45deg, rgba(217,197,139,.18) 0 2px, transparent 2px 8px);
+  opacity:.12;animation:stripe 12s linear infinite
+}
+@keyframes stripe{to{background-position:100% 100%}}
+
+/* ========== 右侧状态抽屉（浮在内容之上） ========== */
+.drawer-toggle{
+  position:fixed;right:10px;top:14px;z-index:20;
+  padding:.45em .8em;border-radius:999px;border:1px solid rgba(217,197,139,.55);
+  background:rgba(16,20,24,.66);color:#f4fbf8;backdrop-filter:blur(4px);
+  cursor:pointer;letter-spacing:.6px
+}
+.drawer{
+  position:fixed;top:0;right:0;height:100svh;width:min(360px,82vw);z-index:30;
+  transform:translateX(102%);transition:transform .36s cubic-bezier(.2,.8,.2,1), box-shadow .36s;
+  background:linear-gradient(180deg, rgba(16,20,24,.86), rgba(16,20,24,.72));
+  border-left:1px solid rgba(217,197,139,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)
+}
+.drawer[data-open="true"]{transform:none;box-shadow:-24px 0 48px rgba(0,0,0,.45)}
+.drawer-head{
+  display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px 16px;
+  border-bottom:1px solid rgba(217,197,139,.22)
+}
+.drawer-head h3{margin:0;font-size:1.05rem;letter-spacing:.6px}
+.drawer-close{
+  appearance:none;border:1px solid rgba(217,197,139,.45);border-radius:8px;background:transparent;color:#fff;
+  padding:.1em .45em;font-size:1.15rem;cursor:pointer
+}
+.drawer-body{height:calc(100% - 54px);overflow:auto;padding:12px 14px 18px}
+
+/* 状态条列表 */
+.meter{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.meter li{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.55em .7em;border-radius:12px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(217,197,139,.2)
+}
+.meter li b{font-variant-numeric:tabular-nums;color:#fff}
+
+/* 滚动条美化（抽屉内） */
+.drawer-body::-webkit-scrollbar{width:10px}
+.drawer-body::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}
+.drawer-body::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, rgba(217,197,139,.55), rgba(143,230,162,.55));
+  border:2px solid rgba(16,20,24,.6);border-radius:999px
+}
+.drawer-body{scrollbar-color:rgba(217,197,139,.55) rgba(255,255,255,.02);scrollbar-width:thin}
+
+/* ========== 响应式字体（再加一层细调） ========== */
+@media (max-width:780px){
+  :root{--fs:clamp(14px,2.6vw,17px)}
+  .screen{padding:44px 16px 52px}
+  .drawer{width:min(88vw,420px)}
+}
+
+/* 减少动态（系统偏好） */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}

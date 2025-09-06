@@ -1,0 +1,133 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.15.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\nq\.npmrc
+5 silly config load:file:C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\node_global\etc\npmrc
+6 verbose title npm install @anthropic-ai/claude-code
+7 verbose argv "install" "--global" "@anthropic-ai/claude-code"
+8 verbose logfile logs-max:10 dir:D:\GitHub\wenyouzl_style\npm-cache\_logs\2025-09-04T02_49_09_798Z-
+9 verbose logfile D:\GitHub\wenyouzl_style\npm-cache\_logs\2025-09-04T02_49_09_798Z-debug-0.log
+10 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+11 silly logfile done cleaning log files
+12 silly idealTree buildDeps
+13 silly fetch manifest @anthropic-ai/claude-code@*
+14 silly packumentCache full:https://registry.npmmirror.com/@anthropic-ai%2fclaude-code cache-miss
+15 http cache https://registry.npmmirror.com/@anthropic-ai%2fclaude-code 16ms (cache hit)
+16 silly packumentCache full:https://registry.npmmirror.com/@anthropic-ai%2fclaude-code set size:513088 disposed:false
+17 silly placeDep ROOT @anthropic-ai/claude-code@1.0.103 OK for:  want: *
+18 silly fetch manifest @img/sharp-darwin-arm64@^0.33.5
+19 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 cache-miss
+20 silly fetch manifest @img/sharp-darwin-x64@^0.33.5
+21 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-x64 cache-miss
+22 silly fetch manifest @img/sharp-linux-arm@^0.33.5
+23 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm cache-miss
+24 silly fetch manifest @img/sharp-linux-arm64@^0.33.5
+25 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm64 cache-miss
+26 silly fetch manifest @img/sharp-linux-x64@^0.33.5
+27 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-x64 cache-miss
+28 silly fetch manifest @img/sharp-win32-x64@^0.33.5
+29 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-x64 cache-miss
+30 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-linux-arm 115ms (cache revalidated)
+31 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm set size:56300 disposed:false
+32 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-linux-x64 118ms (cache revalidated)
+33 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-x64 set size:56031 disposed:false
+34 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-win32-x64 118ms (cache revalidated)
+35 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-win32-x64 set size:58802 disposed:false
+36 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 121ms (cache revalidated)
+37 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-arm64 set size:55946 disposed:false
+38 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-darwin-x64 125ms (cache revalidated)
+39 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-darwin-x64 set size:55231 disposed:false
+40 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-linux-arm64 125ms (cache revalidated)
+41 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-linux-arm64 set size:56745 disposed:false
+42 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-darwin-arm64@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+43 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-darwin-x64@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+44 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-linux-arm@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+45 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-linux-arm64@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+46 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-linux-x64@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+47 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-win32-x64@0.33.5 OK for: @anthropic-ai/claude-code@1.0.103 want: ^0.33.5
+48 silly fetch manifest @img/sharp-libvips-darwin-arm64@1.0.4
+49 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 cache-miss
+50 silly fetch manifest @img/sharp-libvips-darwin-x64@1.0.4
+51 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 cache-miss
+52 silly fetch manifest @img/sharp-libvips-linux-arm@1.0.5
+53 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm cache-miss
+54 silly fetch manifest @img/sharp-libvips-linux-arm64@1.0.4
+55 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 cache-miss
+56 silly fetch manifest @img/sharp-libvips-linux-x64@1.0.4
+57 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 cache-miss
+58 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm 18ms (cache revalidated)
+59 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm set size:51627 disposed:false
+60 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 25ms (cache revalidated)
+61 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-x64 set size:44868 disposed:false
+62 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 26ms (cache revalidated)
+63 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-darwin-arm64 set size:45312 disposed:false
+64 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 26ms (cache revalidated)
+65 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-arm64 set size:48113 disposed:false
+66 http fetch GET 200 https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 29ms (cache revalidated)
+67 silly packumentCache full:https://registry.npmmirror.com/@img%2fsharp-libvips-linux-x64 set size:49590 disposed:false
+68 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-libvips-darwin-arm64@1.0.4 OK for: @img/sharp-darwin-arm64@0.33.5 want: 1.0.4
+69 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-libvips-darwin-x64@1.0.4 OK for: @img/sharp-darwin-x64@0.33.5 want: 1.0.4
+70 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-libvips-linux-arm@1.0.5 OK for: @img/sharp-linux-arm@0.33.5 want: 1.0.5
+71 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-libvips-linux-arm64@1.0.4 OK for: @img/sharp-linux-arm64@0.33.5 want: 1.0.4
+72 silly placeDep node_modules/@anthropic-ai/claude-code @img/sharp-libvips-linux-x64@1.0.4 OK for: @img/sharp-linux-x64@0.33.5 want: 1.0.4
+73 silly reify mark retired [
+73 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\node_modules\\@anthropic-ai\\claude-code',
+73 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude',
+73 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude.cmd',
+73 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude.ps1'
+73 silly reify ]
+74 silly reify moves {
+74 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\node_modules\\@anthropic-ai\\claude-code': 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\node_modules\\@anthropic-ai\\.claude-code-5zxx2TYN',
+74 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude': 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\.claude-RowCL5aX',
+74 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude.cmd': 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\.claude.cmd-KciLhr89',
+74 silly reify   'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\claude.ps1': 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\.claude.ps1-LxtP7VEm'
+74 silly reify }
+75 verbose stack Error: EPERM: operation not permitted, mkdir 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\node_global\node_modules\@anthropic-ai\.claude-code-5zxx2TYN'
+75 verbose stack     at async Object.mkdir (node:internal/fs/promises:852:10)
+75 verbose stack     at async moveFile (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\fs\lib\move-file.js:27:3)
+75 verbose stack     at async Promise.all (index 0)
+75 verbose stack     at async moveFile (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\fs\lib\move-file.js:36:9)
+75 verbose stack     at async Promise.allSettled (index 0)
+75 verbose stack     at async [reifyPackages] (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:325:11)
+75 verbose stack     at async Arborist.reify (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:142:5)
+75 verbose stack     at async Install.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\install.js:150:5)
+75 verbose stack     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+75 verbose stack     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5)
+76 error code EPERM
+77 error syscall mkdir
+78 error path C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\node_global\node_modules\@anthropic-ai\.claude-code-5zxx2TYN
+79 error errno -4048
+80 error Error: EPERM: operation not permitted, mkdir 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js\node_global\node_modules\@anthropic-ai\.claude-code-5zxx2TYN'
+80 error     at async Object.mkdir (node:internal/fs/promises:852:10)
+80 error     at async moveFile (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\fs\lib\move-file.js:27:3)
+80 error     at async Promise.all (index 0)
+80 error     at async moveFile (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\fs\lib\move-file.js:36:9)
+80 error     at async Promise.allSettled (index 0)
+80 error     at async [reifyPackages] (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:325:11)
+80 error     at async Arborist.reify (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:142:5)
+80 error     at async Install.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\install.js:150:5)
+80 error     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+80 error     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5) {
+80 error   errno: -4048,
+80 error   code: 'EPERM',
+80 error   syscall: 'mkdir',
+80 error   path: 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Node.js\\node_global\\node_modules\\@anthropic-ai\\.claude-code-5zxx2TYN'
+80 error }
+81 error
+81 error The operation was rejected by your operating system.
+81 error It's possible that the file was already in use (by a text editor or antivirus),
+81 error or that you lack permissions to access it.
+81 error
+81 error If you believe this might be a permissions issue, please double-check the
+81 error permissions of the file and its containing directories, or try running
+81 error the command again as root/Administrator.
+82 silly unfinished npm timer reify 1756954150228
+83 silly unfinished npm timer reify:retireShallow 1756954150452
+84 verbose cwd D:\GitHub\wenyouzl_style
+85 verbose os Windows_NT 10.0.22631
+86 verbose node v22.15.0
+87 verbose npm  v10.9.2
+88 verbose exit -4048
+89 verbose code -4048
+90 error A complete log of this run can be found in: D:\GitHub\wenyouzl_style\npm-cache\_logs\2025-09-04T02_49_09_798Z-debug-0.log
