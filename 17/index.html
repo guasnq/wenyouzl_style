@@ -5,51 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>怀旧掌机 · 文游卡片页</title>
   <link rel="preconnect" href="https://gitee.com" crossorigin>
-  <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/17/nostalgia.css" />
+  <!-- 你已有的主样式（v2 提亮版），保留 -->
+  <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/17/nostalgia.css?v=2" />
+  <!-- 新增：掌机外壳皮肤，只负责“像掌机”这件事 -->
+  <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/17/handheld-skin.css?v=1" />
 </head>
 <body>
-  <main class="screen" data-theme="handheld">
-    <button class="drawer-toggle" aria-controls="statusDrawer" aria-expanded="false">状态</button>
+  <div class="handheld" data-brand="风启掌机">
+    <div class="device">
+      <div class="bezel">
+        <main class="screen" data-theme="handheld">
+          <button class="drawer-toggle" aria-controls="statusDrawer" aria-expanded="false">状态</button>
 
-    <section class="panel scene">
-      <h2 class="ttl">场景渲染</h2>
-      <p>🌃【蒙德城·天使的馈赠酒馆 - 夜晚】 酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到“龙灾”“西风骑士团”的零星词句飘过。</p>
-    </section>
+          <section class="panel scene">
+            <h2 class="ttl">场景渲染</h2>
+            <p>🌃【蒙德城·天使的馈赠酒馆 - 夜晚】 酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到“龙灾”“西风骑士团”的零星词句飘过。</p>
+          </section>
 
-    <section class="panel narration">
-      <h2 class="ttl">旁白</h2>
-      <p>初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。</p>
-    </section>
+          <section class="panel narration">
+            <h2 class="ttl">旁白</h2>
+            <p>初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。</p>
+          </section>
 
-    <section class="panel events">
-      <h2 class="ttl">动态事件</h2>
-      <ul class="bullets">
-        <li>⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</li>
-        <li>🍻 夜间酒馆消费享 8 折优惠（限时）</li>
-      </ul>
-    </section>
+          <section class="panel events">
+            <h2 class="ttl">动态事件</h2>
+            <ul class="bullets">
+              <li>⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</li>
+              <li>🍻 夜间酒馆消费享 8 折优惠（限时）</li>
+            </ul>
+          </section>
 
-    <section class="panel actions">
-      <h2 class="ttl">行动选项</h2>
-      <ul class="options">
-        <li>◆ A. 点杯苹果酒与查尔斯攀谈 → 💰-120 摩拉 ｜ 💬 情报值 +10</li>
-        <li>◆ B. 主动接近神秘兜帽客 → 🎭 魅力检定(>65) ｜ 😰 压力 +15</li>
-        <li>◆ C. 静坐收集情报 → 🔍 侦查值 +5 ｜ ⏳ 时间推进 1 小时</li>
-      </ul>
-      <div class="free-input">✨ 自定义指令：_________</div>
-    </section>
+          <section class="panel actions">
+            <h2 class="ttl">行动选项</h2>
+            <ul class="options">
+              <li>◆ A. 点杯苹果酒与查尔斯攀谈 → 💰-120 摩拉 ｜ 💬 情报值 +10</li>
+              <li>◆ B. 主动接近神秘兜帽客 → 🎭 魅力检定(>65) ｜ 😰 压力 +15</li>
+              <li>◆ C. 静坐收集情报 → 🔍 侦查值 +5 ｜ ⏳ 时间推进 1 小时</li>
+            </ul>
+            <div class="free-input">✨ 自定义指令：_________</div>
+          </section>
 
-    <section class="panel stats">
-      <h2 class="ttl">状态信息</h2>
-      <div class="kv">
-        <div>💰 金钱 <b>1000 摩拉</b></div>
-        <div>💪 体力 <b>80/100</b></div>
-        <div>😰 心理压力 <b>20</b></div>
-        <div>🌪️ 风元素亲和 <b>30</b></div>
-        <div>📢 名声 <b>10（无名冒险者）</b></div>
+          <section class="panel stats">
+            <h2 class="ttl">状态信息</h2>
+            <div class="kv">
+              <div>💰 金钱 <b>1000 摩拉</b></div>
+              <div>💪 体力 <b>80/100</b></div>
+              <div>😰 心理压力 <b>20</b></div>
+              <div>🌪️ 风元素亲和 <b>30</b></div>
+              <div>📢 名声 <b>10（无名冒险者）</b></div>
+            </div>
+          </section>
+        </main>
       </div>
-    </section>
 
+      <!-- 外壳装饰：电源指示灯 + 扬声器开孔（纯装饰，无交互） -->
+      <i class="led" aria-hidden="true"></i>
+      <i class="speaker" aria-hidden="true"></i>
+    </div>
+
+    <!-- 保持右侧抽屉逻辑不变（覆盖内容之上） -->
     <aside id="statusDrawer" class="drawer" aria-hidden="true">
       <header class="drawer-head">
         <h3>状态栏</h3>
@@ -57,27 +71,20 @@
       </header>
       <div class="drawer-body">
         <ul class="meter">
-          <li><span>体力</span><b>80</b></li>
-          <li><span>心理压力</span><b>20</b></li>
-          <li><span>风元素亲和</span><b>30</b></li>
-          <li><span>金钱</span><b>1000</b></li>
-          <li><span>名声</span><b>10</b></li>
-          <li><span>侦查值</span><b>50</b></li>
-          <li><span>隐匿值</span><b>40</b></li>
-          <li><span>魅力</span><b>60</b></li>
-          <li><span>道德刻度</span><b>70</b></li>
-          <li><span>欲望倾向</span><b>30</b></li>
-          <li><span>债务</span><b>0</b></li>
-          <li><span>情报值</span><b>10</b></li>
-          <li><span>西风骑士团声誉</span><b>50</b></li>
-          <li><span>通缉等级</span><b>0</b></li>
-          <li><span>秘密指数</span><b>0</b></li>
-          <li><span>影响力</span><b>5</b></li>
+          <li><span>体力</span><b>80</b></li><li><span>心理压力</span><b>20</b></li>
+          <li><span>风元素亲和</span><b>30</b></li><li><span>金钱</span><b>1000</b></li>
+          <li><span>名声</span><b>10</b></li><li><span>侦查值</span><b>50</b></li>
+          <li><span>隐匿值</span><b>40</b></li><li><span>魅力</span><b>60</b></li>
+          <li><span>道德刻度</span><b>70</b></li><li><span>欲望倾向</span><b>30</b></li>
+          <li><span>债务</span><b>0</b></li><li><span>情报值</span><b>10</b></li>
+          <li><span>西风骑士团声誉</span><b>50</b></li><li><span>通缉等级</span><b>0</b></li>
+          <li><span>秘密指数</span><b>0</b></li><li><span>影响力</span><b>5</b></li>
           <li><span>事件计数器</span><b>0</b></li>
         </ul>
       </div>
     </aside>
-  </main>
-  <script src="https://gitee.com/fbqdnq/wenyou/raw/main/17/nostalgia.js" defer></script>
+  </div>
+
+  <script src="https://gitee.com/fbqdnq/wenyou/raw/main/17/nostalgia.js?v=2" defer></script>
 </body>
 </html>
