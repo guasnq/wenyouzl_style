@@ -1,13 +1,14 @@
-/* ===== 掌机外壳皮肤：把页面“装”成一台掌机 ===== */
+/* handheld-skin.css — v2 更像掌机版（无品牌） */
 
 :root{
-  --shell:#1a2229;   /* 外壳塑料 */
-  --rim:#0a0f14;     /* 黑色内边 */
+  --shell:#1c242b;   /* 外壳塑料色 */
+  --shell-hi:#263039;
+  --shell-lo:#11171c;
+  --rim:#0b1014;     /* 内黑边 */
   --gloss:rgba(255,255,255,.06);
-  --edge:#0f161c;
 }
 
-/* 居中摆放一台设备 */
+/* 居中摆放“设备” */
 .handheld{
   position:relative;
   min-height:100svh;
@@ -16,56 +17,108 @@
   padding:24px;
 }
 
-/* 外壳本体 */
+/* 外壳本体：带纹理、圆角、体积光 */
 .device{
   position:relative;
-  width:min(1080px,94vw);
-  border-radius:42px;
-  padding:26px;
+  width:min(1100px,94vw);
+  border-radius:46px;
+  padding:28px;
   background:
-    radial-gradient(160% 140% at 50% -40%, rgba(255,255,255,.10), transparent 60%),
-    linear-gradient(180deg, #222c33, #171e24);
+    /* 细粒塑料纹理 */
+    repeating-linear-gradient(135deg, rgba(255,255,255,.012) 0 2px, rgba(0,0,0,0) 2px 6px),
+    linear-gradient(180deg, var(--shell-hi), var(--shell-lo));
   box-shadow:
     0 40px 80px rgba(0,0,0,.45),
-    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 2px 0 rgba(255,255,255,.09),
     inset 0 -2px 0 rgba(0,0,0,.35);
 }
 
-/* 壳体上沿高光条 */
+/* 顶部与底部的体积高光/暗线，增加“壳感” */
 .device::before{
   content:"";
-  position:absolute; inset:6px 6px auto 6px; height:18px; border-radius:38px 38px 0 0;
+  position:absolute; inset:8px 8px auto 8px; height:18px; border-radius:40px 40px 0 0;
   background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0));
   pointer-events:none;
 }
+/* ::after 画装饰件：D-Pad、ABXY、Start/Select、螺丝孔等（纯背景绘制） */
+.device::after{
+  content:"";
+  position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background-repeat:no-repeat;
 
-/* 厚边框 + 屏幕凹陷感 */
+  /* 多重背景从上到下罗列： */
+  background-image:
+    /* 螺丝孔四角（内带十字槽） */
+    radial-gradient(circle at 20px 20px, #0c1115 0 10px, #2a333a 11px, transparent 12px),
+    linear-gradient(90deg, transparent 14px, #0c1115 14px 16px, transparent 16px),
+    linear-gradient(0deg,  transparent 14px, #0c1115 14px 16px, transparent 16px),
+
+    radial-gradient(circle at calc(100% - 20px) 20px, #0c1115 0 10px, #2a333a 11px, transparent 12px),
+    linear-gradient(90deg, transparent calc(100% - 16px), #0c1115 calc(100% - 16px) calc(100% - 14px), transparent calc(100% - 14px)),
+    linear-gradient(0deg,  transparent 14px, #0c1115 14px 16px, transparent 16px),
+
+    radial-gradient(circle at 20px calc(100% - 20px), #0c1115 0 10px, #2a333a 11px, transparent 12px),
+    linear-gradient(90deg, transparent 14px, #0c1115 14px 16px, transparent 16px),
+    linear-gradient(0deg,  transparent calc(100% - 16px), #0c1115 calc(100% - 16px) calc(100% - 14px), transparent calc(100% - 14px)),
+
+    radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), #0c1115 0 10px, #2a333a 11px, transparent 12px),
+    linear-gradient(90deg, transparent calc(100% - 16px), #0c1115 calc(100% - 16px) calc(100% - 14px), transparent calc(100% - 14px)),
+    linear-gradient(0deg,  transparent calc(100% - 16px), #0c1115 calc(100% - 16px) calc(100% - 14px), transparent calc(100% - 14px)),
+
+    /* D-Pad 左：纵向与横向矩形叠加成十字 */
+    linear-gradient(#2b343c,#2b343c),
+    linear-gradient(#2b343c,#2b343c),
+    radial-gradient(circle at 17% 53%, rgba(0,0,0,.35) 0 50px, transparent 52px),
+
+    /* ABXY 右：四颗彩色按键 */
+    radial-gradient(circle at 83% 39%, rgba(86,178,255,.95) 0 14px, rgba(86,178,255,.25) 18px, transparent 19px),  /* X 蓝 */
+    radial-gradient(circle at 90% 46%, rgba(255,86,86,.95) 0 14px, rgba(255,86,86,.25) 18px, transparent 19px),    /* B 红 */
+    radial-gradient(circle at 78% 46%, rgba(255,236,86,.95) 0 14px, rgba(255,236,86,.25) 18px, transparent 19px),  /* Y 黄 */
+    radial-gradient(circle at 86% 53%, rgba(120,242,151,.95) 0 14px, rgba(120,242,151,.25) 18px, transparent 19px),/* A 绿 */
+
+    /* Start / Select：底部中间小胶囊 */
+    radial-gradient(16px 9px at 48% 90%, rgba(255,255,255,.10) 0 10px, rgba(0,0,0,.45) 10.2px 11px, transparent 11.2px),
+    radial-gradient(16px 9px at 52% 90%, rgba(255,255,255,.10) 0 10px, rgba(0,0,0,.45) 10.2px 11px, transparent 11.2px),
+
+    /* 侧握手感阴影 */
+    radial-gradient(60% 120% at -10% 50%, rgba(0,0,0,.35), transparent 60%),
+    radial-gradient(60% 120% at 110% 50%, rgba(0,0,0,.35), transparent 60%);
+
+  background-size:
+    /* 螺丝+槽不用 size，靠定位即可 */ auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto,
+    /* D-Pad 两条矩形的尺寸 */
+    22px 82px, 82px 22px, auto,
+    /* ABXY 四颗 */
+    auto, auto, auto, auto,
+    /* Start/Select */
+    22px 14px, 22px 14px,
+    /* 握把阴影 */
+    auto, auto;
+
+  /* 不需要重复 */
+}
+
+/* 厚边框凹陷与屏幕玻璃反光（不挡文字） */
 .bezel{
   position:relative;
-  border-radius:32px;
-  padding:18px; /* 里面是你原来的 .screen */
+  border-radius:34px;
+  padding:18px;
   background:linear-gradient(180deg, #0f1419, #0b1014 60%, #0f1419);
   box-shadow:
     inset 0 0 0 14px #121920,
     inset 0 0 0 2px rgba(255,255,255,.06),
     0 18px 40px rgba(0,0,0,.35);
 }
-
-/* 屏幕玻璃反光（覆盖在你原来的 .screen 上方，不挡文字） */
-.screen{
-  border-radius:24px;
-  position:relative;
-}
+.screen{position:relative; border-radius:24px}
 .screen::before{
-  content:"";
-  position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
   background:
     linear-gradient(180deg, rgba(255,255,255,.10), transparent 35%),
     linear-gradient(0deg, rgba(255,255,255,.04), transparent 65%);
   mix-blend-mode:screen;
 }
 
-/* 电源指示灯（左上角小绿点，轻微闪烁） */
+/* 电源指示灯：左上角小绿点 */
 .led{
   position:absolute; top:14px; left:24px;
   width:10px; height:10px; border-radius:50%;
@@ -74,44 +127,31 @@
   animation:led 2.2s ease-in-out infinite;
 }
 @keyframes led{
-  0%,60%{opacity:.25}
-  65%,75%{opacity:1}
-  80%,100%{opacity:.45}
+  0%,60%{opacity:.25} 65%,75%{opacity:1} 80%,100%{opacity:.45}
 }
 
-/* 扬声器开孔（右上条形栅格） */
+/* 扬声器：顶部居中条形栅格 */
 .speaker{
-  position:absolute; right:22px; top:16px; width:130px; height:22px; border-radius:12px;
-  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.25));
+  position:absolute; left:50%; transform:translateX(-50%);
+  top:14px; width:150px; height:22px; border-radius:12px;
+  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(0,0,0,.25));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.20), inset 0 -1px 0 rgba(0,0,0,.5);
 }
 .speaker::after{
-  content:""; position:absolute; inset:3px; border-radius:9px; opacity:.9;
-  background:
-    radial-gradient(circle at 6px 6px, rgba(0,0,0,.92) 2px, transparent 3px) repeat;
+  content:""; position:absolute; inset:3px; border-radius:9px; opacity:.95;
+  background:radial-gradient(circle at 6px 6px, rgba(0,0,0,.92) 2px, transparent 3px) repeat;
   background-size:14px 14px;
 }
 
-/* 顶部品牌字样（可改，默认取 data-brand） */
-.handheld::after{
-  content:attr(data-brand);
-  position:absolute; top:18px; left:50%; transform:translateX(-50%);
-  letter-spacing:.28em; font-weight:600; font-size:13px;
-  color:rgba(255,255,255,.55); text-shadow:0 1px 0 rgba(0,0,0,.6);
-  pointer-events:none;
-}
+/* —— 去除品牌字 —— */
+.handheld::after{display:none}
 
-/* 让“状态”按钮视觉上贴着设备右上角（仍然固定覆盖） */
-.drawer-toggle{
-  top:calc( (100vh - min(1080px,94vw)*0 ) * 0 + 20px ); /* 兼容固定定位，不精确贴边就不作死算偏移了 */
-}
+/* 固定的“状态”按钮仍贴设备右上角，可视即可 */
+.drawer-toggle{top:20px}
 
-/* 抽屉保持覆盖即可；屏幕在壳里，抽屉在壳上方 */
-.drawer{border-left:1px solid rgba(227,211,160,.45)}
-
-/* 小屏优化：把设备收缩得更像一台掌机 */
+/* 小屏下整体收缩，让外壳比例更像掌机 */
 @media (max-width:780px){
-  .device{width:min(1000px,96vw); padding:20px; border-radius:36px}
-  .bezel{border-radius:28px; padding:14px}
+  .device{width:min(1000px,96vw); padding:22px; border-radius:40px}
+  .bezel{border-radius:30px; padding:14px}
   .screen{border-radius:20px}
 }
