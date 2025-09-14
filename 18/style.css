@@ -1,0 +1,1142 @@
+:root {
+    /* 主题可调 */
+    --blue-1: #0d47a1;
+    /* 深蓝 */
+    --blue-2: #1976d2;
+    /* 主蓝 */
+    --blue-3: #42a5f5;
+    /* 高光蓝 */
+    --blue-4: #90caf9;
+    /* 反光淡蓝 */
+    --ink: #0b0f1a;
+    /* 背景夜色 */
+    --panel: #0e1424;
+    --bezel: #0a0e18;
+    --glass: #0b0f1aee;
+    --lcd-1: #263c2a;
+    /* 复古LCD 绿底 */
+    --lcd-2: #1b2b20;
+    --lcd-3: #101b15;
+    --accent: #ff4d6d;
+    /* 电源灯 */
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+html {
+    font-size: clamp(12px, 2vw, 20px)
+}
+
+body {
+    margin: 0;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    color: #eaeaea;
+    background:
+        radial-gradient(1000px 600px at 70% 10%, #122033 0%, #0b1220 60%, #060a12 100%),
+        radial-gradient(700px 400px at 20% 90%, #0b1a2f 0%, #09121f 60%, #060a12 100%);
+    font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.stage {
+    position: relative;
+    width: min(92vw, 900px);
+    aspect-ratio: 3/4;
+}
+
+/* 掌机外壳 */
+.console {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 42px;
+    overflow: hidden;
+    background:
+        radial-gradient(180% 120% at 70% -10%, var(--blue-3) 0%, #2a6dbf 35%, var(--blue-1) 72%, #0a1c3b 100%),
+        linear-gradient(160deg, #0d2b5a, #154a91);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .35),
+        inset 0 -3px 12px rgba(0, 0, 0, .6),
+        0 20px 60px rgba(0, 0, 0, .55),
+        0 8px 24px rgba(0, 0, 0, .35);
+}
+
+.console:before {
+    /* 边缘冷光 */
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 42px;
+    background: radial-gradient(120% 80% at 10% -10%, rgba(255, 255, 255, .22), transparent 55%),
+        radial-gradient(120% 80% at 90% 110%, rgba(0, 180, 255, .18), transparent 60%);
+}
+
+.console:after {
+    /* 侧面高光 */
+    content: "";
+    position: absolute;
+    inset: 1.2% 1.2%;
+    border-radius: 36px;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, .25);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .28);
+}
+
+/* 顶部装饰与 LOGO */
+.header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1.8%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 34px;
+}
+
+.brand {
+    letter-spacing: .12em;
+    font-weight: 800;
+    opacity: .86;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .18), 0 6px 16px rgba(0, 0, 0, .35);
+}
+
+.led {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff97a9, var(--accent) 55%, #6d0f1e 100%);
+    box-shadow: 0 0 8px 2px var(--accent), 0 0 18px 6px rgba(255, 77, 109, .45);
+}
+
+/* 屏幕外框 */
+.bezel {
+    position: absolute;
+    left: 5%;
+    top: 7%;
+    width: 90%;
+    height: 64%;
+    border-radius: 18px;
+    background: linear-gradient(to bottom, #1a2133, #0b0f1a);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -12px 24px rgba(0, 0, 0, .6);
+    border: 1px solid rgba(255, 255, 255, .12);
+    z-index: 10;
+}
+
+/* 屏幕玻璃与内容 */
+.screen {
+    position: absolute;
+    inset: 1.6%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--glass);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .25), inset 0 -2px 12px rgba(0, 0, 0, .65);
+}
+
+.lcd {
+    position: absolute;
+    inset: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--lcd-1), var(--lcd-2) 55%, var(--lcd-3));
+    scrollbar-width: thin;
+    scrollbar-color: #3b79e4 transparent;
+}
+
+/* 扫描线 */
+.lcd:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(to bottom, rgba(0, 0, 0, .12) 0 2px, rgba(255, 255, 255, .03) 2px 3px, transparent 3px 4px);
+    mix-blend-mode: overlay;
+    opacity: .45;
+    pointer-events: none;
+}
+
+.lcd::-webkit-scrollbar,
+.lcd .content::-webkit-scrollbar {
+    width: 10px
+}
+
+.lcd::-webkit-scrollbar-thumb,
+.lcd .content::-webkit-scrollbar-thumb {
+    background: linear-gradient(#8fbaff, #3b79e4);
+    border-radius: 10px
+}
+
+.lcd .content {
+    scrollbar-width: thin;
+    scrollbar-color: #3b79e4 transparent;
+}
+
+/* 泡泡效果Canvas */
+#bubbleCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.lcd .content {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* 上层镜面反光 */
+.screen:before {
+    content: "";
+    position: absolute;
+    inset: -8% -12% 50% -20%;
+    transform: rotate(-6deg);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .38), rgba(255, 255, 255, 0));
+    filter: blur(8px);
+    opacity: .8;
+    pointer-events: none;
+}
+
+/* 机身右侧控制区 */
+.controls {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    bottom: 8%;
+    height: 24%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
+    z-index: 20;
+}
+
+
+/* AB 按键 */
+.ab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+}
+
+.btn {
+    --r: 42px;
+    position: relative;
+    width: calc(var(--r)*2);
+    height: calc(var(--r)*2);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #6cb2ff, #2b6ad9 60%, #123067 100%);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .25), inset 0 -10px 16px rgba(0, 0, 0, .6), 0 10px 24px rgba(0, 0, 0, .5);
+}
+
+.btn:after {
+    /* 高光点 */
+    content: "";
+    position: absolute;
+    left: 22%;
+    top: 22%;
+    width: 38%;
+    height: 38%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 70%);
+}
+
+.btn {
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .3), inset 0 -10px 16px rgba(0, 0, 0, .6), 0 12px 28px rgba(0, 0, 0, .6);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 -8px 14px rgba(0, 0, 0, .7), 0 8px 20px rgba(0, 0, 0, .4);
+}
+
+/* Start / Select */
+.meta {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    order: -1;
+    /* 让按钮显示在AB键上方 */
+}
+
+.pill {
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #1f2f55, #0e172a);
+    color: #d7e7ff;
+    font-size: clamp(13px, 1.6vw, 18px);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(141, 182, 255, .35);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 8px 18px rgba(0, 0, 0, .35), 0 0 0 3px rgba(63, 123, 228, .18);
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    transition: .15s ease;
+}
+
+.pill:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px)
+}
+
+#btn-events::before {
+    content: "⚡";
+    margin-right: .4em
+}
+
+#btn-status::before {
+    content: "📊";
+    margin-right: .4em
+}
+
+.pill:hover {
+    filter: brightness(1.08)
+}
+
+/* 扬声器栅格 */
+.speaker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3%;
+    width: 46%;
+    height: 54px;
+    border-radius: 14px;
+    background: linear-gradient(#0d1530, #0a0f22);
+    border: 1px solid rgba(255, 255, 255, .12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 -6px 12px rgba(0, 0, 0, .6);
+}
+
+.holes {
+    --dot: radial-gradient(circle, #000 0 2px, #0000 3px);
+    position: absolute;
+    inset: 10px 14px;
+    background:
+        var(--dot) 0 0/20px 20px, var(--dot) 10px 10px/20px 20px;
+    opacity: .85;
+}
+
+/* 机身底部投影 */
+.shadow {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: -3%;
+    height: 10%;
+    filter: blur(14px);
+    background: radial-gradient(80% 100% at 50% 0%, rgba(0, 0, 0, .55), transparent 70%);
+}
+
+/* 右上角小提示 */
+.hint {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #cfe7ff;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .12), rgba(255, 255, 255, .06));
+    border: 1px solid rgba(255, 255, 255, .18);
+    backdrop-filter: blur(8px);
+    opacity: .9
+}
+
+/* 像素字体体验（可选） */
+.pixel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #cde7c8;
+    font-size: 22px;
+    letter-spacing: .05em;
+    opacity: .9;
+    text-shadow: 0 1px 0 #000, 0 0 8px #7abf7a55
+}
+
+/* 内容区四模块样式与覆盖层 */
+.lcd .content {
+    position: absolute;
+    inset: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+.lcd .sec {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .06));
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 12px;
+    padding: 12px 14px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .15);
+}
+
+.lcd .sec::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #8fbaff66, #3b79e4aa, #8fbaff66);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.lcd .sec-title {
+    position: relative;
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-size: clamp(16px, 2.5vw, 24px);
+    color: #eaf6ff;
+    letter-spacing: .03em;
+    text-shadow: 0 1px 0 #000;
+}
+
+.lcd .sec-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: linear-gradient(90deg, #8fbaff55, transparent);
+}
+
+/* 当前时间-当前地点 - 金色透明泡泡效果 */
+.lcd .sec-title.time-location {
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg,
+            rgba(255, 215, 0, 0.15),
+            rgba(255, 179, 71, 0.1),
+            rgba(255, 140, 0, 0.05));
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.lcd .sec-title.time-location::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg,
+            rgba(255, 215, 0, 0.2),
+            rgba(255, 179, 71, 0.15),
+            rgba(255, 140, 0, 0.1));
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.lcd .sec-title.time-location::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    z-index: -2;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 30%),
+        radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.25) 0%, transparent 35%);
+    animation: bubbleFloat 4s ease-in-out infinite;
+    background: linear-gradient(90deg, #ffd70055, #ff8c0055, transparent);
+}
+
+/* 旁白 - 紫色透明泡泡效果 */
+.lcd .sec-title.narrator {
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(221, 160, 221, 0.3);
+    background: linear-gradient(135deg,
+            rgba(221, 160, 221, 0.15),
+            rgba(186, 85, 211, 0.1),
+            rgba(147, 112, 219, 0.05));
+    color: #dda0dd;
+    text-shadow: 0 0 10px rgba(221, 160, 221, 0.5);
+}
+
+.lcd .sec-title.narrator::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg,
+            rgba(221, 160, 221, 0.2),
+            rgba(186, 85, 211, 0.15),
+            rgba(147, 112, 219, 0.1));
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.lcd .sec-title.narrator::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    z-index: -2;
+    background-image:
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 35%);
+    animation: bubbleFloat 5s ease-in-out infinite;
+    background: linear-gradient(90deg, #dda0dd55, #ba55d355, transparent);
+}
+
+/* 行动选项 - 红橙透明泡泡效果 */
+.lcd .sec-title.actions {
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    background: linear-gradient(135deg,
+            rgba(255, 107, 107, 0.15),
+            rgba(255, 142, 83, 0.1),
+            rgba(255, 107, 157, 0.05));
+    color: #ff6b6b;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.lcd .sec-title.actions::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg,
+            rgba(255, 107, 107, 0.2),
+            rgba(255, 142, 83, 0.15),
+            rgba(255, 107, 157, 0.1));
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.lcd .sec-title.actions::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    z-index: -2;
+    background-image:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 45%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.25) 0%, transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 30%);
+    animation: bubbleFloat 3.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #ff6b6b55, #ff8e5355, transparent);
+}
+
+/* 泡泡浮动动画 */
+@keyframes bubbleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+
+    25% {
+        transform: translateY(-2px) scale(1.02);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(0) scale(1.01);
+        opacity: 0.9;
+    }
+
+    75% {
+        transform: translateY(-1px) scale(1.01);
+        opacity: 0.8;
+    }
+}
+
+.lcd .sec p,
+.lcd .sec li {
+    margin: 0;
+    line-height: 1.55;
+    font-size: clamp(14px, 1.8vw, 20px);
+}
+
+.lcd .events-inline ul,
+.lcd .actions ul {
+    margin: 0;
+    padding-left: 1.2em;
+}
+
+.lcd .status-inline {
+    margin-top: 4px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .28);
+    border: 1px solid rgba(255, 255, 255, .15);
+    white-space: nowrap;
+    overflow: auto;
+    min-height: 40px;
+    font-size: clamp(12px, 1.5vw, 16px);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+}
+
+.lcd .status-inline::-webkit-scrollbar {
+    width: 8px
+}
+
+.lcd .status-inline::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .35);
+    border-radius: 8px
+}
+
+.lcd .status-inline {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .35) transparent;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+    pointer-events: auto;
+}
+
+.overlay .backdrop {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background: rgba(10, 14, 22, .75);
+}
+
+#overlay-events .card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(.98);
+    width: 86%;
+    max-width: 820px;
+    height: 76%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(15, 25, 45, .95), rgba(10, 20, 35, .98));
+    border: 1px solid rgba(255, 255, 255, .3);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .25);
+    transition: .18s ease;
+}
+
+#overlay-events .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #8fbaff66, #3b79e4aa, #8fbaff66);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+#overlay-events.show .card {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.card .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .4);
+    height: 48px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.card .title {
+    font-weight: 800;
+    letter-spacing: .02em
+}
+
+.card .close {
+    appearance: none;
+    border: none;
+    background: rgba(255, 255, 255, .12);
+    color: #eaf2ff;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    padding: 6px 10px;
+    cursor: pointer
+}
+
+.card .body {
+    padding: 16px 20px;
+    height: calc(100% - 48px);
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.card .body ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card .body li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.card .body::-webkit-scrollbar {
+    width: 10px
+}
+
+.card .body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .35);
+    border-radius: 10px
+}
+
+.card .body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .35) transparent
+}
+
+#overlay-status .panel {
+    position: absolute;
+    right: 2%;
+    top: 8%;
+    width: 44%;
+    min-width: 300px;
+    height: 84%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(15, 25, 45, .95), rgba(10, 20, 35, .98));
+    border: 1px solid rgba(255, 255, 255, .3);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .25);
+    transform: translateX(20px);
+    transition: .18s ease;
+}
+
+#overlay-status .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #8fbaff66, #3b79e4aa, #8fbaff66);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+#overlay-status.show .panel {
+    transform: translateX(0)
+}
+
+/* 设置面板特殊样式 */
+#overlay-settings .panel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    max-height: 80%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(15, 25, 45, .95), rgba(10, 20, 35, .98));
+    border: 1px solid rgba(255, 255, 255, .3);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .25);
+    transition: .18s ease;
+}
+
+#overlay-settings .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #8fbaff66, #3b79e4aa, #8fbaff66);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+#overlay-settings.show .panel {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.panel .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .4);
+    height: 48px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.panel .title {
+    font-weight: 800
+}
+
+.panel .close {
+    appearance: none;
+    border: none;
+    background: rgba(255, 255, 255, .12);
+    color: #eaf2ff;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    padding: 6px 10px;
+    cursor: pointer
+}
+
+.panel .body {
+    padding: 16px 20px;
+    height: calc(100% - 48px);
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.panel .body::-webkit-scrollbar {
+    width: 10px
+}
+
+.panel .body::-webkit-scrollbar-thumb {
+    background: linear-gradient(#8fbaff, #3b79e4);
+    border-radius: 10px
+}
+
+.panel .body {
+    scrollbar-width: thin;
+    scrollbar-color: #3b79e4 transparent
+}
+
+/* 状态网格布局 */
+.status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    padding: 8px 0;
+}
+
+.stat-item {
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    font-size: clamp(13px, 1.6vw, 18px);
+    line-height: 1.4;
+}
+
+.stat-item strong {
+    color: #8fbaff;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.9em;
+}
+
+/* 自定义指令输入框样式 */
+.custom {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .3);
+    border: 1px solid rgba(255, 255, 255, .2);
+}
+
+.custom::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background: #8fbaff;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 改善小屏幕下的状态网格 */
+@media (max-width: 480px) {
+    .status-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .stat-item {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    #overlay-status .panel {
+        width: 90%;
+        min-width: 280px;
+        right: 5%;
+    }
+}
+
+@media (max-width:720px) {
+    .controls {
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 16px;
+        height: 20%;
+    }
+
+    .btn {
+        --r: 36px
+    }
+
+    .ab {
+        justify-content: center;
+    }
+
+    .meta {
+        gap: 14px;
+    }
+
+    /* 小屏幕下调整内容区域，避免底部溢出 */
+    .lcd .content {
+        padding-bottom: 10px;
+        gap: 8px;
+        height: calc(100% - 16px);
+    }
+
+    .lcd .sec {
+        padding: 10px 12px;
+    }
+
+    .status-inline {
+        padding: 10px 12px;
+        font-size: clamp(13px, 2vw, 16px);
+        min-height: 36px;
+    }
+}
+
+/* 设置面板样式 */
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #8fbaff;
+    font-size: 14px;
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    appearance: none;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8fbaff, #3b79e4);
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8fbaff, #3b79e4);
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.color-preview {
+    width: 100%;
+    height: 30px;
+    border-radius: 6px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(90deg,
+            hsl(200, 70%, 70%),
+            hsl(220, 70%, 70%),
+            hsl(240, 70%, 70%));
+}
+
+.setting-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.setting-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    color: #eaf2ff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.setting-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.setting-btn:active {
+    transform: translateY(0);
+}
+
+#btn-settings::before {
+    content: "🫧";
+    margin-right: .4em;
+}
+
+/* 极小屏幕优化 */
+@media (max-width: 480px) {
+    .lcd .content {
+        inset: 8px;
+        padding-bottom: 8px;
+        gap: 6px;
+        height: calc(100% - 16px);
+    }
+
+    .lcd .sec {
+        padding: 8px 10px;
+        margin-bottom: 0;
+    }
+
+    .lcd .sec-title {
+        font-size: clamp(15px, 3vw, 20px);
+        margin-bottom: 6px;
+    }
+
+    /* 小屏幕下的泡泡特效优化 */
+    .lcd .sec-title.time-location,
+    .lcd .sec-title.narrator,
+    .lcd .sec-title.actions {
+        padding: 6px 12px;
+        border-radius: 10px;
+    }
+
+    .lcd .sec-title.time-location::before,
+    .lcd .sec-title.narrator::before,
+    .lcd .sec-title.actions::before {
+        border-radius: 10px;
+    }
+
+    .lcd .sec-title.time-location::after,
+    .lcd .sec-title.narrator::after,
+    .lcd .sec-title.actions::after {
+        border-radius: 10px;
+    }
+
+    .lcd .sec p,
+    .lcd .sec li {
+        font-size: clamp(13px, 2.2vw, 16px);
+        line-height: 1.4;
+    }
+
+    .status-inline {
+        margin-top: 4px;
+        padding: 8px 10px;
+        font-size: clamp(12px, 2.5vw, 15px);
+        min-height: 32px;
+    }
+
+    .setting-buttons {
+        flex-direction: column;
+    }
+
+    .setting-group {
+        margin-bottom: 16px;
+    }
+}

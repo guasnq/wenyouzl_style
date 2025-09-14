@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模板18</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="stage">
+    <div class="console">
+      <div class="header">
+        <div class="brand"></div>
+        <div class="led" title="POWER"></div>
+      </div>
+
+      <div class="bezel">
+        <div class="screen">
+          <div class="lcd">
+            <canvas id="bubbleCanvas"></canvas>
+            <div class="content">
+              <section class="sec scene">
+                <div class="sec-title time-location">当前时间-当前地点</div>
+                <p>
+                  含环境、人物、情感的沉浸式描述
+                </p>
+              </section>
+              <section class="sec narrator">
+                <div class="sec-title narrator">旁白</div>
+                <p>相关旁白</p>
+              </section>
+              <section class="sec actions">
+                <div class="sec-title actions">行动选项</div>
+                <ul>
+                  <li>A. 选项内容 → 相关影响</li>
+                  <li>B. 选项内容 → 相关影响</li>
+                  <li>C. 选项内容 → 相关影响</li>
+                </ul>
+                <div class="custom">✨ 自定义指令：_________</div>
+              </section>
+              <div class="status-inline"> [受影响变量]：变量变化趋势 </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="ab">
+          <div class="btn" title="A - 喷射泡泡"></div>
+          <div class="btn" title="B - 清除泡泡"></div>
+        </div>
+        <div class="meta">
+          <button class="pill" id="btn-status">状态栏</button>
+          <button class="pill" id="btn-events">动态事件</button>
+          <button class="pill" id="btn-settings">泡泡设置</button>
+        </div>
+      </div>
+
+      <!-- 覆盖层 -->
+      <div class="overlay" id="overlay-events" aria-hidden="true">
+        <div class="backdrop" data-close="events"></div>
+        <div class="card">
+          <div class="body">
+            <ul>
+              <li>⚠根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</li>
+              <li>根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件）</li>
+              <li>根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</li>
+              <li>...........</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="overlay-status" aria-hidden="true">
+        <div class="backdrop" data-close="status"></div>
+        <div class="panel">
+          <div class="body">
+            <div class="status-grid">
+              <div class="stat-item"><strong>属性</strong>属性值</div>
+              <div class="stat-item"><strong>属性</strong>属性值</div>
+              <div class="stat-item"><strong>属性</strong>属性值</div>
+              <div class="stat-item"><strong>.....</strong>.....</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="overlay-settings" aria-hidden="true">
+        <div class="backdrop" data-close="settings"></div>
+        <div class="panel">
+          <div class="body">
+            <div class="setting-group">
+              <label for="density-slider">密度：<span id="density-value">40</span></label>
+              <input type="range" id="density-slider" min="10" max="120" value="40" class="slider">
+            </div>
+            <div class="setting-group">
+              <label for="size-slider">大小：<span id="size-value">26</span></label>
+              <input type="range" id="size-slider" min="6" max="60" value="26" class="slider">
+            </div>
+            <div class="setting-group">
+              <label for="lift-slider">上升速度：<span id="lift-value">120</span></label>
+              <input type="range" id="lift-slider" min="10" max="220" value="120" class="slider">
+            </div>
+            <div class="setting-group">
+              <label for="color-slider">颜色基调：<span id="color-value">200</span></label>
+              <input type="range" id="color-slider" min="0" max="360" value="200" class="slider">
+              <div class="color-preview" id="color-preview"></div>
+            </div>
+            <div class="setting-buttons">
+              <button class="setting-btn" id="reset-settings">重置默认</button>
+              <button class="setting-btn" id="test-bubbles">测试效果</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker">
+        <div class="holes"></div>
+      </div>
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
