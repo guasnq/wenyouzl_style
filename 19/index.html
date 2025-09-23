@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模板19</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="fx-swirl" aria-hidden="true"></div>
+  <canvas id="fx-particles" aria-hidden="true"></canvas>
+  <div class="jellyfield" aria-hidden="true"></div>
+  <!-- 侧边状态栏切换按钮 -->
+  <button class="status-toggle" id="statusToggle" aria-controls="statusPanel" aria-expanded="false">状态</button>
+  <!-- 浮动状态栏 -->
+  <aside id="statusPanel" class="status-panel" aria-hidden="true">
+    <header>
+      <h3>状态栏</h3>
+      <button class="close-btn" id="statusClose" aria-label="关闭">关闭</button>
+    </header>
+    <div class="status-scroll">
+      <div class="status-list" id="statusList">
+        <!-- 直接在这里写“键:值”，用逗号或换行分隔；-->
+        <p class="seed">体力:80, 心理压力:20, 风元素亲和:30, 金钱:1000, 名声:10, 侦查值:50</p>
+      </div>
+    </div>
+  </aside>
+  <!-- 主页面内容：自上而下布局 -->
+  <main class="page">
+    <!-- 场景渲染区 -->
+    <section class="card scene" aria-label="场景渲染区">
+      <div class="inner">
+        <h2>当前时间-当前具体地点</h2>
+        <p class="muted">
+          含环境、人物、情感的沉浸式描述
+        </p>
+      </div>
+      <div class="overlay-glow" aria-hidden="true"></div>
+    </section>
+    <!-- 旁白区 -->
+    <section class="card water-border" aria-label="旁白区">
+      <div class="inner">
+        <p>相关旁白</p>
+      </div>
+    </section>
+    <!-- 动态事件区（鱼群动画） -->
+    <section class="card events" aria-label="动态事件区">
+      <div class="inner">
+        <p>⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</p>
+        <p>🍻 夜间酒馆消费享8折优惠（限时）</p>
+      </div>
+      <div class="fish-school" aria-hidden="true" id="fishSchool"></div>
+    </section>
+    <!-- 行动选项区（泡泡闪烁边框） -->
+    <section class="card bubble-border" aria-label="行动选项区">
+      <div class="inner">
+        <ul class="options">
+          <li class="opt">A. 选项内容 → 相关影响</li>
+          <li class="opt">B. 选项内容 → 相关影响</li>
+          <li class="opt">C. 选项内容 → 相关影响</li>
+          <li class="opt">✨ 自定义指令：_________</li>
+        </ul>
+      </div>
+    </section>
+    <!-- 状态信息区 -->
+    <section class="card stats" aria-label="状态信息区">
+      <div class="corners" aria-hidden="true"></div>
+      <div class="inner">
+        <div class="statline"><span>受影响变量：<b>当前值</b>/总值</span>
+          <div class="bar"><i style="--val:当前值%"></i></div>
+        </div>
+        <div class="statline"><span>受影响变量：<b>当前值</b>/总值</span>
+          <div class="bar"><i style="--val:当前值%"></i></div>
+        </div>
+        <div class="statline"><span>受影响变量：<b>当前值</b>/总值</span>
+          <div class="bar"><i style="--val:当前值%"></i></div>
+        </div>
+        <div class="statline"><span>受影响变量：<b>当前值</b>/总值</span>
+          <div class="bar"><i style="--val:当前值%"></i></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>

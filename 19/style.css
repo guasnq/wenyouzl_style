@@ -1,0 +1,520 @@
+/* ============= 样式基准与变量 ============= */
+:root {
+    /* 通过视口自适应字号：手机≈15px，桌面≈18px */
+    font-size: clamp(14px, 1.1vw + 0.7vh, 18px);
+    --bg-img: url('https://gitee.com/fbqdnq/wenyou/raw/main/img/19.webp');
+    --ink: #e8f7ff;
+    --ink-dim: #c9e6ff;
+    --sea-1: #1a2e40;
+    --sea-2: #0b1520;
+    --glow-1: #6bdcff;
+    --glow-2: #5cfcc7;
+    --glow-3: #caa7ff;
+    --accent: #7fe1ff;
+    --bubble: #aef3ff;
+    --panel: rgba(13, 22, 32, .7);
+    --glass: rgba(18, 30, 45, .55);
+    --border-bright: rgba(168, 247, 255, .7);
+    --shadow-deep: 0 10px 25px rgba(0, 0, 0, .35), inset 0 0 20px rgba(255, 255, 255, .04);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: #081018;
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* 深海大背景 */
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============= 全局动效层：漩涡 + 粒子 + 水母 ============= */
+.fx-swirl {
+    position: fixed;
+    inset: -10% -10%;
+    pointer-events: none;
+    background: conic-gradient(from 0deg, rgba(111, 255, 240, .06), rgba(0, 0, 0, 0) 35%),
+        radial-gradient(1200px 800px at 20% 30%, rgba(0, 255, 245, .06), transparent 60%),
+        radial-gradient(900px 700px at 80% 70%, rgba(145, 92, 255, .05), transparent 60%);
+    mix-blend-mode: screen;
+    filter: blur(1px);
+    animation: swirl-rot 60s linear infinite;
+    z-index: 1;
+}
+
+@keyframes swirl-rot {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#fx-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: screen;
+}
+
+.jellyfield {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.jelly {
+    position: absolute;
+    width: 120px;
+    height: 160px;
+    opacity: .30;
+    filter: drop-shadow(0 0 12px rgba(133, 245, 255, .6));
+    animation: float-up linear infinite;
+}
+
+.jelly::before {
+    /* 水母伞 */
+    content: "";
+    position: absolute;
+    inset: 0 0 45% 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(127, 255, 241, .8), rgba(127, 255, 241, .25) 45%, transparent 60%);
+    border-radius: 60% 60% 40% 40% / 60% 60% 40% 40%;
+    box-shadow: 0 0 20px rgba(127, 255, 241, .6), inset 0 0 30px rgba(255, 255, 255, .25);
+}
+
+.jelly::after {
+    /* 触须 */
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: 70%;
+    height: 45%;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(circle at 20% 0%, rgba(127, 255, 241, .7), transparent 60%),
+        radial-gradient(circle at 40% 10%, rgba(127, 255, 241, .6), transparent 60%),
+        radial-gradient(circle at 60% 0%, rgba(127, 255, 241, .6), transparent 60%),
+        radial-gradient(circle at 80% 10%, rgba(127, 255, 241, .5), transparent 60%);
+    filter: blur(1px);
+    mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+    animation: wiggle 6s ease-in-out infinite;
+}
+
+@keyframes float-up {
+    from {
+        transform: translateY(20vh) translateX(0);
+    }
+
+    to {
+        transform: translateY(-120vh) translateX(5vw);
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: translateX(-50%) skewX(0deg);
+    }
+
+    50% {
+        transform: translateX(-48%) skewX(5deg);
+    }
+}
+
+/* ============= 页面布局 ============= */
+.page {
+    position: relative;
+    z-index: 3;
+    padding: min(5vh, 4rem) min(3vw, 3rem);
+    display: grid;
+    gap: 1.2rem;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(8, 14, 24, .55), rgba(8, 14, 24, .35));
+    border: 1px solid rgba(160, 240, 255, .22);
+    border-radius: 18px;
+    box-shadow: var(--shadow-deep);
+    backdrop-filter: blur(6px) saturate(1.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.card h2 {
+    margin: 0 0 .6rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: var(--ink);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
+}
+
+.card .inner {
+    padding: 1.1rem 1.1rem 1.2rem;
+}
+
+/* 场景渲染区：发光水母群环绕，叠加微光粒子 */
+.scene {
+    display: grid;
+    align-content: start;
+}
+
+.scene .inner {
+    padding: 1.1rem;
+}
+
+.scene .overlay-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(800px 400px at 15% 85%, rgba(111, 220, 255, .10), transparent 60%),
+        radial-gradient(700px 500px at 85% 15%, rgba(170, 120, 255, .08), transparent 60%);
+    mix-blend-mode: screen;
+}
+
+/* 旁白区：水纹边框 */
+.water-border {
+    --c1: rgba(110, 220, 255, .65);
+    --c2: rgba(92, 252, 199, .55);
+    border-image: conic-gradient(from var(--ang, 0deg), var(--c1), var(--c2), var(--c1)) 1;
+    animation: ripple 14s linear infinite;
+}
+
+@keyframes ripple {
+    to {
+        --ang: 360deg;
+    }
+}
+
+/* 动态事件区：鱼群穿梭 */
+.events {
+    position: relative;
+    overflow: hidden;
+}
+
+.fish-school {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .5;
+}
+
+.fish {
+    position: absolute;
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 6px rgba(111, 220, 255, .8));
+    animation: swim var(--dur, 18s) linear infinite;
+    top: var(--top, 50%);
+}
+
+@keyframes swim {
+    from {
+        transform: translateX(-10vw) translateY(0) scaleX(1);
+    }
+
+    to {
+        transform: translateX(110vw) translateY(0) scaleX(1);
+    }
+}
+
+/* 行动选项区：气泡闪烁边框 */
+.bubble-border {
+    position: relative;
+}
+
+.bubble-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events: none;
+    background: radial-gradient(circle at 10% 20%, rgba(174, 243, 255, .35) 0 10%, transparent 11%),
+        radial-gradient(circle at 30% 80%, rgba(174, 243, 255, .35) 0 8%, transparent 9%),
+        radial-gradient(circle at 85% 30%, rgba(174, 243, 255, .35) 0 7%, transparent 8%),
+        radial-gradient(circle at 60% 50%, rgba(174, 243, 255, .35) 0 9%, transparent 10%);
+    mix-blend-mode: screen;
+    filter: blur(0.6px);
+    animation: bubble-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes bubble-twinkle {
+
+    0%,
+    100% {
+        opacity: .3;
+    }
+
+    50% {
+        opacity: .7;
+    }
+}
+
+/* 状态信息区：珊瑚/贝壳角标 + 幽光边线 */
+.stats {
+    border-color: rgba(174, 243, 255, .35);
+    box-shadow: 0 0 20px rgba(127, 255, 241, .15), var(--shadow-deep);
+}
+
+.stats .corners {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.stats .corners::before,
+.stats .corners::after {
+    content: "🐚";
+    position: absolute;
+    font-size: 1.1rem;
+    opacity: .7;
+    filter: drop-shadow(0 0 4px rgba(174, 243, 255, .6));
+}
+
+.stats .corners::before {
+    left: .6rem;
+    top: .5rem;
+    content: "🪸";
+}
+
+.stats .corners::after {
+    right: .6rem;
+    bottom: .5rem;
+}
+
+/* 文本元素与列表 */
+p {
+    margin: .3rem 0 .7rem;
+    line-height: 1.6;
+    color: var(--ink-dim);
+}
+
+.muted {
+    color: #9ac6db;
+    opacity: .9;
+}
+
+ul.options {
+    list-style: none;
+    padding: 0;
+    margin: .2rem 0 0;
+    display: grid;
+    gap: .55rem;
+}
+
+.opt {
+    padding: .6rem .8rem;
+    border: 1px dashed rgba(174, 243, 255, .45);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(6, 16, 24, .55), rgba(6, 16, 24, .35));
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor: pointer;
+}
+
+.opt:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .25), 0 0 18px rgba(127, 255, 241, .15);
+}
+
+.statline {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.bar {
+    flex: 1;
+    height: .5rem;
+    background: rgba(255, 255, 255, .08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bar>i {
+    display: block;
+    height: 100%;
+    width: var(--val, 50%);
+    background: linear-gradient(90deg, var(--glow-1), var(--glow-2));
+    box-shadow: 0 0 12px var(--glow-1);
+}
+
+/* ============= 状态栏抽屉 ============= */
+.status-toggle {
+    position: fixed;
+    right: .6rem;
+    top: 45%;
+    z-index: 5;
+    border: 1px solid rgba(160, 240, 255, .25);
+    background: linear-gradient(180deg, rgba(12, 20, 30, .8), rgba(12, 20, 30, .55));
+    color: var(--ink);
+    padding: .5rem .6rem;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: .15em;
+    box-shadow: var(--shadow-deep);
+    backdrop-filter: blur(4px);
+}
+
+.status-panel {
+    position: fixed;
+    right: .6rem;
+    top: 6vh;
+    bottom: 6vh;
+    width: 0;
+    z-index: 6;
+    background: var(--panel);
+    border: 1px solid rgba(160, 240, 255, .25);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .45), inset 0 0 40px rgba(127, 255, 241, .05);
+    backdrop-filter: blur(8px) saturate(1.1);
+    overflow: hidden;
+    transition: width .24s ease;
+}
+
+.status-panel.open {
+    width: min(86vw, 360px);
+}
+
+.status-panel header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .4rem;
+    background: linear-gradient(180deg, rgba(8, 16, 26, .9), rgba(8, 16, 26, .5));
+    padding: .7rem .9rem;
+    border-bottom: 1px solid rgba(160, 240, 255, .18);
+}
+
+.status-panel h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: .04em;
+}
+
+.close-btn {
+    background: rgba(20, 40, 56, .7);
+    color: var(--ink);
+    border: 1px solid rgba(160, 240, 255, .25);
+    border-radius: 10px;
+    padding: .35rem .6rem;
+    cursor: pointer;
+}
+
+.status-scroll {
+    height: calc(100% - 3rem);
+    overflow: auto;
+    padding: .8rem .9rem 1rem;
+}
+
+.status-list {
+    display: grid;
+    gap: .6rem;
+}
+
+.status-item {
+    display: grid;
+    gap: .35rem;
+    background: linear-gradient(180deg, rgba(6, 16, 24, .6), rgba(6, 16, 24, .35));
+    border: 1px solid rgba(160, 240, 255, .18);
+    border-radius: 12px;
+    padding: .6rem .7rem;
+}
+
+.status-item .k {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.status-item .v {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-dim);
+}
+
+/* 滚动条美化 */
+.status-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.status-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, .04);
+    border-radius: 10px;
+}
+
+.status-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(174, 243, 255, .6), rgba(127, 255, 241, .45));
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .25);
+}
+
+.status-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(174, 243, 255, .55) rgba(255, 255, 255, .06);
+}
+
+/* 旁白逐字泡泡样式 */
+.bubble-text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .2em .25em;
+    align-items: center;
+}
+
+.bubble-char {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 1.55em;
+    height: 1.55em;
+    padding: 0 .14em;
+    border-radius: 999px;
+    background: radial-gradient(circle at 35% 30%, rgba(174, 243, 255, .22) 0 45%, rgba(127, 255, 241, .12) 46% 70%, rgba(255, 255, 255, 0) 71%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, .08) 0 20%, rgba(255, 255, 255, 0) 21%);
+    border: 1px solid rgba(174, 243, 255, .28);
+    box-shadow: inset 0 0 8px rgba(127, 255, 241, .18), 0 0 10px rgba(127, 255, 241, .06);
+    backdrop-filter: blur(2px) saturate(1.05);
+    color: var(--ink);
+    line-height: 1;
+    opacity: .92;
+}
+
+.bubble-space {
+    display: inline-block;
+    width: .5em;
+}
+
+.bubble-char::after {
+    content: "";
+    position: absolute;
+    right: .28em;
+    top: .28em;
+    width: .28em;
+    height: .18em;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .28);
+    filter: blur(.3px);
+}
+
+/* ============= 小屏优化 ============= */
+@media (max-width: 560px) {
+    .page {
+        padding: 4vh 4vw;
+    }
+
+    .status-panel.open {
+        width: min(92vw, 340px);
+    }
+}
