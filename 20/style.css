@@ -1,0 +1,453 @@
+:root {
+  --bg: var(--bg-url);
+  --violet: #8b5cf6;
+  /* 主紫 */
+  --violet-2: #a78bfa;
+  /* 次紫 */
+  --lavender: #c4b5fd;
+  /* 淡紫 */
+  --gold: #ffd166;
+  /* 金色描边 */
+  --glass: #ffffff33;
+  /* 玻璃层 */
+  --warm: #ffe8b3;
+  /* 暖黄文字光晕 */
+  --smoke: #b19cd9;
+  /* 淡紫烟雾 */
+  --moon: #faf8ff;
+  /* 月光白 */
+  --dark: #0b0a14;
+  /* 背景深色遮罩 */
+  --panel-max: 1000px;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+/* 响应式根字号：随视口缩放，保证可读性 */
+html {
+  font-size: clamp(14px, 0.9vw + 0.9vh, 18px);
+}
+
+body {
+  margin: 0;
+  color: #eee;
+  background: #000;
+  font-family: "HarmonyOS Sans SC", "Segoe UI", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== 背景层：底图 + 暗角 + 全局动态修饰 ===== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+/* 暗角与微光 */
+.vignette {
+  position: fixed;
+  inset: -10vmax;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(120vmax 120vmax at 70% 20%, transparent 0 40%, rgba(0, 0, 0, .25) 60%, rgba(0, 0, 0, .6) 100%);
+}
+
+/* 移动的窗棂光斑（缓慢位移的线性渐变叠加） */
+.window-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 8px),
+    radial-gradient(120vmax 80vmax at -20% -10%, rgba(250, 248, 255, .25), transparent 60%),
+    radial-gradient(120vmax 80vmax at 120% 110%, rgba(210, 200, 255, .15), transparent 60%);
+  animation: windowShift 36s linear infinite;
+}
+
+@keyframes windowShift {
+  0% {
+    transform: translateX(-3%) translateY(0)
+  }
+
+  50% {
+    transform: translateX(3%) translateY(1%)
+  }
+
+  100% {
+    transform: translateX(-3%) translateY(0)
+  }
+}
+
+/* 全局落星粒子：Canvas 承载，见脚本 */
+canvas#stars,
+canvas#smoke {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== 页面骨架 ===== */
+.wrap {
+  max-width: var(--panel-max);
+  margin: clamp(16px, 3vh, 28px) auto 12vh;
+  padding: clamp(12px, 2vw, 24px);
+}
+
+.section {
+  position: relative;
+  margin: clamp(12px, 2vh, 20px) auto;
+  padding: clamp(14px, 2.2vw, 26px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* 顶部 场景渲染：薄纱 + 光影渐变 */
+.scene {
+  background: linear-gradient(to bottom, rgba(20, 17, 40, .55), rgba(20, 17, 40, .25)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><filter id="t" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence baseFrequency="0.8" numOctaves="2" seed="7" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .09"/></feComponentTransfer><feGaussianBlur stdDeviation=".8"/></filter></defs><rect width="100%" height="100%" filter="url(%23t)" fill="white" opacity="0.5"/></svg>') repeat;
+  overflow: hidden;
+}
+
+.scene::after {
+  /* 月光穿花影动态光斑 */
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background: radial-gradient(60% 40% at 30% 20%, rgba(255, 255, 255, .18), transparent 60%),
+    radial-gradient(45% 35% at 80% 30%, rgba(197, 179, 255, .16), transparent 60%),
+    radial-gradient(35% 25% at 60% 70%, rgba(255, 245, 220, .12), transparent 60%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: moonLight 22s ease-in-out infinite alternate;
+}
+
+@keyframes moonLight {
+  0% {
+    transform: translate(-2%, -1%) rotate(0deg)
+  }
+
+  100% {
+    transform: translate(2%, 1%) rotate(1deg)
+  }
+}
+
+/* 旁白区：半透明紫色琉璃边框 + 暖白发光文字 */
+.narration {
+  background: linear-gradient(to bottom, rgba(60, 40, 110, .35), rgba(40, 25, 85, .25));
+  border: 1.5px solid rgba(167, 139, 250, .65);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, .16) inset, 0 0 24px rgba(139, 92, 246, .24);
+  text-shadow: 0 0 6px rgba(255, 255, 255, .35), 0 0 18px rgba(255, 255, 255, .25);
+  font-family: "Ma Shan Zheng", "HYZhengYuan", "LXGW WenKai", cursive, system-ui;
+}
+
+/* 动态事件区：金色光带边框 + 内部花瓣粒子层（脚本插入） */
+.events {
+  background: linear-gradient(to bottom right, rgba(30, 24, 70, .4), rgba(30, 20, 60, .25));
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 0 18px rgba(255, 209, 102, .25), 0 0 0 2px rgba(255, 209, 102, .2) inset;
+  overflow: hidden;
+}
+
+.events .petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* 行动选项区：玉质按钮，hover 微光闪烁，弧形排列 */
+.actions {
+  background: linear-gradient(to top left, rgba(35, 24, 65, .35), rgba(35, 24, 65, .18));
+}
+
+.action-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+  justify-items: center;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.action-list.curved li:nth-child(1) {
+  transform: translateY(6px);
+}
+
+.action-list.curved li:nth-child(2) {
+  transform: translateY(-2px);
+}
+
+.action-list.curved li:nth-child(3) {
+  transform: translateY(-2px);
+}
+
+.action-list.curved li:nth-child(4) {
+  transform: translateY(6px);
+}
+
+@media (max-width:640px) {
+  .action-list.curved li {
+    transform: none;
+  }
+}
+
+.action-list li {
+  list-style: none;
+}
+
+.btn-jade {
+  display: inline-block;
+  padding: .7em 1.15em;
+  border-radius: 999px;
+  letter-spacing: .02em;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .35), rgba(210, 230, 240, .12));
+  border: 1px solid rgba(255, 255, 255, .35);
+  color: #f5f7ff;
+  text-shadow: 0 1px 6px rgba(255, 255, 255, .35);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, .25), 0 10px 20px rgba(0, 0, 0, .25);
+  backdrop-filter: blur(8px) saturate(115%);
+  position: relative;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  min-width: 220px;
+  max-width: 520px;
+  white-space: normal;
+  text-align: center;
+}
+
+.btn-jade::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, .25), rgba(255, 255, 255, .0) 40%);
+  filter: blur(4px);
+  opacity: .0;
+  transition: opacity .2s ease;
+}
+
+.btn-jade:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, .38), 0 14px 26px rgba(0, 0, 0, .35);
+}
+
+.btn-jade:hover::after {
+  opacity: .8;
+  animation: shimmer 1.8s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 状态信息区：暖黄半透玻璃 */
+.status-info {
+  background: linear-gradient(to bottom, rgba(70, 50, 20, .24), rgba(35, 25, 15, .24));
+  border: 1.5px solid rgba(255, 232, 179, .55);
+  box-shadow: 0 0 20px rgba(255, 232, 179, .18);
+  color: #fff8e6;
+  text-shadow: 0 0 8px rgba(255, 232, 179, .28);
+}
+
+.kv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6em 1.2em;
+}
+
+/* ===== 侧边状态栏：紫色藤蔓按钮 + 可浮层面板 ===== */
+.side-toggle {
+  position: fixed;
+  top: 22vh;
+  right: 12px;
+  z-index: 1000;
+}
+
+.vine-btn {
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, .55);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .35), rgba(139, 92, 246, .35), rgba(88, 28, 135, .35));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .35), 0 0 16px rgba(139, 92, 246, .55);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+.vine-btn svg {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 0 6px rgba(167, 139, 250, .85));
+}
+
+.vine-btn::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, .25);
+  animation: breathe 2.8s ease-in-out infinite;
+  opacity: .6;
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: .45
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: .8
+  }
+}
+
+.side-panel {
+  position: fixed !important;
+  top: 8vh;
+  right: 14px;
+  left: auto;
+  width: min(86vw, 340px);
+  max-height: 80vh;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(12px);
+  transition: opacity .22s ease, transform .28s ease, visibility 0s linear .22s;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(45, 30, 85, .72), rgba(30, 20, 60, .72));
+  border: 1.5px solid rgba(197, 179, 255, .65);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px) saturate(140%);
+  contain: layout paint;
+  will-change: transform, opacity;
+}
+
+.side-panel.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition-delay: 0s;
+}
+
+.side-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
+  background: linear-gradient(90deg, rgba(197, 179, 255, .12), rgba(255, 255, 255, .02));
+}
+
+.side-body {
+  padding: .9rem 1rem;
+  max-height: calc(80vh - 56px);
+  overflow: auto;
+}
+
+.side-close {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  opacity: .9
+}
+
+/* 美化滚动条（侧栏） */
+.side-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, .06);
+  border-radius: 8px;
+}
+
+.side-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--violet), var(--violet-2));
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, .25);
+}
+
+/* 区块标题 */
+.heading {
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #f2e9ff;
+  text-shadow: 0 0 10px rgba(164, 128, 255, .6);
+  margin: 0 0 .6rem;
+}
+
+/* 段落与强调 */
+p {
+  margin: .2rem 0 .6rem;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  opacity: .9
+}
+
+/* 花瓣小标签 */
+.tag {
+  display: inline-block;
+  padding: .2em .6em;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 999px;
+  margin-right: .4em;
+  font-size: .9em;
+  background: rgba(0, 0, 0, .2)
+}
+
+/* 小提示 */
+.tip {
+  font-size: .92em;
+  opacity: .9
+}
+
+/* 呼吸光效边框（可复用） */
+.breath {
+  position: relative
+}
+
+.breath::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 22px rgba(164, 128, 255, .35), 0 0 44px rgba(164, 128, 255, .18);
+  animation: breathe 3.8s ease-in-out infinite;
+}
+
+/* 小屏优化边距 */
+@media (max-width:520px) {
+  .wrap {
+    padding: 10px
+  }
+
+  .side-panel {
+    right: 8px
+  }
+}
