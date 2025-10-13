@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>星夜沉浸卡片页</title>
+  <title>模板20（作者：墙子）</title>
   <style>
     :root {
       --bg-url: url('https://gitee.com/fbqdnq/wenyou/raw/main/img/20.webp');
@@ -44,53 +44,65 @@
       <div class="heading">当前状态</div>
       <button class="side-close" id="closeSide">关闭 ✕</button>
     </div>
-    <div class="side-body mono" id="stateBody"></div>
+    <div class="side-body mono" id="stateBody">
+      <ul style="margin:0; padding-left:1em">
+        <li style="margin:.25em 0">状态1：状态值</li>
+        <li style="margin:.25em 0">状态2：状态值</li>
+        <li style="margin:.25em 0">状态3：状态值</li>
+        <li style="margin:.25em 0">状态4：状态值</li>
+        <li style="margin:.25em 0">状态5：状态值</li>
+        <li style="margin:.25em 0">状态6：状态值</li>
+        <li style="margin:.25em 0">状态7：状态值</li>
+        <li style="margin:.25em 0">状态8：状态值</li>
+        <li style="margin:.25em 0">......</li>
+      </ul>
+    </div>
   </aside>
 
   <!-- 主内容 -->
   <main class="wrap">
     <!-- 场景渲染区 -->
     <section class="section scene breath" aria-labelledby="h-scene">
-      <h2 class="heading" id="h-scene">场景渲染</h2>
-      <p>🌃【蒙德城·天使的馈赠酒馆 - 夜晚】<br>
-        酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到"龙灾""西风骑士团"的零星词句飘过。
-      </p>
+      <h2 class="heading" id="h-scene">当前时间-当前具体地点</h2>
+      <p>含环境、人物、情感的沉浸式描述 </p>
     </section>
 
     <!-- 旁白区 -->
     <section class="section narration" aria-labelledby="h-narr">
       <h2 class="heading" id="h-narr">旁白</h2>
-      <p>初至蒙德的异乡人啊，每滴酒液都沉淀着故事。当心那些阴影中的交易——它们可能改变命运的轨迹。</p>
+      <p>相关旁白</p>
     </section>
 
     <!-- 动态事件区 -->
     <section class="section events breath" aria-labelledby="h-events">
       <canvas class="petals" id="petals"></canvas>
       <h2 class="heading" id="h-events">动态事件</h2>
-      <p><span class="tag">⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</span> <span class="tag">🍻 夜间酒馆消费享8折优惠（限时）</span></p>
+      <p>
+        <span class="tag">根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</span>
+        <span class="tag">根据玩家行为生成的规则/事件提示，以及当前时间其他地点、其他人物发生的事件</span>
+        <span class="tag">.....</span>
+      </p>
     </section>
 
     <!-- 行动选项区 -->
     <section class="section actions" aria-labelledby="h-actions">
       <h2 class="heading" id="h-actions">行动选项</h2>
       <ul class="action-list curved">
-        <li><button class="btn-jade" data-tip="金钱-120 情报+10">A. 点杯苹果酒与查尔斯攀谈 → 💰-120摩拉 💬情报值+10</button></li>
-        <li><button class="btn-jade" data-tip="魅力检定>65 压力+15">B. 主动接近神秘兜帽客 → 🎭魅力检定(>65) 😰压力+15</button></li>
-        <li><button class="btn-jade" data-tip="侦查+5 时间+1h">C. 静坐收集情报 → 🔍侦查值+5 ⏳时间推进1小时</button></li>
+        <li><button class="btn-jade" data-tip="相关影响">A. 选项内容 → 相关影响</button></li>
+        <li><button class="btn-jade" data-tip="相关影响">B. 选项内容 → 相关影响</button></li>
+        <li><button class="btn-jade" data-tip="相关影响">C. 选项内容 → 相关影响</button></li>
         <li><button class="btn-jade">✨ 自定义指令：_________</button></li>
       </ul>
-      <p class="tip mono" id="hoverTip">提示：悬停查看效果</p>
     </section>
 
     <!-- 状态信息区 -->
     <section class="section status-info" aria-labelledby="h-info">
       <h2 class="heading" id="h-info">状态信息</h2>
       <div class="kv mono">
-        <div>💰金钱：1000摩拉</div>
-        <div>💪体力：80/100</div>
-        <div>😰心理压力：20</div>
-        <div>🌪️风元素亲和：30</div>
-        <div>📢名声：10（无名冒险者）</div>
+        <div>变化状态1</div>
+        <div>变化状态2</div>
+        <div>变化状态3</div>
+        <div>......</div>
       </div>
     </section>
   </main>

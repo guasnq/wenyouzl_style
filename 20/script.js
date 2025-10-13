@@ -7,16 +7,6 @@ const panel = $('#statePanel');
 const closeBtn = $('#closeSide');
 const bodyBox = $('#stateBody');
 
-const stateText = `体力:80, 心理压力:20, 风元素亲和:30, 金钱:1000, 名声:10, 侦查值:50, 隐匿值:40, 魅力:60, 道德刻度:70, 欲望倾向:30, 债务:0, 情报值:10, 西风骑士团声誉:50, 通缉等级:0, 秘密指数:0, 影响力:5, 事件计数器:0`;
-
-function renderState() {
-  // 渲染为列表
-  const items = stateText.split(',').map(s => s.trim());
-  const html = '<ul style="margin:0; padding-left:1em">' + items.map(it => `<li style="margin:.25em 0">${it}</li>`).join('') + '</ul>';
-  bodyBox.innerHTML = html;
-}
-renderState();
-
 function toggleSide(open) {
   if (open) { panel.classList.add('open'); openBtn.setAttribute('aria-expanded', 'true'); }
   else { panel.classList.remove('open'); openBtn.setAttribute('aria-expanded', 'false'); }
