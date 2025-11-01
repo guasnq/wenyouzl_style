@@ -1,37 +1,35 @@
-// -------------------- 简化版脚本 - 移除所有动画和复杂计算 --------------------
+// 性能优先：禁用高像素比，限制粒子与动画帧率（此版本已无Canvas粒子）。
 
-// -------------------- 抽屉状态栏开合 --------------------
+// 抽屉开合
 (function(){
-  const drawer = document.getElementById('statusDrawer');
-  const openBtn = document.getElementById('openDrawer');
-  const closeBtn = document.getElementById('closeDrawer');
-  const backdrop = document.getElementById('drawerBackdrop');
+  const d = document.getElementById('drawer');
+  const bd = document.getElementById('bd');
+  document.getElementById('open').addEventListener('click', ()=>{ d.classList.add('open'); bd.classList.add('show'); });
+  document.getElementById('close').addEventListener('click', ()=>{ d.classList.remove('open'); bd.classList.remove('show'); });
+  bd.addEventListener('click', ()=>{ d.classList.remove('open'); bd.classList.remove('show'); });
+  window.addEventListener('keydown', e=>{ if(e.key==='Escape'){ d.classList.remove('open'); bd.classList.remove('show'); }});
+})();
 
-  if (!drawer || !openBtn || !closeBtn || !backdrop) return;
-
-  let isOpen = false;
-
-  function open(){
-    if (isOpen) return;
-    drawer.classList.add('open');
-    backdrop.classList.add('show');
-    isOpen = true;
-  }
-
-  function close(){
-    if (!isOpen) return;
-    drawer.classList.remove('open');
-    backdrop.classList.remove('show');
-    isOpen = false;
-  }
-
-  // 简化事件监听
-  openBtn.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-  backdrop.addEventListener('click', close);
-
-  // Esc 关闭
-  document.addEventListener('keydown', (e)=>{
-    if(e.key==='Escape' && isOpen) close();
+// 提供质感/性能切换：Alt+L 切换 data-perf
+(function(){
+  window.addEventListener('keydown', e=>{
+    if(e.altKey && (e.key==='l' || e.key==='L')){
+      const b=document.body; b.dataset.perf = b.dataset.perf==='low' ? 'high' : 'low';
+    }
   });
+})();
+
+// 轻视差：仅在高质感模式启用，且幅度极低
+(function(){
+  const bg = document.querySelector('.bg');
+  let enabled = false;
+  const onScroll = ()=>{
+    if(!enabled) return;
+    const y = window.scrollY||0; const p = Math.min(8, y*0.05);
+    bg.style.transform = `translate3d(0, ${p}px, 0)`;
+  };
+  const toggle = ()=>{ enabled = document.body.dataset.perf==='high'; if(!enabled) bg.style.transform='translateZ(0)'; };
+  toggle();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  const mo = new MutationObserver(toggle); mo.observe(document.body,{attributes:true,attributeFilter:['data-perf']});
 })();

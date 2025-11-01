@@ -3,45 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>云顶暮色·轻风卡片</title>
-
-  <!-- 色彩控制变量在HTML中定义，包括背景图片 -->
+  <title>云顶暮色·轻风卡片 · 性能优化版</title>
   <style>
     :root{
       --bg-url: url('https://gitee.com/fbqdnq/wenyou/raw/main/img/21.webp');
-      --night-blue:#0D2745; --cloud-white:#F2F0EA; --warm-gold:#F6D8A8; --mist-blue:#A9BED6; --charcoal:#1B1F24;
     }
   </style>
-
-  <!-- 外部CSS文件引用 -->
   <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/21/style.css">
 </head>
-<body>
-  <!-- 背景与全局动态层：简化版本减少性能消耗 -->
+<body data-perf="low">
   <div class="bg" aria-hidden="true"></div>
-  <!-- 移除粒子动画、云气漂移、胶片颗粒等高消耗特效 -->
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="cloud-drift" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-  <!-- 侧边状态栏把手 -->
-  <button class="drawer-handle-cloud" id="openDrawer" title="展开状态栏">☁</button>
-  <div class="backdrop" id="drawerBackdrop"></div>
-  <aside class="status-drawer" id="statusDrawer" aria-label="状态栏">
-    <div class="drawer-top">
-      <div>
-        <strong>状态概览</strong>
-      </div>
-      <button class="drawer-close" id="closeDrawer">✕</button>
+  <button class="handle" id="open">☁</button>
+  <div class="backdrop" id="bd"></div>
+  <aside class="drawer" id="drawer" aria-label="状态栏">
+    <div class="d-top">
+      <strong>状态概览</strong>
+      <button class="d-close" id="close">✕</button>
     </div>
-    <div class="drawer-scroll thin-scroll">
-      <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:.8rem;">
-        <!-- 顶部概览环形汇总 -->
+    <div class="d-scroll">
+      <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:.7rem;">
         <div class="chip"><div class="gauge" style="--p:.8"><span>80%</span></div><div>体力 80/100</div></div>
         <div class="chip"><div class="gauge" style="--p:.2"><span>20%</span></div><div>心理压力 20</div></div>
         <div class="chip"><div class="gauge" style="--p:.3"><span>30%</span></div><div>风元素亲和 30</div></div>
         <div class="chip"><div class="gauge" style="--p:1"><span>满</span></div><div>金钱 1000</div></div>
       </div>
-
       <h2 style="margin-top:1rem">详细指标</h2>
-      <div style="display:grid; grid-template-columns:1fr; gap:.5rem;">
+      <div style="display:grid; gap:.5rem;">
         <div class="chip">名声：10（无名冒险者）</div>
         <div class="chip">侦查值：50</div>
         <div class="chip">隐匿值：40</div>
@@ -59,83 +51,55 @@
     </div>
   </aside>
 
-  <!-- 页面主内容（自上而下） -->
   <main class="page">
-    <div class="safe-top"></div>
-
-    <!-- 场景渲染 -->
-    <section class="section">
-      <div style="padding:1rem 1.2rem; text-align:left;">
+    <section class="section scene">
+      <div class="frame">
         <h2>场景渲染</h2>
         <div class="muted">
-          🌃【蒙德城·天使的馈赠酒馆 - 夜晚】<br/>
+          🌃【蒙德城·天使的馈赠酒馆 - 夜晚】<br>
           酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到"龙灾""西风骑士团"的零星词句飘过。
         </div>
       </div>
     </section>
 
-    <!-- 旁白 -->
-    <section class="section">
+    <section class="section narration">
+      <div class="wind" aria-hidden="true"></div>
       <h2>旁白</h2>
       <p>初至蒙德的异乡人啊，每滴酒液都沉淀着故事。</p>
       <p>当心那些阴影中的交易——它们可能改变命运的轨迹。</p>
     </section>
 
-    <!-- 动态事件 -->
-    <section class="section">
+    <section class="section events">
       <h2>动态事件</h2>
-      <div style="padding:.5rem; margin-bottom:.5rem; background: rgba(27,31,36,.28); border-radius: 12px;">
-        ⚠️ 侦查值不足（需≥60）无法识破兜帽客身份
-      </div>
-      <div style="padding:.5rem; background: rgba(27,31,36,.28); border-radius: 12px;">
-        🍻 夜间酒馆消费享8折优惠（限时）
+      <div class="film">
+        <div class="card">⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</div>
+        <div class="card">🍻 夜间酒馆消费享8折优惠（限时）</div>
       </div>
     </section>
 
-    <!-- 行动选项 -->
-    <section class="section">
+    <section class="section actions">
+      <div class="ribbon" aria-hidden="true"></div>
       <h2>行动选项</h2>
-      <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:.8rem;">
-        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
-          A. 点杯苹果酒与查尔斯攀谈 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 💰-120摩拉 💬情报值+10</span>
-        </div>
-        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
-          B. 主动接近神秘兜帽客 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 🎭魅力检定(>65) 😰压力+15</span>
-        </div>
-        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
-          C. 静坐收集情报 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 🔍侦查值+5 ⏳时间推进1小时</span>
-        </div>
-        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
-          ✨ 自定义指令：_________
-        </div>
+      <div class="grid">
+        <div class="pill">A. 点杯苹果酒与查尔斯攀谈 <span class="tag">→ 💰-120摩拉 💬情报值+10</span></div>
+        <div class="pill">B. 主动接近神秘兜帽客 <span class="tag">→ 🎭魅力检定(>65) 😰压力+15</span></div>
+        <div class="pill">C. 静坐收集情报 <span class="tag">→ 🔍侦查值+5 ⏳时间推进1小时</span></div>
+        <div class="pill">✨ 自定义指令：_________</div>
       </div>
     </section>
 
-    <!-- 状态信息 -->
-    <section class="section">
+    <section class="section status">
       <h2>状态信息</h2>
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:.8rem;">
-        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
-          💰金钱：1000摩拉
-        </div>
-        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
-          💪体力：80/100
-        </div>
-        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
-          😰心理压力：20
-        </div>
-        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
-          🌪️风元素亲和：30
-        </div>
-        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
-          📢名声：10（无名冒险者）
-        </div>
+      <div class="s-grid">
+        <div class="chip"><div class="gauge" style="--p:.5"><span>—</span></div>💰金钱：1000摩拉</div>
+        <div class="chip"><div class="gauge" style="--p:.8"><span>80</span></div>💪体力：80/100</div>
+        <div class="chip"><div class="gauge" style="--p:.2"><span>20</span></div>😰心理压力：20</div>
+        <div class="chip"><div class="gauge" style="--p:.3"><span>30</span></div>🌪️风元素亲和：30</div>
+        <div class="chip"><div class="gauge" style="--p:.1"><span>10</span></div>📢名声：10（无名冒险者）</div>
       </div>
     </section>
-
   </main>
 
-  <!-- 外部JavaScript文件引用 -->
   <script src="https://gitee.com/fbqdnq/wenyou/raw/main/21/script.js"></script>
 </body>
 </html>
