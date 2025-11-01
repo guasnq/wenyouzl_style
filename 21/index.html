@@ -17,12 +17,9 @@
   <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/21/style.css">
 </head>
 <body>
-  <!-- 背景与全局动态层：不遮蔽主图，仅轻度修饰 -->
+  <!-- 背景与全局动态层：简化版本减少性能消耗 -->
   <div class="bg" aria-hidden="true"></div>
-  <canvas id="particles" aria-hidden="true"></canvas>
-  <div class="cloud-drift" aria-hidden="true"></div>
-  <div class="film-grain" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
+  <!-- 移除粒子动画、云气漂移、胶片颗粒等高消耗特效 -->
 
   <!-- 侧边状态栏把手 -->
   <button class="drawer-handle-cloud" id="openDrawer" title="展开状态栏">☁</button>
@@ -67,57 +64,72 @@
     <div class="safe-top"></div>
 
     <!-- 场景渲染 -->
-    <section class="section glow-edge frame-cloud">
-      <div class="frame">
-        <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
-        <div style="padding:1rem 1.2rem; text-align:left;">
-          <h2>场景渲染</h2>
-          <div class="muted">
-            🌃【蒙德城·天使的馈赠酒馆 - 夜晚】<br/>
-            酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到"龙灾""西风骑士团"的零星词句飘过。
-          </div>
+    <section class="section">
+      <div style="padding:1rem 1.2rem; text-align:left;">
+        <h2>场景渲染</h2>
+        <div class="muted">
+          🌃【蒙德城·天使的馈赠酒馆 - 夜晚】<br/>
+          酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气扑面而来。查尔斯擦拭着玻璃杯向你颔首，角落里吟游诗人拨弄琴弦哼着风龙旧谣。你注意到吧台尽头坐着个戴兜帽的神秘人，指尖无意识地敲击着木质台面。酒客们的喧闹中，你听到"龙灾""西风骑士团"的零星词句飘过。
         </div>
       </div>
     </section>
 
     <!-- 旁白 -->
-    <section class="section glow-edge narration">
-      <div class="wind-line" aria-hidden="true"></div>
+    <section class="section">
       <h2>旁白</h2>
       <p>初至蒙德的异乡人啊，每滴酒液都沉淀着故事。</p>
       <p>当心那些阴影中的交易——它们可能改变命运的轨迹。</p>
     </section>
 
     <!-- 动态事件 -->
-    <section class="section glow-edge events">
+    <section class="section">
       <h2>动态事件</h2>
-      <div class="film-stack">
-        <div class="film-card">⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</div>
-        <div class="film-card">🍻 夜间酒馆消费享8折优惠（限时）</div>
+      <div style="padding:.5rem; margin-bottom:.5rem; background: rgba(27,31,36,.28); border-radius: 12px;">
+        ⚠️ 侦查值不足（需≥60）无法识破兜帽客身份
+      </div>
+      <div style="padding:.5rem; background: rgba(27,31,36,.28); border-radius: 12px;">
+        🍻 夜间酒馆消费享8折优惠（限时）
       </div>
     </section>
 
     <!-- 行动选项 -->
-    <section class="section glow-edge actions">
-      <div class="wind-ribbon" aria-hidden="true"></div>
+    <section class="section">
       <h2>行动选项</h2>
-      <div class="action-grid">
-        <div class="pill">A. 点杯苹果酒与查尔斯攀谈 <span class="tag">→ 💰-120摩拉 💬情报值+10</span></div>
-        <div class="pill">B. 主动接近神秘兜帽客 <span class="tag">→ 🎭魅力检定(>65) 😰压力+15</span></div>
-        <div class="pill">C. 静坐收集情报 <span class="tag">→ 🔍侦查值+5 ⏳时间推进1小时</span></div>
-        <div class="pill">✨ 自定义指令：_________</div>
+      <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:.8rem;">
+        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
+          A. 点杯苹果酒与查尔斯攀谈 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 💰-120摩拉 💬情报值+10</span>
+        </div>
+        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
+          B. 主动接近神秘兜帽客 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 🎭魅力检定(>65) 😰压力+15</span>
+        </div>
+        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
+          C. 静坐收集情报 <span style="font-size:.9em; opacity:.85; color:var(--warm-gold);">→ 🔍侦查值+5 ⏳时间推进1小时</span>
+        </div>
+        <div style="padding:.8rem 1rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius: 12px;">
+          ✨ 自定义指令：_________
+        </div>
       </div>
     </section>
 
     <!-- 状态信息 -->
-    <section class="section glow-edge status-info">
+    <section class="section">
       <h2>状态信息</h2>
-      <div class="status-grid">
-        <div class="chip"><div class="gauge" style="--p:.5"><span>—</span></div>💰金钱：1000摩拉</div>
-        <div class="chip"><div class="gauge" style="--p:.8"><span>80</span></div>💪体力：80/100</div>
-        <div class="chip"><div class="gauge" style="--p:.2"><span>20</span></div>😰心理压力：20</div>
-        <div class="chip"><div class="gauge" style="--p:.3"><span>30</span></div>🌪️风元素亲和：30</div>
-        <div class="chip"><div class="gauge" style="--p:.1"><span>10</span></div>📢名声：10（无名冒险者）</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:.8rem;">
+        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
+          💰金钱：1000摩拉
+        </div>
+        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
+          💪体力：80/100
+        </div>
+        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
+          😰心理压力：20
+        </div>
+        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
+          🌪️风元素亲和：30
+        </div>
+        <div style="padding:.6rem; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.06); border-radius: 8px; font-size:.9em;">
+          📢名声：10（无名冒险者）
+        </div>
       </div>
     </section>
 
