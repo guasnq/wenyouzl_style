@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>夕烧·并肩｜卡片页面</title>
+  <link rel="preload" as="image" href="https://gitee.com/fbqdnq/wenyou/raw/main/img/22.webp" />
+  <style>
+    :root{
+      --bg:url("https://gitee.com/fbqdnq/wenyou/raw/main/img/22.webp");
+    }
+  </style>
+  <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/22/style.css">
+</head>
+<body>
+  <!-- SVG 滤镜：热浪 / 胶片噪点 / 光晕 -->
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <filter id="heat-displace" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence id="heat-noise" type="turbulence" baseFrequency="0.008 0.004" numOctaves="2" seed="13" />
+      <feDisplacementMap in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+    <filter id="film-grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncA type="table" tableValues="0 0.04" /></feComponentTransfer></filter>
+    <filter id="sun-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="38" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </svg>
+
+  <!-- 全局动效层 -->
+  <div class="xia" aria-hidden="true"></div>
+  <div class="heat" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 状态栏开合按钮与抽屉 -->
+  <button class="toggle" aria-controls="drawer" aria-expanded="false">状态</button>
+  <aside id="drawer" class="drawer" aria-label="状态栏" aria-hidden="true">
+    <header class="drawer-head"><h3>当前状态</h3><button class="drawer-close" aria-label="关闭状态栏">×</button></header>
+    <div class="drawer-body">
+      <section><h4>概览</h4><ul class="kv"><li><span>金钱</span><strong>1000摩拉</strong></li><li><span>体力</span><strong>80/100</strong></li><li><span>压力</span><strong>20</strong></li><li><span>名声</span><strong>10</strong></li></ul></section>
+      <section><h4>数值面板</h4><div class="bar"><span>风元素亲和</span><i style="--val:30%"></i></div><div class="bar"><span>侦查值</span><i style="--val:50%"></i></div><div class="bar"><span>隐匿值</span><i style="--val:40%"></i></div><div class="bar"><span>魅力</span><i style="--val:60%"></i></div></section>
+      <section><h4>Buff / Debuff</h4><ul class="tags"><li class="pos">夜间折扣</li><li class="neg">压力+15（潜在）</li></ul></section>
+      <section><h4>日志快照</h4><ol class="log"><li>进入蒙德 · 天使的馈赠酒馆</li><li>获知西风骑士团流言</li><li>发现可疑兜帽客</li></ol></section>
+    </div>
+  </aside>
+
+  <!-- 主内容：自上而下六区块（状态栏独立） -->
+  <main class="stack">
+    <section class="card s-scene"><span class="decor-wind"></span><h1>场景渲染</h1><p>🌃【蒙德城·天使的馈赠酒馆 - 夜晚】酒馆木门在身后轻响，温暖的烛光裹挟着蒲公英酒的香气。角落里吟游诗人拨弦哼唱，吧台尽头的兜帽客指尖敲击木面。喧闹间，“龙灾”“西风骑士团”的词句若隐若现。</p></section>
+    <section class="card s-narration"><span class="decor-wind"></span><h2>旁白</h2><p>初至蒙德的异乡人，每滴酒液都沉淀着故事。当心阴影中的交易，它们可能改写你的命运。</p></section>
+    <section class="card s-events"><span class="decor-wind"></span><h2>动态事件</h2><ul class="event-list"><li>⚠️ 侦查值不足（需≥60）无法识破兜帽客身份</li><li>🍻 夜间酒馆消费享 8 折优惠（限时）</li></ul></section>
+    <section class="card s-actions"><span class="decor-wind"></span><h2>行动选项</h2><div class="btns"><button class="pill">点杯苹果酒与查尔斯攀谈</button><button class="pill">接近神秘兜帽客</button><button class="pill">静坐收集情报</button><button class="pill ghost">自定义指令</button></div></section>
+    <section class="card s-stats"><span class="decor-wind"></span><h2>状态信息</h2><ul class="stats"><li>💰 1000摩拉</li><li>💪 80/100</li><li>😰 20</li><li>📢 10</li><li>🌪️ 30</li></ul></section>
+  </main>
+
+  <script src="https://gitee.com/fbqdnq/wenyou/raw/main/22/script.js"></script>
+</body>
+</html>
