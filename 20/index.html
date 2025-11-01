@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>模板20（作者：墙子）</title>
   <style>
     :root {
@@ -12,24 +11,19 @@
   </style>
   <link rel="stylesheet" href="https://gitee.com/fbqdnq/wenyou/raw/main/20/style.css">
 </head>
-
 <body>
-  <!-- 背景层 -->
-  <div class="bg" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="window-glow" aria-hidden="true"></div>
-  <canvas id="stars" aria-hidden="true"></canvas>
-  <canvas id="smoke" aria-hidden="true"></canvas>
-
-  <!-- 侧边状态栏开关 -->
-  <div class="side-toggle" role="region" aria-label="状态栏开关">
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="window-glow"></div>
+  <canvas id="stars"></canvas>
+  <canvas id="smoke"></canvas>
+  <div class="side-toggle">
     <button class="vine-btn" id="openSide" aria-controls="statePanel" aria-expanded="false" title="展开状态">
-      <!-- 紫色藤蔓/叶片样式的简化图标 -->
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
         <path d="M4 20c6-2 7-9 8-14 3 3 6 7 8 12" stroke="url(#g)" stroke-width="2" stroke-linecap="round" />
         <circle cx="12" cy="6" r="2" fill="url(#g)" />
         <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <linearGradient id="g" x1="0" y1="0" x2="24" y2="24">
             <stop stop-color="#a78bfa" />
             <stop offset="1" stop-color="#8b5cf6" />
           </linearGradient>
@@ -37,15 +31,13 @@
       </svg>
     </button>
   </div>
-
-  <!-- 侧边面板 -->
-  <aside class="side-panel breath" id="statePanel" aria-label="状态栏">
+  <aside class="side-panel breath" id="statePanel">
     <div class="side-head">
       <div class="heading">当前状态</div>
       <button class="side-close" id="closeSide">关闭 ✕</button>
     </div>
     <div class="side-body mono" id="stateBody">
-      <ul style="margin:0; padding-left:1em">
+      <ul style="margin:0;padding-left:1em">
         <li style="margin:.25em 0">状态1：状态值</li>
         <li style="margin:.25em 0">状态2：状态值</li>
         <li style="margin:.25em 0">状态3：状态值</li>
@@ -58,22 +50,15 @@
       </ul>
     </div>
   </aside>
-
-  <!-- 主内容 -->
   <main class="wrap">
-    <!-- 场景渲染区 -->
     <section class="section scene breath" aria-labelledby="h-scene">
       <h2 class="heading" id="h-scene">当前时间-当前具体地点</h2>
-      <p>含环境、人物、情感的沉浸式描述 </p>
+      <p>含环境、人物、情感的沉浸式描述</p>
     </section>
-
-    <!-- 旁白区 -->
     <section class="section narration" aria-labelledby="h-narr">
       <h2 class="heading" id="h-narr">旁白</h2>
       <p>相关旁白</p>
     </section>
-
-    <!-- 动态事件区 -->
     <section class="section events breath" aria-labelledby="h-events">
       <canvas class="petals" id="petals"></canvas>
       <h2 class="heading" id="h-events">动态事件</h2>
@@ -83,8 +68,6 @@
         <span class="tag">.....</span>
       </p>
     </section>
-
-    <!-- 行动选项区 -->
     <section class="section actions" aria-labelledby="h-actions">
       <h2 class="heading" id="h-actions">行动选项</h2>
       <ul class="action-list curved">
@@ -94,8 +77,6 @@
         <li><button class="btn-jade">✨ 自定义指令：_________</button></li>
       </ul>
     </section>
-
-    <!-- 状态信息区 -->
     <section class="section status-info" aria-labelledby="h-info">
       <h2 class="heading" id="h-info">状态信息</h2>
       <div class="kv mono">
@@ -106,8 +87,6 @@
       </div>
     </section>
   </main>
-
   <script src="https://gitee.com/fbqdnq/wenyou/raw/main/20/script.js"></script>
 </body>
-
 </html>
